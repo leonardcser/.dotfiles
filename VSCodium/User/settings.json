@@ -1,0 +1,16 @@
+{
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "files.autoSave": "onFocusChange",
+    "editor.fontSize": 16,
+    "editor.fontFamily": "Jetbrains Mono, Menlo, Monaco, 'Courier New', monospace",
+    "editor.minimap.enabled": false,
+    "workbench.editor.editorActionsLocation": "titleBar",
+    "svelte.enable-ts-plugin": true,
+    "editor.lineNumbers": "relative",
+    "workbench.editor.showTabs": "none",
+    "window.commandCenter": false,
+    "workbench.activityBar.location": "hidden",
+    "terminal.integrated.fontSize": 16
+}

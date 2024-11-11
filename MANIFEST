@@ -1,0 +1,10 @@
+.hushlogin|symlink|
+.gitconfig|symlink|
+.gitignore|symlink|
+.tmux.conf|symlink|
+.vimrc|symlink|
+.zshrc|symlink|
+nvim|symlink|.config
+kitty|symlink|.config
+VSCodium/User/settings.json|symlink|Library/Application Support
+extensions.json|symlink|.vscode-oss/extensions
