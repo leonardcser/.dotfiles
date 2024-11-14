@@ -34,6 +34,7 @@ return {
 				"emmet_ls",
 				"prismals",
 				"svelte",
+				"jdtls",
 			},
 		})
 
