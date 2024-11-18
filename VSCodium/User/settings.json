@@ -11,7 +11,6 @@
     "editor.lineNumbers": "relative",
     "workbench.editor.showTabs": "none",
     "window.commandCenter": false,
-    "workbench.activityBar.location": "hidden",
     "terminal.integrated.fontSize": 16,
     "markdown.extension.toc.levels": "2..6",
     "git.confirmSync": false
