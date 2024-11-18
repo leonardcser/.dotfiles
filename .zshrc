@@ -190,9 +190,7 @@ MY CUSTOM COMMANDS.........................................
 -  ohmyzshconfig  Open config in VSCode
 -  f              Open finder in current dir
 -  cdf            cd opened finder window
--  sloc           Count .java and .py lines of code (git)
--  cpulog         Logs cp
--  now            Get current time copied to clipboard
+-  sloc           Count lines of code (git)
 -  clrhist        Clear Terminal History
 -  kill-apps      Kills all running processes with grep
 -  pdwatch        Watch for changes with pandoc
