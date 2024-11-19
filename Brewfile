@@ -1,5 +1,8 @@
 tap "homebrew/bundle"
 brew "ack"
+brew "bear"
+brew "cmake"
+brew "coder"
 brew "fzf"
 brew "git"
 brew "go"
