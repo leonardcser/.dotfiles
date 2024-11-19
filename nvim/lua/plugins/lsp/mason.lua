@@ -35,6 +35,7 @@ return {
 				"prismals",
 				"svelte",
 				"jdtls",
+				"clangd",
 			},
 		})
 
@@ -46,6 +47,7 @@ return {
 				"black", -- python formatter
 				"pylint", -- python linter
 				"eslint_d", -- js linter
+				"clang-format", -- c/cpp formatter
 			},
 		})
 	end,

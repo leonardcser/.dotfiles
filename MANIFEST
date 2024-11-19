@@ -4,6 +4,7 @@
 .tmux.conf|symlink|
 .vimrc|symlink|
 .zshrc|symlink|
+.clang-format|symlink|
 nvim|symlink|.config
 kitty|symlink|.config
 VSCodium/User/settings.json|symlink|Library/Application Support
