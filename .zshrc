@@ -75,6 +75,11 @@ plugins=(vi-mode colored-man-pages colorize macos zsh-autosuggestions zsh-syntax
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+MODE_INDICATOR="%F{white}-%f"
+INSERT_MODE_INDICATOR="%F{cyan}+%f"
+PROMPT="\$(vi_mode_prompt_info)$PROMPT"
+RPROMPT="$RPROMPT"
+setopt PRINT_EXIT_VALUE
 
 # export MANPATH="/usr/local/man:$MANPATH"
 VIRTUAL_ENV_DISABLE_PROMPT=
