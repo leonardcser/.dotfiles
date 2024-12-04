@@ -1,5 +1,5 @@
 return {
-    'nvim-telescope/telescope.nvim',
+	"nvim-telescope/telescope.nvim",
 	branch = "0.1.x",
 	dependencies = {
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
@@ -12,7 +12,7 @@ return {
 
 		telescope.setup({
 			defaults = {
-				path_display = { "smart" },
+				-- path_display = { "smart" },
 				mappings = {
 					i = {
 						["<C-k>"] = actions.move_selection_previous, -- move to prev result
