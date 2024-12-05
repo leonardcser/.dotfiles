@@ -6,8 +6,7 @@ return {
 		"windwp/nvim-ts-autotag",
 	},
 	config = function()
-		-- import nvim-treesitter plugin
-		require("nvim-treesitter.configs").setup({ -- enable syntax highlighting
+		require("nvim-treesitter.configs").setup({
 			highlight = {
 				enable = true,
 			},
@@ -40,6 +39,7 @@ return {
 				"query",
 				"vimdoc",
 				"c",
+				"cpp",
 			},
 			-- Install parsers synchronously (only applied to `ensure_installed`)
 			sync_install = false,
@@ -56,6 +56,8 @@ return {
 				},
 			},
 		})
+
+		-- import nvim-treesitter plugin
 		require("nvim-ts-autotag").setup({
 			opts = {
 				-- Defaults

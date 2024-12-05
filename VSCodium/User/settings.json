@@ -13,5 +13,8 @@
     "window.commandCenter": false,
     "terminal.integrated.fontSize": 16,
     "markdown.extension.toc.levels": "2..6",
-    "git.confirmSync": false
+    "git.confirmSync": false,
+    "supermaven.enable": {
+        "*": true
+    }
 }
