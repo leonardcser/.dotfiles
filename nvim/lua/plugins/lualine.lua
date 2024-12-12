@@ -53,6 +53,13 @@ return {
 		lualine.setup({
 			options = {
 				theme = my_lualine_theme,
+				-- section_separators = "",
+				-- component_separators = "",
+				refresh = {
+					statusline = 50,
+					tabline = 50,
+					winbar = 50,
+				},
 			},
 			sections = {
 				lualine_c = { { "filename", path = 1 } },

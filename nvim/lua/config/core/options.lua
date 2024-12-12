@@ -47,6 +47,9 @@ opt.signcolumn = "yes" -- show sign column so that text doesn't shift
 opt.scrolloff = 8
 opt.showmode = false
 
+-- tabbar
+vim.opt.showtabline = 0
+
 -- backspace
 opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
 
