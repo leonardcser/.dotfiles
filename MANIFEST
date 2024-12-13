@@ -7,5 +7,6 @@
 .clang-format|symlink|
 nvim|symlink|.config
 kitty|symlink|.config
+scripts|symlink|.local/bin
 VSCodium/User/settings.json|symlink|Library/Application Support
 .vscode-oss/extensions/extensions.json|symlink|

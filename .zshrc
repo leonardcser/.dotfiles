@@ -78,7 +78,7 @@ source $ZSH/oh-my-zsh.sh
 MODE_INDICATOR="%F{white}-%f"
 INSERT_MODE_INDICATOR="%F{cyan}+%f"
 PROMPT="\$(vi_mode_prompt_info)$PROMPT"
-RPROMPT="$RPROMPT"
+RPROMPT=""
 setopt PRINT_EXIT_VALUE
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -127,6 +127,8 @@ alias vi="vim"
 
 # fzf
 source <(fzf --zsh)
+export FZF_DEFAULT_COMMAND='find . \( -name node_modules -o -name .git \) -prune -o -print'
+alias tx=~/.local/bin/scripts/tmux-sessionizer
 
 # PERSONAL FUNCTIONS
 # Shortcut Function
