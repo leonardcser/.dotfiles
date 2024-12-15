@@ -127,7 +127,7 @@ alias vi="vim"
 
 # fzf
 source <(fzf --zsh)
-export FZF_DEFAULT_COMMAND='find . \( -name node_modules -o -name .git \) -prune -o -print'
+export FZF_DEFAULT_COMMAND='find . \( -name node_modules -o -name .git -o -name .venv -o -name build \) -prune -o -print'
 alias tx=~/.local/bin/scripts/tmux-sessionizer
 
 # PERSONAL FUNCTIONS

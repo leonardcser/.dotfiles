@@ -37,6 +37,8 @@ return {
 				"svelte",
 				"jdtls",
 				"clangd",
+				"pylsp",
+				"dockerls",
 			},
 		})
 
@@ -46,7 +48,7 @@ return {
 				"stylua", -- lua formatter
 				"isort", -- python formatter
 				"black", -- python formatter
-				"pylint", -- python linter
+				"mypy", -- python linter
 				"eslint_d", -- js linter
 				"clang-format", -- c/cpp formatter
 			},

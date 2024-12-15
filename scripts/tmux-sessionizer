@@ -8,7 +8,7 @@ if [[ $# -eq 1 ]]; then
         exit 1
     fi
 else
-    selected=$(find ~/dev -mindepth 2 -maxdepth 5 -type d \( -name node_modules -o -name .git -o -name .venv \) -prune -o -type d -print | fzf)
+    selected=$(find ~/dev -mindepth 2 -maxdepth 5 -type d \( -name node_modules -o -name .git -o -name .venv -o -name build \) -prune -o -type d -print | fzf)
 fi
 
 if [[ -z $selected ]]; then

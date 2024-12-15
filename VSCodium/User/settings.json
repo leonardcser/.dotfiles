@@ -16,5 +16,6 @@
     "git.confirmSync": false,
     "supermaven.enable": {
         "*": true
-    }
+    },
+    "svg.preview.mode": "svg"
 }
