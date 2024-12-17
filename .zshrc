@@ -1,4 +1,3 @@
-source ~/zsh-defer/zsh-defer.plugin.zsh
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
@@ -74,6 +73,8 @@ ENABLE_CORRECTION="true"
 plugins=(vi-mode)
 
 source $ZSH/oh-my-zsh.sh
+source $ZSH/custom/plugins/zsh-defer/zsh-defer.plugin.zsh # zsh-defer
+
 zsh-defer source $ZSH/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 zsh-defer source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
 zsh-defer source $ZSH/plugins/colored-man-pages/colored-man-pages.plugin.zsh
