@@ -42,7 +42,7 @@ ZSH_THEME="garyblessington"
 DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
@@ -79,7 +79,8 @@ zsh-defer source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highligh
 zsh-defer source $ZSH/plugins/colored-man-pages/colored-man-pages.plugin.zsh
 zsh-defer source $ZSH/plugins/colorize/colorize.plugin.zsh
 
-# User configuration
+# USER CONFIGURATION
+# prompt
 MODE_INDICATOR="%F{white}-%f"
 INSERT_MODE_INDICATOR="%F{cyan}+%f"
 PROMPT="\$(vi_mode_prompt_info)$PROMPT"
@@ -90,6 +91,15 @@ setopt PRINT_EXIT_VALUE
 VIRTUAL_ENV_DISABLE_PROMPT=
 # https://superuser.com/questions/645599/why-is-a-percent-sign-appearing-before-each-prompt-on-zsh-in-windows
 unsetopt PROMPT_SP
+
+
+# history
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_FIND_NO_DUPS
+setopt HIST_SAVE_NO_DUPS
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
