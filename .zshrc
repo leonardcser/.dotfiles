@@ -1,3 +1,4 @@
+source ~/zsh-defer/zsh-defer.plugin.zsh
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
@@ -70,9 +71,13 @@ DISABLE_AUTO_TITLE="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(vi-mode colored-man-pages colorize macos zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(vi-mode)
 
 source $ZSH/oh-my-zsh.sh
+zsh-defer source $ZSH/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+zsh-defer source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+zsh-defer source $ZSH/plugins/colored-man-pages/colored-man-pages.plugin.zsh
+zsh-defer source $ZSH/plugins/colorize/colorize.plugin.zsh
 
 # User configuration
 MODE_INDICATOR="%F{white}-%f"
@@ -209,14 +214,14 @@ export PATH="${PATH}:/usr/local/sbin"
 
 # Python
 if command -v pyenv 1>/dev/null 2>&1; then
- eval "$(pyenv init -)"
+  zsh-defer eval "$(pyenv init -)"
 fi
-PATH=$(pyenv root)/shims:$PATH
+zsh-defer PATH=$(pyenv root)/shims:$PATH
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+zsh-defer source "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+zsh-defer source "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # cpp
 # CC=/usr/local/bin/gcc-14
@@ -230,6 +235,6 @@ export PATH=$PATH:$HOME/go/bin
 # rust
 export PATH=$PATH:$HOME/.cargo/bin
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+# java
 export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+zsh-defer source "$HOME/.sdkman/bin/sdkman-init.sh"

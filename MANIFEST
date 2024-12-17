@@ -3,6 +3,9 @@
 .gitignore|symlink|
 .tmux.conf|symlink|
 .vimrc|symlink|
+.zprofile|symlink|
+.oh-my-zsh|symlink|
+zsh-defer|symlink|
 .zshrc|symlink|
 .clang-format|symlink|
 nvim|symlink|.config
