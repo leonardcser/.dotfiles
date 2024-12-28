@@ -11,7 +11,7 @@ palette = 4=#3471c6
 palette = 5=#ba32ca
 palette = 6=#5ecacb
 palette = 7=#dddddd
-palette = 8=#4c566a
+palette = 8=#767676
 palette = 9=#de3b2f
 palette = 10=#78f94c
 palette = 11=#fffd54
@@ -37,3 +37,6 @@ working-directory = "/Users/leo/dev"
 mouse-hide-while-typing = true
 copy-on-select = true
 quit-after-last-window-closed = true
+
+keybind = cmd+shift+space=toggle_quick_terminal
+quick-terminal-animation-duration = 0.0
