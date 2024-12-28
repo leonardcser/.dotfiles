@@ -18,14 +18,6 @@ return {
 				indent_markers = {
 					enable = true,
 				},
-				icons = {
-					glyphs = {
-						folder = {
-							arrow_closed = "", -- arrow when folder is closed
-							arrow_open = "", -- arrow when folder is open
-						},
-					},
-				},
 			},
 			-- disable window_picker for
 			-- explorer to work well with
@@ -57,6 +49,11 @@ return {
 		-- set keymaps
 		local keymap = vim.keymap -- for conciseness
 		local api = require("nvim-tree.api")
+
+		-- automatically open file upon creation
+		api.events.subscribe(api.events.Event.FileCreated, function(file)
+			vim.cmd("edit " .. vim.fn.fnameescape(file.fname))
+		end)
 
 		local function toggle()
 			api.tree.toggle({ find_file = false, winid = vim.api.nvim_get_current_win(), focus = true })

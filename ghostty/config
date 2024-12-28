@@ -1,0 +1,39 @@
+font-family = "JetBrains Mono"
+font-style = semibold
+font-size = 18
+background = #0d0d0d
+foreground = #dddddd
+palette = 0=#0d0d0d
+palette = 1=#bb281b
+palette = 2=#5fc83b
+palette = 3=#cdcb42
+palette = 4=#3471c6
+palette = 5=#ba32ca
+palette = 6=#5ecacb
+palette = 7=#dddddd
+palette = 8=#4c566a
+palette = 9=#de3b2f
+palette = 10=#78f94c
+palette = 11=#fffd54
+palette = 12=#448df7
+palette = 13=#e941f7
+palette = 14=#77fbfd
+palette = 15=#ffffff
+
+unfocused-split-opacity = 1.0
+shell-integration-features = no-cursor,no-sudo,title
+
+macos-titlebar-style = transparent
+macos-titlebar-proxy-icon = hidden
+
+window-padding-x = 0
+window-padding-y = 0
+window-height = 100
+window-width = 200
+window-save-state = never
+
+working-directory = "/Users/leo/dev"
+
+mouse-hide-while-typing = true
+copy-on-select = true
+quit-after-last-window-closed = true
