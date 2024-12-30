@@ -38,5 +38,5 @@ mouse-hide-while-typing = true
 copy-on-select = true
 quit-after-last-window-closed = true
 
-keybind = cmd+shift+space=toggle_quick_terminal
-quick-terminal-animation-duration = 0.0
+# keybind = cmd+shift+space=toggle_quick_terminal
+# quick-terminal-animation-duration = 0.0
