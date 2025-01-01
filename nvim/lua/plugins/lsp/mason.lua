@@ -39,6 +39,7 @@ return {
 				"clangd",
 				"pylsp",
 				"dockerls",
+				"denols",
 			},
 		})
 

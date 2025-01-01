@@ -220,7 +220,8 @@ MY CUSTOM COMMANDS.........................................
 EOF
 }
 
-# sbin path
+# bin paths
+export PATH="${PATH}:${HOME}/.local/bin"
 export PATH="${PATH}:/usr/local/sbin"
 
 # Python
