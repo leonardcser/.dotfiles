@@ -245,7 +245,7 @@ export GPG_TTY=$(tty)
 export PATH=$PATH:$HOME/go/bin
 
 # rust
-export PATH=$PATH:$HOME/.cargo/bin
+export PATH=$PATH:/opt/homebrew/opt/rustup/bin
 
 # java
 export SDKMAN_DIR="$HOME/.sdkman"
