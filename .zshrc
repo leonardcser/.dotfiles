@@ -235,8 +235,13 @@ export NVM_DIR="$HOME/.nvm"
 zsh-defer source "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 zsh-defer source "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
-# cpp
+# c/cpp
 # CC=/usr/local/bin/gcc-14
+export CPATH="/usr/local/include:$CPATH"
+export LIBRARY_PATH="/usr/local/lib:$LIBRARY_PATH"
+
+# cmake
+export CMAKE_EXPORT_COMPILE_COMMANDS=ON
 
 # GPG
 export GPG_TTY=$(tty)
