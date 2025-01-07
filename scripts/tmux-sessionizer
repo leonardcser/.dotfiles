@@ -22,7 +22,7 @@ if ! tmux has-session -t=$selected_name 2> /dev/null; then
     tmux new-session -s $selected_name -c $selected -d            # Create new session (detached)
     tmux new-window -t $selected_name -c $selected                # Create a second window
     tmux select-window -t $selected_name:1                        # Go back to the first window
-    tmux send-keys -t $selected_name:1 "nvim" C-m                 # Run nvim in the first window
+    tmux send-keys -t $selected_name:1 "nvim ." C-m               # Run nvim in the first window
 fi
 
 if [[ -n $TMUX ]]; then
