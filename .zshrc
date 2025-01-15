@@ -251,6 +251,7 @@ export PATH=$PATH:$HOME/go/bin
 
 # rust
 export PATH=$PATH:/opt/homebrew/opt/rustup/bin
+export PATH=$PATH:$HOME/.cargo/bin
 
 # java
 export SDKMAN_DIR="$HOME/.sdkman"
