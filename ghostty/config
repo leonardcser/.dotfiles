@@ -1,9 +1,9 @@
 font-family = "JetBrains Mono"
 font-style = semibold
 font-size = 18
-background = #0d0d0d
+background = #000000
 foreground = #dddddd
-palette = 0=#0d0d0d
+palette = 0=#000000
 palette = 1=#bb281b
 palette = 2=#5fc83b
 palette = 3=#cdcb42
@@ -23,7 +23,7 @@ palette = 15=#ffffff
 unfocused-split-opacity = 1.0
 shell-integration-features = no-cursor,no-sudo,title
 
-macos-titlebar-style = transparent
+macos-titlebar-style = tabs
 macos-titlebar-proxy-icon = hidden
 
 window-padding-x = 0
