@@ -37,7 +37,7 @@ return {
 				"svelte",
 				"jdtls",
 				"clangd",
-				"pylsp",
+				"ruff",
 				"dockerls",
 				"denols",
 			},
@@ -47,9 +47,6 @@ return {
 			ensure_installed = {
 				"prettier", -- prettier formatter
 				"stylua", -- lua formatter
-				"isort", -- python formatter
-				"black", -- python formatter
-				"mypy", -- python linter
 				"eslint_d", -- js linter
 				"clang-format", -- c/cpp formatter
 			},

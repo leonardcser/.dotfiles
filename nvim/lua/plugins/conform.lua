@@ -6,18 +6,16 @@ return {
 
 		conform.setup({
 			formatters_by_ft = {
-				javascript = { "prettier" },
-				typescript = { "prettier" },
-				javascriptreact = { "prettier" },
-				typescriptreact = { "prettier" },
-				svelte = { "prettier" },
+				javascript = { "prettierd" },
+				typescript = { "prettierd" },
+				javascriptreact = { "prettierd" },
+				typescriptreact = { "prettierd" },
+				svelte = { "prettierd" },
 				css = { "prettier" },
 				html = { "prettier" },
 				json = { "prettier" },
 				yaml = { "prettier" },
-				markdown = { "prettier" },
-				graphql = { "prettier" },
-				liquid = { "prettier" },
+				markdown = { "deno_fmt" },
 				lua = { "stylua" },
 			},
 			format_on_save = {
@@ -25,22 +23,6 @@ return {
 				async = false,
 				timeout_ms = 1000,
 			},
-		})
-
-		require("conform.formatters.prettier").cwd = require("conform.util").root_file({
-			"~/.prettierrc.json",
-			-- These are the builtins
-			".prettierrc",
-			".prettierrc.json",
-			".prettierrc.yml",
-			".prettierrc.yaml",
-			".prettierrc.json5",
-			".prettierrc.js",
-			".prettierrc.cjs",
-			".prettierrc.toml",
-			"prettier.config.js",
-			"prettier.config.cjs",
-			"package.json",
 		})
 
 		vim.keymap.set({ "n", "v" }, "<leader>mp", function()

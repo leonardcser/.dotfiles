@@ -15,3 +15,8 @@ To update the `Brewfile`:
 brew bundle dump
 ```
 
+## Additional dependencies
+
+```bash
+npm install -g @fsouza/prettierd
+```
