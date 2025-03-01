@@ -15,7 +15,7 @@ return {
 				html = { "prettier" },
 				json = { "prettier" },
 				yaml = { "prettier" },
-				markdown = { "deno_fmt" },
+				markdown = { "prettierd" },
 				lua = { "stylua" },
 			},
 			format_on_save = {

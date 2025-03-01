@@ -39,13 +39,13 @@ return {
 				"clangd",
 				"ruff",
 				"dockerls",
-				"denols",
 			},
 		})
 
 		mason_tool_installer.setup({
 			ensure_installed = {
 				"prettier", -- prettier formatter
+				"prettierd", -- prettierd formatter
 				"stylua", -- lua formatter
 				"eslint_d", -- js linter
 				"clang-format", -- c/cpp formatter
