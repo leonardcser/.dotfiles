@@ -17,6 +17,9 @@ return {
 			ring_chunk_size = 65,
 			ring_scope = 1024,
 			ring_update_ms = 1000,
+			keymap_accept_full = "<Tab>",
+			keymap_accept_line = "<S-Tab>",
+			keymap_accept_word = "<C-B>",
 		}
 		-- Override the highlight settings
 		vim.api.nvim_set_hl(0, "llama_hl_hint", { fg = "#81A1C1" })
