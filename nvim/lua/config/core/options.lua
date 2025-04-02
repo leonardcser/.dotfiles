@@ -31,7 +31,8 @@ opt.cursorline = true -- highlight the current cursor line
 opt.guicursor = ""
 
 -- mouse
-opt.mouse = "a" -- Enable mouse mode, can be useful for resizing splits for example
+-- opt.mouse = "a" -- Enable mouse mode, can be useful for resizing splits for example
+vim.opt.mouse = "" -- Disable mouse for learning
 
 -- history & session
 vim.opt.undofile = true
