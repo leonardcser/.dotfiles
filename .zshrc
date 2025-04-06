@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
@@ -8,7 +15,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="garyblessington"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -75,16 +82,17 @@ plugins=(vi-mode)
 source $ZSH/oh-my-zsh.sh
 source $ZSH/custom/plugins/zsh-defer/zsh-defer.plugin.zsh # zsh-defer
 
-zsh-defer source $ZSH/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
-zsh-defer source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
-zsh-defer source $ZSH/plugins/colored-man-pages/colored-man-pages.plugin.zsh
-zsh-defer source $ZSH/plugins/colorize/colorize.plugin.zsh
+source $ZSH/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+source $ZSH/plugins/colored-man-pages/colored-man-pages.plugin.zsh
+source $ZSH/plugins/colorize/colorize.plugin.zsh
 
 # USER CONFIGURATION
 # prompt
 MODE_INDICATOR="%F{white}-%f"
 INSERT_MODE_INDICATOR="%F{cyan}+%f"
-PROMPT="\$(vi_mode_prompt_info)%35<...<%}$PROMPT%<<%}"
+# PROMPT="\$(vi_mode_prompt_info)%30<...<%}$PROMPT%<<%}"
+PROMPT="\$(vi_mode_prompt_info)$PROMPT"
 RPROMPT=""
 setopt PRINT_EXIT_VALUE
 
@@ -256,3 +264,6 @@ export PATH=$PATH:$HOME/.cargo/bin
 # java
 export SDKMAN_DIR="$HOME/.sdkman"
 zsh-defer source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

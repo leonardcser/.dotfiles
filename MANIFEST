@@ -6,6 +6,7 @@
 .zprofile|symlink|
 .oh-my-zsh|symlink|
 .zshrc|symlink|
+.p10k.zsh|symlink|
 .clang-format|symlink|
 .prettierrc.json|symlink|
 nvim|symlink|.config
