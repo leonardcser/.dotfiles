@@ -84,7 +84,7 @@ zsh-defer source $ZSH/plugins/colorize/colorize.plugin.zsh
 # prompt
 MODE_INDICATOR="%F{white}-%f"
 INSERT_MODE_INDICATOR="%F{cyan}+%f"
-PROMPT="\$(vi_mode_prompt_info)$PROMPT"
+PROMPT="\$(vi_mode_prompt_info)%35<...<%}$PROMPT%<<%}"
 RPROMPT=""
 setopt PRINT_EXIT_VALUE
 
@@ -179,7 +179,7 @@ kill-apps() {
     printf "%s\n" "Usage: kill-apps string"
     return 0
   fi
-  printf "%s\n" "Finding apps that match “$1”…"
+  printf "%s\n" "Finding apps that match "'$1'"…"
   sleep 1
   processes=($(pgrep -afil "$1"))
   if [ ${#processes[@]} -eq 0 ]; then
