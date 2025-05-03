@@ -10,7 +10,7 @@
 .clang-format|symlink|
 .prettierrc.json|symlink|
 nvim|symlink|.config
-kitty|symlink|.config
+# kitty|symlink|.config
 ghostty|symlink|.config
 aerospace|symlink|.config
 scripts|symlink|.local/bin
