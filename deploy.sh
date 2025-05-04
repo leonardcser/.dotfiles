@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Credit to https://github.com/rexim/dotfiles/blob/master/deploy.sh
 set -e
 

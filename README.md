@@ -6,6 +6,7 @@
 2. Install brew + taps
 3. Install zsh custom plugins
 4. `./deploy.sh MANFIEST`
+5. `./post.sh`
 
 ## Mantainence
 
