@@ -113,6 +113,11 @@ cmd-alt-5 = ['move-node-to-workspace 5', 'workspace 5']
 alt-shift-r = ['flatten-workspace-tree', 'mode main']
 # alt-shift-r = 'reload-config'
 
+alt-s = 'exec-and-forget open -a /Applications/Safari.app/'
+alt-g = 'exec-and-forget open -a /Applications/Ghostty.app/'
+alt-c = 'exec-and-forget open -a /Applications/Cursor.app/'
+alt-a = 'exec-and-forget open -a /Applications/ChatGPT.app/'
+
 alt-r = 'mode resize'
 
 [mode.resize.binding]
@@ -151,4 +156,3 @@ if.app-id = 'com.apple.Safari'
 if.during-aerospace-startup = true
 check-further-callbacks = true
 run = ['move-node-to-workspace 3']
-
