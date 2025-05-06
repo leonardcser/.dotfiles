@@ -15,3 +15,5 @@
 scripts|symlink|.local/bin
 VSCodium/User/settings.json|symlink|Library/Application Support
 .vscode-oss/extensions/extensions.json|symlink|
+.cursor/extensions/extensions.json|symlink|
+.cursor/mcp.json|symlink|
