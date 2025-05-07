@@ -153,6 +153,7 @@ alias vi="vim"
 source <(fzf --zsh)
 export FZF_DEFAULT_COMMAND='find . \( -name node_modules -o -name .git -o -name .venv -o -name build \) -prune -o -print'
 alias tx=~/.local/bin/scripts/tmux-sessionizer
+bindkey -s '^F' 'tx\n'
 
 # PERSONAL FUNCTIONS
 # Shortcut Function
