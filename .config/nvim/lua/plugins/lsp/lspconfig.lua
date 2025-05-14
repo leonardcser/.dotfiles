@@ -70,16 +70,27 @@ return {
 		-- used to enable autocompletion (assign to every lsp server config)
 		local capabilities = cmp_nvim_lsp.default_capabilities()
 
-		mason_lspconfig.setup_handlers({
-			-- default handler for installed servers
-			function(server_name)
+		-- Servers managed by mason-lspconfig (ensure_installed in mason.lua)
+		-- You might want to keep this list in sync with your mason.lua or manage it centrally.
+		local servers = {
+			"ts_ls",
+			"rust_analyzer",
+			"html",
+			"cssls",
+			"tailwindcss",
+			"lua_ls",
+			"emmet_ls",
+			"prismals",
+			"svelte",
+			"jdtls",
+			"clangd",
+			"ruff",
+			"dockerls",
+		}
+
+		for _, server_name in ipairs(servers) do
+			if server_name == "emmet_ls" then
 				lspconfig[server_name].setup({
-					capabilities = capabilities,
-				})
-			end,
-			["emmet_ls"] = function()
-				-- configure emmet language server
-				lspconfig["emmet_ls"].setup({
 					capabilities = capabilities,
 					filetypes = {
 						"html",
@@ -92,14 +103,11 @@ return {
 						"svelte",
 					},
 				})
-			end,
-			["lua_ls"] = function()
-				-- configure lua server (with special settings)
-				lspconfig["lua_ls"].setup({
+			elseif server_name == "lua_ls" then
+				lspconfig[server_name].setup({
 					capabilities = capabilities,
 					settings = {
 						Lua = {
-							-- make the language server recognize "vim" global
 							diagnostics = {
 								globals = { "vim" },
 							},
@@ -109,14 +117,18 @@ return {
 						},
 					},
 				})
-			end,
-			["ts_ls"] = function()
-				lspconfig["ts_ls"].setup({
+			elseif server_name == "ts_ls" then
+				lspconfig[server_name].setup({
 					capabilities = capabilities,
-					root_dir = lspconfig.util.root_pattern("package.json"),
+					root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json"),
 					single_file_support = false,
 				})
-			end,
-		})
+			else
+				-- Default setup for other servers
+				lspconfig[server_name].setup({
+					capabilities = capabilities,
+				})
+			end
+		end
 	end,
 }
