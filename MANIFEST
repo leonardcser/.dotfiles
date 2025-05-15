@@ -14,8 +14,11 @@
 .config/aerospace|symlink|
 scripts|symlink|.local/bin
 VSCodium/User/settings.json|symlink|Library/Application Support
-Alfred/prefs.json|symlink|Library/Application Support
-Alfred/Alfred.alfredpreferences|symlink|Library/Application Support
 .vscode-oss/extensions/extensions.json|symlink|
+Cursor/User/settings.json|symlink|Library/Application Support
+Cursor/User/keybindings.json|symlink|Library/Application Support
 .cursor/extensions/extensions.json|symlink|
 .cursor/mcp.json|symlink|
+Alfred/prefs.json|symlink|Library/Application Support
+Alfred/Alfred.alfredpreferences|symlink|Library/Application Support
+
