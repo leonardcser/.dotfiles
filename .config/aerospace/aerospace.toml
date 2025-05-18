@@ -146,12 +146,6 @@ if.app-id = 'com.mitchellh.ghostty'
 run = ['layout tiling']
 
 [[on-window-detected]]
-if.app-id = 'net.kovidgoyal.kitty'
-if.during-aerospace-startup = true
-check-further-callbacks = true
-run = ['move-node-to-workspace 2']
-
-[[on-window-detected]]
 if.app-id = 'com.apple.Safari'
 if.during-aerospace-startup = true
 check-further-callbacks = true

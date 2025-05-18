@@ -1423,5 +1423,6 @@
         }
       ]
     }
-  }
+  },
+  "cursor.composer.collapsePaneInputBoxPills": true
 }
