@@ -65,6 +65,15 @@ return {
 				lualine_c = { { "filename", path = 1 } },
 				lualine_x = {
 					{
+						function()
+							return require("wpm-tracker").get_wpm_display()
+						end,
+						cond = function()
+							return require("wpm-tracker").get_current_wpm() > 0
+						end,
+						color = { fg = colors.green },
+					},
+					{
 						lazy_status.updates,
 						cond = lazy_status.has_updates,
 						color = { fg = "#ff9e64" },
