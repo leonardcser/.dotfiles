@@ -13,5 +13,11 @@ return {
 
 		-- Goto labels & function decorators
 		vim.cmd([[highlight @attribute guifg=#EBCB8B]])
+
+		-- Highligting
+		vim.cmd([[highlight CursorLine guibg=#191D23]])
+		vim.cmd([[highlight ColorColumn guibg=#191D23]])
+		vim.cmd([[highlight TreesitterContext guibg=#191D23]])
+		vim.cmd([[highlight IblIndent guifg=#191D23]])
 	end,
 }
