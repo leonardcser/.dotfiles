@@ -47,5 +47,5 @@
   "vim-maximizer": { "branch": "master", "commit": "2e54952fe91e140a2e69f35f22131219fcd9c5f1" },
   "vim-tmux-navigator": { "branch": "master", "commit": "97e58f2b3b4f8fd30ce149302f10202f363cc361" },
   "which-key.nvim": { "branch": "main", "commit": "370ec46f710e058c9c1646273e6b225acf47cbed" },
-  "wpm-tracker.nvim": { "branch": "main", "commit": "d174841f565fb4cf74d599a2ca7dab2dc036af98" }
+  "wpm-tracker.nvim": { "branch": "main", "commit": "61a862fe82522bdf53e95eb1e5b04db105c4b952" }
 }

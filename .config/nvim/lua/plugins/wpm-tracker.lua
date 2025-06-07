@@ -6,10 +6,12 @@ return {
 			log_file = vim.fn.stdpath("data") .. "/wpm-tracker.csv",
 			-- Rolling average window size
 			average_window = 50,
-			-- Minimum session length to record (seconds)
-			min_session_length = 5,
+			-- Minimum session length to record (milliseconds)
+			min_session_length = 3000,
 			-- Update interval for lualine (milliseconds)
 			update_interval = 1000,
+			-- Stop tracking after inactivity (milliseconds)
+			idle_timeout = 2000,
 		})
 
 		-- Add keymaps for WPM commands
@@ -17,4 +19,3 @@ return {
 		vim.keymap.set("n", "<leader>wpl", "<cmd>WPMLog<cr>", { desc = "Open WPM log file" })
 	end,
 }
-
