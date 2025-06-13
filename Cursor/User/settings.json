@@ -1425,5 +1425,9 @@
     }
   },
   "cursor.composer.collapsePaneInputBoxPills": true,
-  "extensions.ignoreRecommendations": true
+  "extensions.ignoreRecommendations": true,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "[go]": {
+    "editor.defaultFormatter": "golang.go"
+  }
 }

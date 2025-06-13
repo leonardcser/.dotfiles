@@ -9,7 +9,7 @@
     "workbench.editor.editorActionsLocation": "titleBar",
     "svelte.enable-ts-plugin": true,
     "editor.lineNumbers": "relative",
-    "workbench.editor.showTabs": "none",
+    // "workbench.editor.showTabs": "none",
     "window.commandCenter": false,
     "terminal.integrated.fontSize": 16,
     "markdown.extension.toc.levels": "2..6",
@@ -17,5 +17,8 @@
     "supermaven.enable": {
         "*": true
     },
-    "svg.preview.mode": "svg"
+    "svg.preview.mode": "svg",
+    "workbench.colorTheme": "Default Light Modern",
+    "git.openRepositoryInParentFolders": "never",
+    "dvc.doNotRecommendRedHatExtension": true
 }

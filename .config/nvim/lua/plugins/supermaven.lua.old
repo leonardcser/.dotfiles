@@ -1,5 +1,5 @@
 return {
-	"supermaven-inc/supermaven-nvim",
+	dir = "/Users/leo/dev/lua/supermaven-nvim/",
 	config = function()
 		require("supermaven-nvim").setup({
 			color = {
