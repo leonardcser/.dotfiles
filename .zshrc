@@ -237,7 +237,7 @@ export PATH="${PATH}:/usr/local/sbin"
 if command -v pyenv 1>/dev/null 2>&1; then
   zsh-defer eval "$(pyenv init -)"
 fi
-zsh-defer PATH=$(pyenv root)/shims:$PATH
+export PATH=$HOME/.pyenv/shims:$PATH
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
