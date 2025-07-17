@@ -64,7 +64,7 @@ defaults write com.apple.assistant.support "Assistant Enabled" -boolean false
 # Allow to drag windows from anywhere by holding ctrl+cmd (not working)
 defaults write -g NSWindowShouldDragOnGesture -bool true
 # Set screnshot location to ~/Downloads
-defaults write com.apple.screencapture "location" -string "~/Downloads" && killall SystemUIServer
+defaults write com.apple.screencapture location "~/Downloads" && killall SystemUIServer
 # Set refresh rate to 2s
 defaults write com.apple.ActivityMonitor "UpdatePeriod" -int "2" && killall Activity\ Monitor
 
