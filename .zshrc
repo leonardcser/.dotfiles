@@ -143,6 +143,7 @@ alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias ls="ls -1lh --color=auto"
 alias ll="ls -1alh --color=auto"
 alias code="codium"
+alias clear="clear && printf '\e[3J'"
 
 # Neovim aliasas
 alias nv="nvim"
@@ -154,6 +155,9 @@ source <(fzf --zsh)
 export FZF_DEFAULT_COMMAND='find . \( -name node_modules -o -name .git -o -name .venv -o -name build \) -prune -o -print'
 alias tx=~/.local/bin/scripts/tmux-sessionizer
 bindkey -s '^F' 'tx\n'
+
+# zoxide
+eval "$(zoxide init zsh)"
 
 # PERSONAL FUNCTIONS
 # Shortcut Function
