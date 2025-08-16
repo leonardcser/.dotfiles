@@ -37,6 +37,14 @@ vim.opt.mouse = "" -- Disable mouse for learning
 -- history & session
 vim.opt.undofile = true
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+vim.opt.autoread = true
+
+-- refresh file when buffer is focused or Vim gains focus
+vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained" }, {
+	callback = function()
+		vim.cmd("silent! checktime")
+	end,
+})
 
 -- appearance
 
