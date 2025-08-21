@@ -1429,5 +1429,6 @@
   "diffEditor.ignoreTrimWhitespace": false,
   "[go]": {
     "editor.defaultFormatter": "golang.go"
-  }
+  },
+  "githubPullRequests.pullBranch": "never"
 }
