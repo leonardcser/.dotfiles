@@ -11,5 +11,11 @@
 To update the `Brewfile`:
 
 ```bash
-brew bundle dump
+brew bundle dump --file=Brewfile --describe --force
+```
+
+To sync the `Brewfile`:
+
+```bash
+brew bundle --file=Brewfile --force cleanup
 ```
