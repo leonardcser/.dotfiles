@@ -37,12 +37,20 @@ vim.opt.mouse = "" -- Disable mouse for learning
 -- history & session
 vim.opt.undofile = true
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+-- trigger `autoread` when files changes on disk
 vim.opt.autoread = true
-
--- refresh file when buffer is focused or Vim gains focus
-vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained" }, {
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
 	callback = function()
-		vim.cmd("silent! checktime")
+		if vim.fn.mode() ~= "c" then
+			vim.cmd("checktime")
+		end
+	end,
+})
+
+-- notification after file change
+vim.api.nvim_create_autocmd("FileChangedShellPost", {
+	callback = function()
+		vim.api.nvim_echo({ { "File changed on disk. Buffer reloaded.", "WarningMsg" } }, true, {})
 	end,
 })
 
