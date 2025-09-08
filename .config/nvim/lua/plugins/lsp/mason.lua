@@ -38,6 +38,7 @@ return {
 				"jdtls",
 				"clangd",
 				"ruff",
+				"pyright",
 				"dockerls",
 			},
 		})

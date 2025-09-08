@@ -18,11 +18,14 @@ return {
 				markdown = { "prettierd" },
 				lua = { "stylua" },
 			},
-			format_on_save = {
-				lsp_fallback = true,
-				async = false,
-				timeout_ms = 1000,
-			},
+			format_on_save = function(bufnr)
+				-- Check for global or buffer-local disable flags
+				if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+					return
+				end
+				-- Proceed with formatting if not disabled
+				return { timeout_ms = 1000, lsp_fallback = true }
+			end,
 		})
 
 		vim.keymap.set({ "n", "v" }, "<leader>mp", function()
