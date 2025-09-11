@@ -1,11 +1,12 @@
 return {
-	"leonardcser/wpm-tracker.nvim",
+	-- "leonardcser/wpm-tracker.nvim",
+	dir = "~/dev/lua/wpm-tracker.nvim",
 	config = function()
 		require("wpm-tracker").setup({
 			-- Log file location (CSV format)
 			log_file = vim.fn.stdpath("data") .. "/wpm-tracker.csv",
 			-- Rolling average window size
-			average_window = 50,
+			average_window = 500,
 			-- Minimum session length to record (milliseconds)
 			min_session_length = 3000,
 			-- Update interval for lualine (milliseconds)
