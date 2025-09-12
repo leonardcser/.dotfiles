@@ -4,9 +4,6 @@
   "editor.fontFamily": "Jetbrains Mono, Menlo, Monaco, 'Courier New', monospace",
   "editor.fontSize": 16,
   "editor.lineNumbers": "relative",
-  "extensions.experimental.affinity": {
-    "asvetliakov.vscode-neovim": 1
-  },
   "files.autoSave": "onFocusChange",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
