@@ -89,6 +89,14 @@ function zvm_config() {
   ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 }
 
+function zvm_after_init() {
+  # fzf
+  source <(fzf --zsh)
+  export FZF_DEFAULT_COMMAND='find . \( -name node_modules -o -name .git -o -name .venv -o -name build \) -prune -o -print'
+  alias tx=~/.local/bin/scripts/tmux-sessionizer
+  bindkey -s '^F' 'tx\n'
+}
+
 plugins=(zsh-vi-mode)
 
 source $ZSH/oh-my-zsh.sh
@@ -153,12 +161,6 @@ alias clear="clear && printf '\e[3J'"
 alias nv="nvim"
 alias .="nvim ."
 alias vi="vim"
-
-# fzf
-source <(fzf --zsh)
-export FZF_DEFAULT_COMMAND='find . \( -name node_modules -o -name .git -o -name .venv -o -name build \) -prune -o -print'
-alias tx=~/.local/bin/scripts/tmux-sessionizer
-bindkey -s '^F' 'tx\n'
 
 # zoxide
 eval "$(zoxide init zsh)"

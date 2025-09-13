@@ -1,14 +1,36 @@
 #!/usr/bin/env bash
 
+# Configuration constants
+SEARCH_DIRS=("$HOME/dev" "$HOME/.dotfiles")
+IGNORE_DIRS=("node_modules" ".git" ".venv" "build" ".oh-my-zsh")
+MIN_DEPTH=0
+MAX_DEPTH=5
+
 if [[ $# -eq 1 ]]; then
-    selected=$1
-    selected_name=$(basename "$selected" | tr . _)
-    if [[ ! -d "$selected" ]] && ! tmux has-session -t="$selected_name" 3>/dev/null; then
-        echo "Error: Could not find '$selected'."
-        exit 1
+    if [[ "$1" == "." ]]; then
+        # Special case: use current working directory folder name
+        selected_name=$(basename "$PWD" | tr . _)
+        selected="$PWD"
+    else
+        selected=$1
+        selected_name=$(basename "$selected" | tr . _)
+        if [[ ! -d "$selected" ]] && ! tmux has-session -t="$selected_name" 3>/dev/null; then
+            echo "Error: Could not find '$selected'."
+            exit 1
+        fi
     fi
 else
-    selected=$(find ~/dev -mindepth 2 -maxdepth 5 -type d \( -name node_modules -o -name .git -o -name .venv -o -name build \) -prune -o -type d -print | fzf)
+    # Build ignore pattern from IGNORE_DIRS array
+    ignore_pattern=""
+    for dir in "${IGNORE_DIRS[@]}"; do
+        if [[ -z "$ignore_pattern" ]]; then
+            ignore_pattern="-name $dir"
+        else
+            ignore_pattern="$ignore_pattern -o -name $dir"
+        fi
+    done
+    
+    selected=$(find "${SEARCH_DIRS[@]}" -mindepth $MIN_DEPTH -maxdepth $MAX_DEPTH -type d \( $ignore_pattern \) -prune -o -type d -print | fzf)
 fi
 
 if [[ -z $selected ]]; then
