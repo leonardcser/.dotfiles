@@ -72,12 +72,24 @@ DISABLE_AUTO_TITLE="true"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
+fi
+
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(vi-mode)
+function zvm_config() {
+  ZVM_CURSOR_STYLE_ENABLED=false
+  ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
+}
+
+plugins=(zsh-vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 source $ZSH/custom/plugins/zsh-defer/zsh-defer.plugin.zsh # zsh-defer
@@ -91,7 +103,6 @@ source $ZSH/plugins/colorize/colorize.plugin.zsh
 # prompt
 MODE_INDICATOR="%F{white}-%f"
 INSERT_MODE_INDICATOR="%F{cyan}+%f"
-# PROMPT="\$(vi_mode_prompt_info)%30<...<%}$PROMPT%<<%}"
 PROMPT="\$(vi_mode_prompt_info)$PROMPT"
 RPROMPT=""
 setopt PRINT_EXIT_VALUE
@@ -114,13 +125,6 @@ setopt HIST_SAVE_NO_DUPS
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='nvim'
-fi
 
 # Security
 HOMEBREW_NO_INSECURE_REDIRECT=1
