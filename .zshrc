@@ -94,7 +94,10 @@ function zvm_after_init() {
   source <(fzf --zsh)
   export FZF_DEFAULT_COMMAND='find . \( -name node_modules -o -name .git -o -name .venv -o -name build \) -prune -o -print'
   alias tx=~/.local/bin/scripts/tmux-sessionizer
+  # run tmux sessionizer on ctrl-f
   bindkey -s '^F' 'tx\n'
+  # run tmux a on ctrl-a
+  bindkey -s '^A' 'tmux a\n'
 }
 
 plugins=(zsh-vi-mode)
