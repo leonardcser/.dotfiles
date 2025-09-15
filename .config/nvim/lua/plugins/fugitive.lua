@@ -11,5 +11,6 @@ return {
 			":Git push --force-with-lease<CR>",
 			{ desc = "Push git changes (force-with-lease)" }
 		)
+		vim.keymap.set("n", "<leader>gr", ":Git rebase -i HEAD~6<CR>", { desc = "Interactive git rebase" })
 	end,
 }

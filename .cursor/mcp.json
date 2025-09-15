@@ -1,3 +1,13 @@
 {
-  "mcpServers": {}
+  "mcpServers": {
+    "web-search": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/Users/leo/dev/mcp/web-search-mcp",
+        "run",
+        "main.py"
+      ]
+    }
+  }
 }
