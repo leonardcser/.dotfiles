@@ -20,7 +20,7 @@
 [push]
 	autoSetupRemote = true
 [interactive]
-	diffFilter = delta --color-only
+	diffFilter = delta --dark --color-only --syntax-theme Nord
 [delta]
 	navigate = true
 [merge]
