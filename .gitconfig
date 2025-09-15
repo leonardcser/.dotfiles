@@ -6,6 +6,7 @@
     helper = osxkeychain
 [core]
     excludesfile = /Users/leo/.gitignore
+	pager = delta --dark --color-only --syntax-theme Nord
 [init]
     defaultBranch = main
 [alias]
@@ -18,3 +19,9 @@
     format = ssh
 [push]
 	autoSetupRemote = true
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+[merge]
+	conflictStyle = zdiff3

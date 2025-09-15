@@ -242,6 +242,9 @@ MY CUSTOM COMMANDS.........................................
 EOF
 }
 
+# config path
+export XDG_CONFIG_HOME="$HOME/.config"
+
 # bin paths
 export PATH="${PATH}:${HOME}/.local/bin"
 export PATH="${PATH}:/usr/local/sbin"

@@ -1,3 +1,4 @@
+tap "achannarasappa/tap"
 tap "bufbuild/buf"
 tap "danvergara/tools"
 tap "homebrew/bundle"
@@ -46,6 +47,8 @@ brew "fzf"
 brew "gh"
 # Distributed revision control system
 brew "git"
+# Syntax-highlighting pager for git and diff output
+brew "git-delta"
 # Quickly rewrite git repository history
 brew "git-filter-repo"
 # GNU Pretty Good Privacy (PGP) package
@@ -64,6 +67,8 @@ brew "htop"
 brew "jq"
 # Kubernetes command-line interface
 brew "kubernetes-cli"
+# Simple terminal UI for git commands
+brew "lazygit"
 # LLM inference in C/C++
 brew "llama.cpp"
 # Next-gen compiler infrastructure
@@ -118,12 +123,16 @@ brew "wabt"
 brew "wget"
 # HTTP benchmarking tool
 brew "wrk"
+# Feature-rich command-line audio/video downloader
+brew "yt-dlp"
 # Programming language designed for robustness, optimality, and clarity
 brew "zig"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
 # UNIX shell (command interpreter)
 brew "zsh"
+# The best way of working with Protocol Buffers.
+brew "bufbuild/buf/buf"
 # Interactive client for PostgreSQL and MySQL
 brew "danvergara/tools/dblab"
 # Incredibly fast JavaScript runtime, bundler, transpiler and package manager - all in one.
@@ -146,6 +155,8 @@ cask "chromium"
 cask "claude"
 # Write, edit, and chat about your code with AI
 cask "cursor"
+# Command-line agent for Cursor
+cask "cursor-cli"
 # Browser for SQLite databases
 cask "db-browser-for-sqlite"
 # App to build and share containerised applications and microservices
@@ -158,6 +169,8 @@ cask "font-symbols-only-nerd-font"
 cask "ghostty"
 # Java IDE by JetBrains
 cask "intellij-idea"
+# Use Vim in input fields and non input fields
+cask "kindavim"
 # Tool to show what is persistently installed on the computer
 cask "knockknock"
 # Free cross-platform office suite, fresh version

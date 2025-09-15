@@ -53,6 +53,13 @@ keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" }) --  
 keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) --  go to previous tab
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
 
+-- Git keymaps
+keymap.set("n", "<leader>gp", ":Git push origin<CR>", { desc = "Push git changes" })
+keymap.set("n", "<leader>gP", ":Git pull --rebase --prune<CR>", { desc = "Pull git changes" })
+keymap.set("n", "<leader>ga", ":Git add -u<CR>", { desc = "Add git changes" })
+keymap.set("n", "<leader>gf", ":Git push --force-with-lease<CR>", { desc = "Push git changes (force-with-lease)" })
+keymap.set("n", "<leader>gr", ":Git rebase -i HEAD~6<CR>", { desc = "Interactive git rebase" })
+
 -- Function to toggle diagnostics
 vim.api.nvim_create_user_command("DiagnosticsToggle", function()
 	local current_value = vim.diagnostic.is_enabled()
