@@ -2,7 +2,7 @@
 
 ## Usage
 
-1. `./deploy.sh MANFIEST`
+1. `./deploy.sh MANIFEST`
 2. `./install.sh`
 3. Install zsh custom plugins
 
