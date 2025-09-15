@@ -160,7 +160,7 @@ gui:
   showFileTree: true
 
   # If true, add a "/" root item in the file tree representing the root of the repository. It is only added when necessary, i.e. when there is more than one item at top level.
-  showRootItemInFileTree: false
+  showRootItemInFileTree: true
 
   # If true, show the number of lines changed per file in the Files view
   showNumstatInFilesView: false
@@ -211,7 +211,7 @@ gui:
 
   # Default size for focused window. Can be changed from within Lazygit with '+' and '_' (but this won't change the default).
   # One of: 'normal' (default) | 'half' | 'full'
-  screenMode: half
+  screenMode: normal
 
   # Window border style.
   # One of 'rounded' (default) | 'single' | 'double' | 'hidden' | 'bold'
@@ -538,10 +538,10 @@ keybinding:
     createRebaseOptionsMenu: m
 
     # 'Files' appended for legacy reasons
-    pushFiles: P
+    pushFiles: p
 
     # 'Files' appended for legacy reasons
-    pullFiles: p
+    pullFiles: P
     refresh: R
     createPatchOptionsMenu: <c-p>
     nextTab: "]"
@@ -609,8 +609,8 @@ keybinding:
     viewWorktreeOptions: w
   commits:
     squashDown: s
-    renameCommit: r
-    renameCommitWithEditor: R
+    renameCommit: R
+    renameCommitWithEditor: r
     viewResetOptions: g
     markCommitAsFixup: f
     createFixupCommit: F
