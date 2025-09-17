@@ -31,7 +31,18 @@ return {
 		local keymap = vim.keymap -- for conciseness
 
 		keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy find files in cwd" })
-		keymap.set("n", "<leader>fg", "<cmd>Telescope git_files<cr>", { desc = "Fuzzy find git files in cwd" })
+		-- Smart git files finder - shows message if not in git repo
+		keymap.set("n", "<leader>fg", function()
+			local builtin = require("telescope.builtin")
+			-- Check if current directory is a git repository
+			local git_dir = vim.fn.finddir(".git", ".;")
+			if git_dir ~= "" then
+				builtin.git_files()
+			else
+				-- Show message and don't open telescope
+				vim.notify("Not in a git repository", vim.log.levels.WARN)
+			end
+		end, { desc = "Fuzzy find git files" })
 		keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
 		keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", { desc = "Find string in cwd" })
 		keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
