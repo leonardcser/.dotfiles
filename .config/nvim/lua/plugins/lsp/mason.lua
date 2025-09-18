@@ -39,7 +39,7 @@ return {
 
 		vim.lsp.config("ts_ls", {
 			root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json"),
-			single_file_support = false,
+			single_file_support = true,
 		})
 
 		vim.lsp.config("lua_ls", {
