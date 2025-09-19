@@ -1,3 +1,9 @@
 [submodule ".config/nvim/lua/plugins/custom/nvim-tree-crossclip.nvim"]
 	path = .config/nvim/lua/plugins/custom/nvim-tree-crossclip.nvim
 	url = git@github.com:leonardcser/nvim-tree-crossclip.nvim.git
+[submodule ".config/nvim/lua/plugins/custom/cursortab.nvim"]
+	path = .config/nvim/lua/plugins/custom/cursortab.nvim
+	url = git@github.com:leonardcser/cursortab.nvim.git
+[submodule ".config/nvim/lua/plugins/custom/wpm-tracker.nvim"]
+	path = .config/nvim/lua/plugins/custom/wpm-tracker.nvim
+	url = git@github.com:leonardcser/wpm-tracker.nvim

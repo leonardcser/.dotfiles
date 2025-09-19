@@ -4,7 +4,7 @@
 SEARCH_DIRS=("$HOME/dev" "$HOME/.dotfiles")
 IGNORE_DIRS=("node_modules" ".git" ".venv" "build" ".oh-my-zsh")
 MIN_DEPTH=0
-MAX_DEPTH=5
+MAX_DEPTH=6
 
 if [[ $# -eq 1 ]]; then
     if [[ "$1" == "." ]]; then

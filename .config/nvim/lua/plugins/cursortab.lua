@@ -1,6 +1,5 @@
 return {
-	-- "leonardcser/cursortab.nvim",
-	dir = "~/dev/lua/cursortab.nvim",
+	dir = vim.fn.stdpath("config") .. "/lua/plugins/custom/cursortab.nvim",
 	build = "cd server && go build -o cursortab .",
 	config = function()
 		require("cursortab").setup({
