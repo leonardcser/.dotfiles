@@ -1,0 +1,3 @@
+[submodule ".config/nvim/lua/plugins/custom/nvim-tree-crossclip.nvim"]
+	path = .config/nvim/lua/plugins/custom/nvim-tree-crossclip.nvim
+	url = git@github.com:leonardcser/nvim-tree-crossclip.nvim.git

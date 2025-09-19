@@ -19,6 +19,10 @@ return {
 					enable = true,
 				},
 			},
+			live_filter = {
+				prefix = "[FILTER]: ",
+				always_show_folders = false, -- Turn into false from true by default
+			},
 			-- disable window_picker for
 			-- explorer to work well with
 			-- window splits
@@ -43,6 +47,11 @@ return {
 					return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
 				end
 				vim.keymap.set("n", "<CR>", api.node.open.replace_tree_buffer, opts("Open: In Place"))
+
+				local plugin = require("nvim-tree-crossclip")
+				vim.keymap.set("n", "c", plugin.copy_toggle, opts("Copy"))
+				vim.keymap.set("n", "x", plugin.cut_toggle, opts("Cut"))
+				vim.keymap.set("n", "p", plugin.paste, opts("Paste"))
 			end,
 		})
 
