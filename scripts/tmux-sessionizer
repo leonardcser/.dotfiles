@@ -30,11 +30,18 @@ else
         fi
     done
     
-    selected=$(find "${SEARCH_DIRS[@]}" -mindepth $MIN_DEPTH -maxdepth $MAX_DEPTH -type d \( $ignore_pattern \) -prune -o -type d -print | fzf)
+    selected=$(find "${SEARCH_DIRS[@]}" -mindepth $MIN_DEPTH -maxdepth $MAX_DEPTH -type d \( $ignore_pattern \) -prune -o -type d -print | while read -r path; do echo "~/${path#$HOME/}"; done | fzf)
 fi
 
 if [[ -z $selected ]]; then
     exit 0
+fi
+
+# Convert relative path back to absolute path if needed
+if [[ "$selected" =~ ^~ ]]; then
+    selected="${selected/#\~/$HOME}"
+elif [[ "$selected" != /* ]]; then
+    selected="$HOME/$selected"
 fi
 
 selected_name=$(basename "$selected" | tr . _)
