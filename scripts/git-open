@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+remote_url=$(git config --get remote.origin.url)
+
+# Convert SSH or HTTPS URL to a browser-friendly URL
+url=${remote_url/git@github.com:/https://github.com/}
+url=${url/.git/}
+
+# Open in default browser
+open "$url"

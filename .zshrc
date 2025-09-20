@@ -93,7 +93,7 @@ function zvm_after_init() {
   # fzf
   source <(fzf --zsh)
   export FZF_DEFAULT_COMMAND='find . \( -name node_modules -o -name .git -o -name .venv -o -name build \) -prune -o -print'
-  alias tx=~/.local/bin/scripts/tmux-sessionizer
+  alias tx=tmux-sessionizer
   # run tmux sessionizer on ctrl-f
   bindkey -s '^F' 'tx\n'
   # run tmux a on ctrl-a
@@ -247,6 +247,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 
 # bin paths
 export PATH="${PATH}:${HOME}/.local/bin"
+export PATH="${PATH}:${HOME}/.local/bin/scripts"
 export PATH="${PATH}:/usr/local/sbin"
 
 # Python
