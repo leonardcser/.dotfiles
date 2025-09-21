@@ -4,6 +4,7 @@ globs:
 alwaysApply: true
 ---
 
-- After creating/editing a file, run the read-lints tool to check for workspace lint errors and address.
-- If other lint errors appear from files which you did not create/edit, do not address those files, rather ask the user if they want to fix those lint errors.
-
+- IMPORTANT: After creating or editing ANY file, run the read-lints tool to check for workspace lint errors and address them proactively.
+- If lint warnings/errors appear from files you did not create/edit, ask the user if they want you to fix those files at the end of the tasks you were given.
+- If you fixed a lint error and recheck with the read-lints tool and get the same error, tell the user to reload the file in their nvim client.
+- When the user asks to run lint checks or run lint tool, do not use the read-lints tool. However if the user asks to fix the lint errors, or fix the lint errors in a file, then use the read-lints tool.
