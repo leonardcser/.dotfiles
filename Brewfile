@@ -27,6 +27,10 @@ brew "cloc"
 brew "cmake"
 # Tool for provisioning self-hosted development environments with Terraform
 brew "coder"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
+# OpenAI's coding agent that runs in your terminal
+brew "codex"
 # Filename encoding conversion tool
 brew "convmv"
 # Secure runtime for JavaScript and TypeScript
@@ -75,6 +79,8 @@ brew "llama.cpp"
 brew "llvm"
 # LLVM Project Linker
 brew "lld"
+# Curses-based tool for viewing and analyzing log files
+brew "lnav"
 # Sudoless performance monitoring for Apple Silicon processors
 brew "macmon"
 # Run a Kubernetes cluster locally
@@ -99,12 +105,12 @@ brew "pyenv"
 brew "qemu"
 # Cross-platform application and UI framework
 brew "qt"
-# Search tool like grep and The Silver Searcher
-brew "ripgrep"
 # Rust toolchain installer
 brew "rustup"
 # Command-line tool for Stripe
 brew "stripe-cli"
+# User interface to the TELNET protocol
+brew "telnet"
 # Tool to build, change, and version infrastructure
 brew "terraform"
 # Free software distribution for the TeX typesetting system
@@ -153,6 +159,8 @@ cask "blockblock"
 cask "chromium"
 # Anthropic's official Claude AI desktop app
 cask "claude"
+# Terminal-based AI coding assistant
+cask "claude-code"
 # Write, edit, and chat about your code with AI
 cask "cursor"
 # Command-line agent for Cursor
