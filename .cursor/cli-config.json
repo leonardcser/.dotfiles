@@ -1,0 +1,34 @@
+{
+  "permissions": {
+    "allow": [
+      "Shell(ls)"
+    ],
+    "deny": [
+      "Shell(rm)",
+      "Read(.env*)",
+      "Write(**/*.key)"
+    ]
+  },
+  "version": 1,
+  "editor": {
+    "vimMode": true
+  },
+  "model": {
+    "modelId": "default",
+    "displayModelId": "auto",
+    "displayName": "Auto",
+    "displayNameShort": "Auto",
+    "aliases": [
+      "auto"
+    ]
+  },
+  "hasChangedDefaultModel": true,
+  "privacyCache": {
+    "ghostMode": true,
+    "privacyMode": 1,
+    "updatedAt": 1758456093402
+  },
+  "network": {
+    "useHttp1ForAgent": false
+  }
+}

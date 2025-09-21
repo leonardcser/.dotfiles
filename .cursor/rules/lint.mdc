@@ -1,0 +1,9 @@
+---
+description: Lint workspace files
+globs:
+alwaysApply: true
+---
+
+- After creating/editing a file, run the read-lints tool to check for workspace lint errors and address.
+- If other lint errors appear from files which you did not create/edit, do not address those files, rather ask the user if they want to fix those lint errors.
+

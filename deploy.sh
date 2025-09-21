@@ -6,7 +6,11 @@ SCRIPT_DIR="$( cd "$( dirname "$BASH_SOURCE[0]" )" && pwd )"
 
 symlinkFile() {
     filename="$SCRIPT_DIR/$1"
-    destination="$HOME/$2/$1"
+    if [ -n "$2" ]; then
+        destination="$HOME/$2/$1"
+    else
+        destination="$HOME/$1"
+    fi
     mkdir -p $(dirname "$destination")
 
     if [ -L "$destination" ]; then

@@ -3,6 +3,10 @@
     "web": {
       "command": "/Users/leo/dev/mcp/web-mcp/web-mcp",
       "args": []
+    },
+    "nvim-lsp": {
+      "command": "/Users/leo/dev/mcp/nvim-lsp-mcp/nvim-lsp-mcp",
+      "args": []
     }
   }
 }
