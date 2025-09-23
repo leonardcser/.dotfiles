@@ -55,13 +55,16 @@ return {
 
 				opts.desc = "Restart LSP"
 				keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)
-
-				-- Automatically populate workspace diagnostics when LSP client attaches
-				require("workspace-diagnostics").populate_workspace_diagnostics(
-					vim.lsp.get_client_by_id(ev.data.client_id),
-					ev.buf
-				)
 			end,
 		})
+
+		vim.api.nvim_create_user_command("PopulateWorkspaceDiagnostics", function()
+			local clients = vim.lsp.get_clients({ bufnr = 0 })
+			if #clients > 0 then
+				require("workspace-diagnostics").populate_workspace_diagnostics(clients[1], 0)
+			else
+				vim.notify("No LSP client attached to current buffer", vim.log.levels.WARN)
+			end
+		end, {})
 	end,
 }
