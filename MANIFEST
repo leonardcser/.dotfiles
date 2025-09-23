@@ -13,6 +13,7 @@
 .config/ghostty|symlink|
 .config/aerospace|symlink|
 .config/lazygit|symlink|
+.config/opencode|symlink|
 .cursor/mcp.json|symlink|
 .cursor/cli-config.json|symlink|
 .cursor/rules|symlink|
