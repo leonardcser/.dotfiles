@@ -11,7 +11,6 @@ return {
 		local mason = require("mason")
 		local mason_lspconfig = require("mason-lspconfig")
 		local mason_tool_installer = require("mason-tool-installer")
-		local lspconfig = require("lspconfig")
 
 		-- Configure servers using the new vim.lsp.config() API
 		vim.lsp.config("cssls", {
@@ -38,7 +37,22 @@ return {
 		})
 
 		vim.lsp.config("ts_ls", {
-			root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json"),
+			root_dir = function(bufnr, on_dir)
+				local root_markers = {
+					"tsconfig.json",
+					"jsconfig.json",
+					"package-lock.json",
+					"yarn.lock",
+					"pnpm-lock.yaml",
+					"bun.lockb",
+					"bun.lock",
+				}
+				local project_root = vim.fs.root(bufnr, root_markers)
+				if not project_root then
+					project_root = vim.fn.getcwd()
+				end
+				on_dir(project_root)
+			end,
 			single_file_support = true,
 		})
 
