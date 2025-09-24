@@ -4,8 +4,43 @@
   "model": "openrouter/x-ai/grok-4-fast:free",
   "autoupdate": true,
   "permission": {
-    "edit": "allow",
-    "bash": "ask"
+    "edit": "ask",
+    "bash": "ask",
+    "webfetch": "deny"
+  },
+  "agent": {
+    "apply": {
+      "mode": "primary",
+      "permission": {
+        "edit": "allow",
+        "bash": "ask"
+      }
+    },
+    "review": {
+      "mode": "primary",
+      "permission": {
+        "edit": "deny",
+        "bash": {
+          "git status": "allow",
+          "git log*": "allow",
+          "git diff*": "allow",
+          "git show*": "allow",
+          "git blame*": "allow"
+        }
+      }
+    }
+  },
+  "command": {
+    "review-staged": {
+      "template": "Review the current staged changes and find issues/code that was not updated correctly and suggest improvements",
+      "description": "Review staged changes for issues",
+      "agent": "review"
+    },
+    "review-pr": {
+      "template": "Review the current branch changes against main and find issues/code that was not updated correctly and suggest improvements",
+      "description": "Review branch changes against main for issues",
+      "agent": "review"
+    }
   },
   "mcp": {
     "web": {
