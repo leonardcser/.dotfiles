@@ -18,7 +18,6 @@
         "*": true
     },
     "svg.preview.mode": "svg",
-    "workbench.colorTheme": "Default Light Modern",
     "git.openRepositoryInParentFolders": "never",
     "dvc.doNotRecommendRedHatExtension": true
 }
