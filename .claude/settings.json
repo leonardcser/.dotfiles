@@ -1,0 +1,10 @@
+{
+  "env": {
+    "CLAUDE_CODE_ENABLE_TELEMETRY": "0"
+  },
+  "permissions": {
+    "deny": ["Bash(curl:*)", "Read(./.env)", "Read(./.env.*)"]
+  },
+  "alwaysThinkingEnabled": false
+}
+

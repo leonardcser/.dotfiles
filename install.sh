@@ -36,4 +36,7 @@ sudo batt limit 80
 sudo batt disable-charging-pre-sleep enable
 sudo batt magsafe-led enable
 
+# Claude Code
+claude mcp add nvim-lsp --scope user /Users/leo/dev/mcp/nvim-lsp-mcp/nvim-lsp-mcp
+
 ./macos.sh

@@ -53,5 +53,19 @@
       "enabled": true,
       "command": ["/Users/leo/dev/mcp/nvim-lsp-mcp/nvim-lsp-mcp"]
     }
+  },
+  "lsp": {
+    "typescript": { "disabled": true },
+    "eslint": { "disabled": true },
+    "gopls": { "disabled": true },
+    "ruby-lsp": { "disabled": true },
+    "pyright": { "disabled": true },
+    "elixir-ls": { "disabled": true },
+    "zls": { "disabled": true },
+    "csharp": { "disabled": true },
+    "vue": { "disabled": true },
+    "rust": { "disabled": true },
+    "clangd": { "disabled": true },
+    "svelte": { "disabled": true }
   }
 }

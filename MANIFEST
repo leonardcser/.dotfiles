@@ -14,6 +14,7 @@
 .config/aerospace|symlink|
 .config/lazygit|symlink|
 .config/opencode|symlink|
+.claude/settings.json|symlink|
 .cursor/mcp.json|symlink|
 .cursor/cli-config.json|symlink|
 .cursor/rules|symlink|

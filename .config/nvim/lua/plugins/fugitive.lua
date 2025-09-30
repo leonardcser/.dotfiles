@@ -40,12 +40,12 @@ return {
 
 			-- Try to find modified files first, fallback to untracked files
 			local success = pcall(function()
-				vim.cmd("/^M ")
+				vim.cmd("/^[MDRA] ")
 			end)
 
 			if not success then
 				-- Fallback to untracked files pattern
-				local untracked_success = pcall(function()
+				pcall(function()
 					vim.cmd("/^? ")
 				end)
 				-- If neither pattern exists, don't move cursor (no error thrown)
