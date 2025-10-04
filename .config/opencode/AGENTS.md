@@ -11,3 +11,8 @@
 - When the user asks to run lint checks or run lint tool, do not use the
   read-lints tool. However if the user asks to fix the lint errors, or fix the
   lint errors in a file, then use the read-lints tool.
+
+# Tool Call
+
+IMPORTANT: When calling a tool, do not escape the txt/code you pass to the
+tools.
