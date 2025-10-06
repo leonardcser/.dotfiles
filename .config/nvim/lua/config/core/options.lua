@@ -62,7 +62,7 @@ opt.termguicolors = true
 opt.background = "dark" -- colorschemes that can be light or dark will be made dark
 opt.signcolumn = "yes" -- show sign column so that text doesn't shift
 opt.scrolloff = 8
-opt.sidescrolloff = 50
+opt.sidescrolloff = 10
 opt.showmode = false
 opt.ffs = "unix"
 

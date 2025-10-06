@@ -5,7 +5,7 @@ return {
 
 		auto_session.setup({
 			auto_save = true,
-			auto_restore = true,
+			auto_restore = false,
 			args_allow_files_auto_save = true,
 			purge_after_minutes = 10080,
 			suppressed_dirs = { "~/", "~/Downloads", "~/Documents", "~/Desktop/", "/" },

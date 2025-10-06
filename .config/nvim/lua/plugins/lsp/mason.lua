@@ -127,6 +127,7 @@ return {
 				"stylua",
 				"eslint_d",
 				"clang-format",
+				"typstyle",
 			},
 		})
 

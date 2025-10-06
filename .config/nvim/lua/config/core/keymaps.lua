@@ -63,6 +63,14 @@ keymap.set("n", "<leader>ga", ":Git add -u<CR>", { desc = "Add git changes" })
 keymap.set("n", "<leader>gf", ":Git push --force-with-lease<CR>", { desc = "Push git changes (force-with-lease)" })
 keymap.set("n", "<leader>gr", ":Git rebase -i HEAD~6<CR>", { desc = "Interactive git rebase" })
 
+-- Quickfix list keymaps
+keymap.set("n", "<leader>qo", "<cmd>copen<CR>", { desc = "Open quickfix list" })
+keymap.set("n", "<leader>qc", "<cmd>cclose<CR>", { desc = "Close quickfix list" })
+keymap.set("n", "<leader>qn", "<cmd>cnext<CR>", { desc = "Next quickfix item" })
+keymap.set("n", "<leader>qp", "<cmd>cprev<CR>", { desc = "Previous quickfix item" })
+keymap.set("n", "<leader>qf", "<cmd>cfirst<CR>", { desc = "First quickfix item" })
+keymap.set("n", "<leader>ql", "<cmd>clast<CR>", { desc = "Last quickfix item" })
+
 -- Function to toggle diagnostics
 vim.api.nvim_create_user_command("DiagnosticsToggle", function()
 	local current_value = vim.diagnostic.is_enabled()

@@ -18,6 +18,12 @@ return {
 				yaml = { "prettierd" },
 				markdown = { "prettierd" },
 				lua = { "stylua" },
+				typst = { "typstyle" },
+			},
+			formatters = {
+				typstyle = {
+					prepend_args = { "--wrap-text" },
+				},
 			},
 			format_on_save = function(bufnr)
 				-- Check for global or buffer-local disable flags
