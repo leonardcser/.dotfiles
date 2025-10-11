@@ -41,7 +41,8 @@ fi
 if [[ "$selected" =~ ^~ ]]; then
     selected="${selected/#\~/$HOME}"
 elif [[ "$selected" != /* ]]; then
-    selected="$HOME/$selected"
+    # Resolve relative paths from current directory
+    selected="$PWD/$selected"
 fi
 
 selected_name=$(basename "$selected" | tr . _)

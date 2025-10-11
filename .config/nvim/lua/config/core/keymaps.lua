@@ -90,3 +90,6 @@ keymap.set(
 
 -- Make current file executable
 keymap.set("n", "<leader>ex", "<cmd>!chmod +x %<CR>", { desc = "Make current file executable" })
+
+-- Spelling keymaps
+keymap.set("n", "<leader>sp", "a<C-X>s", { desc = "Show spelling suggestions" })
