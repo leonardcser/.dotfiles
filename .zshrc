@@ -92,7 +92,7 @@ function zvm_config() {
 function zvm_after_init() {
   # fzf
   source <(fzf --zsh)
-  export FZF_DEFAULT_COMMAND='find . \( -name node_modules -o -name .git -o -name .venv -o -name build \) -prune -o -print'
+  export FZF_DEFAULT_COMMAND='find . \( -name node_modules -o -name .git -o -name .venv -o -name build -o -name dist -o -name target -o -name .svelte-kit\) -prune -o -print'
   alias tx=tmux-sessionizer
   # run tmux sessionizer on ctrl-f
   bindkey -s '^F' 'tx\n'

@@ -2,7 +2,7 @@
 
 # Configuration constants
 SEARCH_DIRS=("$HOME/dev" "$HOME/.dotfiles")
-IGNORE_DIRS=("node_modules" ".git" ".venv" "build" ".oh-my-zsh")
+IGNORE_DIRS=("node_modules" ".git" ".venv" "build" "dist" "target" ".oh-my-zsh" ".svelte-kit")
 MIN_DEPTH=0
 MAX_DEPTH=6
 
