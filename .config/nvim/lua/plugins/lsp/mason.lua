@@ -102,6 +102,7 @@ return {
 			"clangd",
 			"ruff",
 			"pyright",
+			-- "pyrefly",
 			"dockerls",
 		}
 
@@ -131,7 +132,7 @@ return {
 			},
 		})
 
-		-- Disable ruff hover in favor of pyright
+		-- Disable ruff hover in favor of python lsp
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("lsp_attach_disable_ruff_hover", { clear = true }),
 			callback = function(args)
