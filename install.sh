@@ -10,9 +10,10 @@ else
 fi
 
 # Check for Oh My Zsh and install if we don't have it
-if test ! $(which omz); then
-  /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-fi
+# TODO: CHECK IF WE NEED THIS
+# if test ! $(which omz); then
+#   /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# fi
 
 # Check for Homebrew and install if we don't have it
 if test ! $(which brew); then
