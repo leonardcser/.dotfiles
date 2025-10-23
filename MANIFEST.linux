@@ -1,0 +1,29 @@
+#.hushlogin|symlink|
+#.gitconfig|symlink|
+#.gitignore|symlink|
+.tmux.conf|symlink|
+.vimrc|symlink|
+#.zprofile|symlink|
+#.oh-my-zsh|symlink|
+#.zshrc|symlink|
+#.p10k.zsh|symlink|
+#.clang-format|symlink|
+#.prettierrc.json|symlink|
+.config/nvim|symlink|
+#.config/ghostty|symlink|
+#.config/aerospace|symlink|
+#.config/lazygit|symlink|
+#.config/opencode|symlink|
+#.claude/settings.json|symlink|
+#.cursor/mcp.json|symlink|
+#.cursor/cli-config.json|symlink|
+#.cursor/rules|symlink|
+scripts|symlink|.local/bin
+#VSCodium/User/settings.json|symlink|Library/Application Support
+#.vscode-oss/extensions/extensions.json|symlink|
+#Cursor/User/settings.json|symlink|Library/Application Support
+#Cursor/User/keybindings.json|symlink|Library/Application Support
+#.cursor/extensions/extensions.json|symlink|
+#Alfred/prefs.json|symlink|Library/Application Support
+#Alfred/Alfred.alfredpreferences|symlink|Library/Application Support
+

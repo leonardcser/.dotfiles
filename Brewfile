@@ -5,20 +5,31 @@ tap "homebrew/bundle"
 tap "nikitabobko/tap"
 tap "nomandhoni-cs/blinkeye"
 tap "oven-sh/bun"
+tap "sst/tap"
+# Converts abc music notation files to MIDI files
+brew "abcmidi"
 # Search tool like grep, but optimized for programmers
 brew "ack"
 # Run your GitHub Actions locally
 brew "act"
-# General-purpose data compression with high compression ratio
-brew "xz"
-# Securely store and access AWS credentials in development environments
-brew "aws-vault"
 # Library for command-line editing
 brew "readline"
+# General-purpose data compression with high compression ratio
+brew "xz"
+# Display directories as trees (with optional color/HTML output)
+brew "tree"
+# Automate deployment, configuration, and upgrading
+brew "ansible"
+# Text processor and publishing toolchain for AsciiDoc
+brew "asciidoctor"
+# Securely store and access AWS credentials in development environments
+brew "aws-vault"
 # Official Amazon AWS command-line interface
 brew "awscli"
+# Command-line tool for interacting with the balenaCloud and balena API
+brew "balena-cli"
 # Control and limit battery charging on Apple Silicon MacBooks
-brew "batt"
+brew "batt", restart_service: :changed
 # Generate compilation database for clang tooling
 brew "bear"
 # Statistics utility to count lines of code
@@ -109,22 +120,26 @@ brew "qt"
 brew "rustup"
 # Command-line tool for Stripe
 brew "stripe-cli"
+# System performance benchmark tool
+brew "sysbench"
 # User interface to the TELNET protocol
 brew "telnet"
 # Tool to build, change, and version infrastructure
 brew "terraform"
 # Free software distribution for the TeX typesetting system
 brew "texlive"
+# Software synthesizer
+brew "timidity"
 # Terminal multiplexer
 brew "tmux"
-# Display directories as trees (with optional color/HTML output)
-brew "tree"
 # Markup-based typesetting system
 brew "typst"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
 # Web Assembly Binary Toolkit
 brew "wabt"
+# Sends magic packets to wake up network-devices
+brew "wakeonlan"
 # Internet file retriever
 brew "wget"
 # HTTP benchmarking tool
@@ -143,6 +158,8 @@ brew "bufbuild/buf/buf"
 brew "danvergara/tools/dblab"
 # Incredibly fast JavaScript runtime, bundler, transpiler and package manager - all in one.
 brew "oven-sh/bun/bun"
+# The AI coding agent built for the terminal.
+brew "sst/tap/opencode"
 # AeroSpace is an i3-like tiling window manager for macOS
 cask "aerospace"
 # Application launcher and productivity software
@@ -197,10 +214,14 @@ cask "ollama-app"
 cask "philips-hue-sync"
 # VPN client focusing on security
 cask "protonvpn"
+# Imaging utility to install operating systems to a microSD card
+cask "raspberry-pi-imager"
 # Tool that provides consistent, highly configurable symbols for apps
 cask "sf-symbols"
 # PDF reader and note-taking application
 cask "skim"
+# Team communication and collaboration software
+cask "slack"
 # Open-source BitTorrent client
 cask "transmission"
 # Multimedia player
@@ -230,3 +251,16 @@ vscode "twxs.cmake"
 vscode "vscodevim.vim"
 vscode "yoavbls.pretty-ts-errors"
 vscode "yzhang.markdown-all-in-one"
+go "github.com/google/addlicense"
+go "github.com/air-verse/air"
+go "fyne.io/fyne/v2/cmd/fyne"
+go "github.com/melkeydev/go-blueprint"
+go "github.com/golang_starter"
+go "golang.org/x/tools/gopls"
+go "github.com/nishanths/license/v5"
+go "github.com/golang-migrate/migrate/v4/cmd/migrate"
+go "connectrpc.com/connect/cmd/protoc-gen-connect-go"
+go "google.golang.org/protobuf/cmd/protoc-gen-go"
+go "github.com/sqlc-dev/sqlc/cmd/sqlc"
+go "honnef.co/go/tools/cmd/staticcheck"
+go "github.com/a-h/templ/cmd/templ"

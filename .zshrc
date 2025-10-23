@@ -231,14 +231,18 @@ pdwatch() {
 mycommands() {
     cat <<"EOF"
 MY CUSTOM COMMANDS.........................................
--  zshconfig      Open config in VSCode
--  ohmyzshconfig  Open config in VSCode
+-  zshconfig      Open ~/.zshrc in nvim
+-  ohmyzsh        Open ~/.oh-my-zsh in nvim
 -  f              Open finder in current dir
--  cdf            cd opened finder window
--  sloc           Count lines of code (git)
--  clrhist        Clear Terminal History
--  kill-apps      Kills all running processes with grep
+-  cdf            cd to opened finder window
+-  nv             Alias for nvim
+-  .              Open nvim in current directory
+-  tx             Alias for tmux-sessionizer
+-  sloc           Count lines of code
+-  clrhist        Clear terminal history
+-  kill-apps      Kill all running processes matching pattern
 -  pdwatch        Watch for changes with pandoc
+-  mycommands     Show this help menu
 EOF
 }
 
@@ -283,3 +287,4 @@ zsh-defer source "$HOME/.sdkman/bin/sdkman-init.sh"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+source "$HOME/.env.term"

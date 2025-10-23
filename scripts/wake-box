@@ -1,0 +1,10 @@
+#!/bin/bash
+
+MAC=$WOL_MAC
+HOST="box"
+PI_HOST="pi"
+
+if ! ping -c 1 -W 1 "$HOST" &>/dev/null; then
+    echo "Waking $HOST via Pi..."
+    ssh -o ConnectTimeout=5 dev@$PI_HOST "wakeonlan $MAC"
+fi

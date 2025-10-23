@@ -1,3 +1,4 @@
+.env.term|symlink|
 .hushlogin|symlink|
 .gitconfig|symlink|
 .gitignore|symlink|
