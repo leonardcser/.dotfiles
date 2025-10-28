@@ -1,12 +1,37 @@
 # Dotfiles
 
-## Usage
+## Installation
 
-1. `./deploy.sh MANIFEST`
-2. `./install.sh`
-3. Install zsh custom plugins
+1. Clone the repository and initialize submodules:
 
-## Mantainence
+   ```bash
+   git clone git@github.com:leonardcser/.dotfiles.git
+   cd .dotfiles
+   git submodule update --init --recursive
+   ```
+
+2. Install Oh My Zsh custom theme & plugins:
+
+   ```bash
+   # Theme
+   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \
+     .oh-my-zsh/custom/themes/powerlevel10k
+
+   # Plugins
+   git clone https://github.com/jeffreytse/zsh-vi-mode.git \
+     .oh-my-zsh/custom/plugins/zsh-vi-mode
+
+   git clone https://github.com/romkatv/zsh-defer.git \
+     .oh-my-zsh/custom/plugins/zsh-defer
+
+   git clone https://github.com/zsh-users/zsh-autosuggestions.git \
+     .oh-my-zsh/custom/plugins/zsh-autosuggestions
+
+   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
+     .oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+   ```
+
+## Maintenance
 
 To update the `Brewfile`:
 
@@ -18,25 +43,4 @@ To sync the `Brewfile`:
 
 ```bash
 brew bundle --file=Brewfile --force cleanup
-```
-
-## Other
-
-```bash
-# Theme
-git submodule add https://github.com/romkatv/powerlevel10k.git \
-  .oh-my-zsh/custom/themes/powerlevel10k
-
-# Plugins
-git submodule add https://github.com/jeffreytse/zsh-vi-mode.git \
-  .oh-my-zsh/custom/plugins/zsh-vi-mode
-
-git submodule add https://github.com/romkatv/zsh-defer.git \
-  .oh-my-zsh/custom/plugins/zsh-defer
-
-git submodule add https://github.com/zsh-users/zsh-autosuggestions.git \
-  .oh-my-zsh/custom/plugins/zsh-autosuggestions
-
-git submodule add https://github.com/zsh-users/zsh-syntax-highlighting.git \
-  .oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 ```

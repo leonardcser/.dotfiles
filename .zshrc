@@ -8,6 +8,13 @@ fi
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
+# OS Detection
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  export OS_TYPE="macos"
+else
+  export OS_TYPE="linux"
+fi
+
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -169,21 +176,25 @@ alias vi="vim"
 eval "$(zoxide init zsh)"
 
 # PERSONAL FUNCTIONS
-# Shortcut Function
-cdf() {
-    target=`osascript -e 'tell application "Finder" to if (count of Finder windows) > 0 then get POSIX path of (target of front Finder window as text)'`
-    if [ "$target" != "" ]; then
-        cd "$target"; pwd
-    else
-        echo 'No Finder window found' >&2
-    fi
-}
+
+# macOS-specific functions
+if [[ $OS_TYPE == "macos" ]]; then
+  # Shortcut Function
+  cdf() {
+      target=`osascript -e 'tell application "Finder" to if (count of Finder windows) > 0 then get POSIX path of (target of front Finder window as text)'`
+      if [ "$target" != "" ]; then
+          cd "$target"; pwd
+      else
+          echo 'No Finder window found' >&2
+      fi
+  }
+
+  # Open finder
+  alias f='open -a Finder ./'
+fi
 
 # Prevent from perm. delete
 # alias rm=trash
-
-# Open finder
-alias f='open -a Finder ./'
 
 # Count lines of code
 alias sloc="wc -l **/*.*"
@@ -223,9 +234,12 @@ kill-apps() {
   fi
 }
 
-pdwatch() {
-    /Users/leo/dev/go/pdwatch/pdwatch $@
-}
+# macOS-specific tools
+if [[ $OS_TYPE == "macos" ]]; then
+  pdwatch() {
+      /Users/leo/dev/go/pdwatch/pdwatch $@
+  }
+fi
 
 # Help to remember list of my commands
 mycommands() {
@@ -259,8 +273,8 @@ export PATH=$HOME/.pyenv/shims:$PATH
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
-zsh-defer source "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-zsh-defer source "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+[[ -s "$NVM_DIR/nvm.sh" ]] && zsh-defer source "$NVM_DIR/nvm.sh"
+[[ -s "$NVM_DIR/bash_completion" ]] && zsh-defer source "$NVM_DIR/bash_completion"
 
 # c/cpp
 # CC=/usr/local/bin/gcc-14
@@ -277,7 +291,9 @@ export GPG_TTY=$(tty)
 export PATH=$PATH:$HOME/go/bin
 
 # rust
-export PATH=$PATH:/opt/homebrew/opt/rustup/bin
+if [[ $OS_TYPE == "macos" ]]; then
+  export PATH=$PATH:/opt/homebrew/opt/rustup/bin
+fi
 export PATH=$PATH:$HOME/.cargo/bin
 
 # java
@@ -287,4 +303,4 @@ zsh-defer source "$HOME/.sdkman/bin/sdkman-init.sh"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-source "$HOME/.env.term"
+[ -f "$HOME/.env.term" ] && source "$HOME/.env.term"
