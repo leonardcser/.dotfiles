@@ -103,8 +103,6 @@ function zvm_after_init() {
   alias tx=tmux-sessionizer
   # run tmux sessionizer on ctrl-f
   bindkey -s '^F' 'tx\n'
-  # run tmux a on ctrl-a
-  bindkey -s '^A' 'tmux a\n'
 }
 
 plugins=(zsh-vi-mode)
