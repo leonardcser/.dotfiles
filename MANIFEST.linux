@@ -1,6 +1,6 @@
 #.hushlogin|symlink|
-#.gitconfig|symlink|
-#.gitignore|symlink|
+.gitconfig|symlink|
+.gitignore|symlink|
 .tmux.conf|symlink|
 .vimrc|symlink|
 #.zprofile|symlink|
