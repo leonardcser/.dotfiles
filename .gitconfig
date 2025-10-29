@@ -1,7 +1,7 @@
 [user]
     name = leonardcser
     email = 73912641+leonardcser@users.noreply.github.com
-    signingkey = /Users/leo/.ssh/id_rsa.pub
+    signingkey = ~/.ssh/id_rsa.pub
 [credential]
     helper = osxkeychain
 [core]
