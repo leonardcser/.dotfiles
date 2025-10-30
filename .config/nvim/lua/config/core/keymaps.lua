@@ -62,6 +62,17 @@ keymap.set("n", "<leader>gP", ":Git pull --rebase --prune<CR>", { desc = "Pull g
 keymap.set("n", "<leader>ga", ":Git add -u<CR>", { desc = "Add git changes" })
 keymap.set("n", "<leader>gf", ":Git push --force-with-lease<CR>", { desc = "Push git changes (force-with-lease)" })
 keymap.set("n", "<leader>gr", ":Git rebase -i HEAD~6<CR>", { desc = "Interactive git rebase" })
+local copy_cmd = vim.fn.has("mac") == 1 and "pbcopy" or "xclip -selection clipboard"
+
+keymap.set("n", "<leader>gu", function()
+	local remote_url = vim.fn.system("git config --get remote.origin.url"):gsub("\n", "")
+	if remote_url == "" then
+		print("No remote URL found.")
+		return
+	end
+	vim.fn.system(string.format("echo -n '%s' | %s", remote_url, copy_cmd))
+	print("Copied remote URL: " .. remote_url)
+end, { desc = "Copy remote git URL" })
 
 -- Quickfix list keymaps
 keymap.set("n", "<leader>qo", "<cmd>copen<CR>", { desc = "Open quickfix list" })
