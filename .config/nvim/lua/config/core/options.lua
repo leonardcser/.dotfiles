@@ -102,10 +102,10 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 	group = vim.api.nvim_create_augroup("diff-colors", { clear = true }),
 	callback = function()
 		-- Diff colors with foreground colors for fillchars
-		vim.api.nvim_set_hl(0, "DiffAdd", { bg = "#002000" }) -- Green for additions
-		vim.api.nvim_set_hl(0, "DiffDelete", { fg = "#660000", bg = "#200000" }) -- Red for deletions
-		vim.api.nvim_set_hl(0, "DiffChange", { bg = "#002000" }) -- Brighter green for changes
-		vim.api.nvim_set_hl(0, "DiffText", { bg = "#2d4a2d" }) -- Same as DiffChange for changed text
+		vim.api.nvim_set_hl(0, "DiffAdd", { bg = "#1e2a18" })
+		vim.api.nvim_set_hl(0, "DiffDelete", { fg = "#773333", bg = "#2a1414" })
+		vim.api.nvim_set_hl(0, "DiffChange", { bg = "#151e11" })
+		vim.api.nvim_set_hl(0, "DiffText", { bg = "#293a22" })
 	end,
 })
 
