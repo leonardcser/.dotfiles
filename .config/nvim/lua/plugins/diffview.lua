@@ -7,6 +7,9 @@ return {
 		local diffview = require("diffview")
 
 		diffview.setup({
+			default_args = {
+				DiffviewOpen = { "--imply-local" },
+			},
 			view = {
 				default = {
 					layout = "diff2_vertical",
