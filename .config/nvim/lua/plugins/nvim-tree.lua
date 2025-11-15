@@ -71,8 +71,29 @@ return {
 			api.tree.toggle({ find_file = true, winid = vim.api.nvim_get_current_win(), focus = true })
 		end
 
+		local sort_modes = { "name", "modification_time" }
+		local current_sort_index = 1
+
+		local function cycle_sort()
+			current_sort_index = current_sort_index % #sort_modes + 1
+			local sort_mode = sort_modes[current_sort_index]
+
+			-- Update the configuration directly via the core config
+			local core = require("nvim-tree.core")
+			if core and core.get_explorer() then
+				local explorer = core.get_explorer()
+				if explorer and explorer.opts and explorer.opts.sort then
+					explorer.opts.sort.sorter = sort_mode
+				end
+			end
+
+			-- Reload the tree to apply the new sort
+			api.tree.reload()
+		end
+
 		keymap.set("n", "<leader>ee", toggle, { desc = "Toggle file explorer" }) -- toggle file explorer
 		keymap.set("n", "<leader>ef", toggle_current_file, { desc = "Toggle file explorer on current file" }) -- toggle file explorer on current file
 		keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" }) -- refresh file explorer
+		keymap.set("n", "<leader>es", cycle_sort, { desc = "Cycle sort mode" }) -- cycle sort mode
 	end,
 }

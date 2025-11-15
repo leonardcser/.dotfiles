@@ -4,6 +4,9 @@ return {
 	config = function()
 		require("cursortab").setup({
 			debug_immediate_shutdown = true,
+			provider = "zeta",
+			provider_model = "zeta",
+			provider_url = "http://llm.box.local",
 		})
 
 		-- set keymaps
