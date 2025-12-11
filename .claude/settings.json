@@ -7,11 +7,10 @@
       "mcp__nvim-lsp__read-lints"
     ],
     "deny": [
-      "Bash(curl:*)",
-      "Read(./.env)",
-      "Read(./.env.*)"
+      "Read(./.env)"
     ],
     "ask": [
+      "Bash(curl:*)",
       "Bash(rm:*)"
     ]
   },

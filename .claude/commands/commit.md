@@ -15,6 +15,9 @@ description: Create a git commit
 ## Your task
 
 Based on the above changes, create a single git commit. Keep the message short
-and to the point without coautors.
+and to the point WITHOUT COAUTHORS.
 
-If there are a lot of changes include a short description else leave it empty.
+If there are a lot of changes include a SHORT description ELSE LEAVE IT EMPTY.
+
+IMPORTANT: DO NOT INCLUDE "🤖 Generated with
+[Claude Code](https://claude.com/claude-code)" AND DO NOT INCLUDE coauthors

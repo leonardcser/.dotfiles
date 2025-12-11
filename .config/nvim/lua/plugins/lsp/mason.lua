@@ -91,6 +91,7 @@ return {
 		local servers = {
 			"ts_ls",
 			"rust_analyzer",
+			"zls",
 			"html",
 			"cssls",
 			"tailwindcss",
