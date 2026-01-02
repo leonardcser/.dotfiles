@@ -104,3 +104,19 @@ keymap.set("n", "<leader>ex", "<cmd>!chmod +x %<CR>", { desc = "Make current fil
 
 -- Spelling keymaps
 keymap.set("n", "<leader>sp", "a<C-X>s", { desc = "Show spelling suggestions" })
+
+-- Search selected text in browser
+keymap.set("v", "<leader>d", function()
+	-- Get the selected text
+	vim.cmd('noau normal! "vy"')
+	local selected_text = vim.fn.getreg("v")
+
+	-- URL encode the text
+	local encoded_text = selected_text:gsub("([^%w%-%.%_%~])", function(c)
+		return string.format("%%%02X", string.byte(c))
+	end)
+
+	-- Open browser with DuckDuckGo search query
+	local search_url = string.format("https://duckduckgo.com/?q=%s", encoded_text)
+	vim.fn.system(string.format("open %s", vim.fn.shellescape(search_url)))
+end, { desc = "Search selected text in browser" })
