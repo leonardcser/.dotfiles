@@ -103,19 +103,20 @@ alt-2 = 'workspace 2'
 alt-3 = 'workspace 3'
 alt-4 = 'workspace 4'
 alt-5 = 'workspace 5'
+alt-6 = 'workspace 6'
 
 cmd-alt-1 = ['move-node-to-workspace 1', 'workspace 1']
 cmd-alt-2 = ['move-node-to-workspace 2', 'workspace 2']
 cmd-alt-3 = ['move-node-to-workspace 3', 'workspace 3']
 cmd-alt-4 = ['move-node-to-workspace 4', 'workspace 4']
 cmd-alt-5 = ['move-node-to-workspace 5', 'workspace 5']
+cmd-alt-6 = ['move-node-to-workspace 6', 'workspace 6']
 
 alt-shift-r = ['flatten-workspace-tree', 'mode main']
 # alt-shift-r = 'reload-config'
 
 alt-s = 'exec-and-forget open -a /Applications/Safari.app/'
 alt-g = 'exec-and-forget open -a /Applications/Ghostty.app/'
-alt-c = 'exec-and-forget open -a /Applications/Cursor.app/'
 alt-a = 'exec-and-forget open -a /Applications/ChatGPT.app/'
 
 alt-r = 'mode resize'
