@@ -20,8 +20,12 @@ brew "xz"
 brew "tree"
 # Automate deployment, configuration, and upgrading
 brew "ansible"
+# Arduino command-line interface
+brew "arduino-cli"
 # Text processor and publishing toolchain for AsciiDoc
 brew "asciidoctor"
+# Automatically restart SSH sessions and tunnels
+brew "autossh"
 # Securely store and access AWS credentials in development environments
 brew "aws-vault"
 # Official Amazon AWS command-line interface
@@ -32,6 +36,8 @@ brew "balena-cli"
 brew "batt", restart_service: :changed
 # Generate compilation database for clang tooling
 brew "bear"
+# CD/DVD/Blu-ray premastering and recording software
+brew "cdrtools"
 # Statistics utility to count lines of code
 brew "cloc"
 # Cross-platform make
@@ -48,16 +54,24 @@ brew "convmv"
 brew "deno"
 # View disk space usage and delete unwanted data, fast
 brew "dua-cli"
+# Lean Theorem Prover installer and version manager
+brew "elan-init"
 # LLVM bytecode to JavaScript compiler
 brew "emscripten"
 # Run arbitrary commands when files change
 brew "entr"
+# ESP8266 and ESP32 serial bootloader utility
+brew "esptool"
+# Perl lib for reading and writing EXIF metadata
+brew "exiftool"
 # Low-level access to audio, keyboard, mouse, joystick, and graphics
 brew "sdl2"
 # Play, record, convert, and stream audio and video
 brew "ffmpeg"
 # Command-line fuzzy finder written in Go
 brew "fzf"
+# Interact with Google Gemini AI models from the command-line
+brew "gemini-cli"
 # GitHub command-line tool
 brew "gh"
 # Distributed revision control system
@@ -66,7 +80,7 @@ brew "git"
 brew "git-delta"
 # Quickly rewrite git repository history
 brew "git-filter-repo"
-# GNU Pretty Good Privacy (PGP) package
+# GNU Privacy Guard (OpenPGP)
 brew "gnupg"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
@@ -86,8 +100,6 @@ brew "kubernetes-cli"
 brew "lazygit"
 # LLM inference in C/C++
 brew "llama.cpp"
-# Next-gen compiler infrastructure
-brew "llvm"
 # LLVM Project Linker
 brew "lld"
 # Curses-based tool for viewing and analyzing log files
@@ -96,14 +108,20 @@ brew "lnav"
 brew "macmon"
 # Run a Kubernetes cluster locally
 brew "minikube"
+# Remote terminal application
+brew "mosh"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Port scanning utility for large networks
 brew "nmap"
 # Manage multiple Node.js versions
 brew "nvm"
+# Cryptography and SSL/TLS Toolkit
+brew "openssl@1.1"
 # Swiss-army knife of markup format conversion
 brew "pandoc"
+# Minimal dumb-terminal emulation program
+brew "picocom"
 # Execute binaries from Python packages in isolated environments
 brew "pipx"
 # Draw UML diagrams
@@ -114,8 +132,12 @@ brew "pnpm"
 brew "pyenv"
 # Generic machine emulator and virtualizer
 brew "qemu"
+# QR Code generation
+brew "qrencode"
 # Cross-platform application and UI framework
 brew "qt"
+# Software environment for statistical computing
+brew "r"
 # Rust toolchain installer
 brew "rustup"
 # Command-line tool for Stripe
@@ -134,6 +156,8 @@ brew "timidity"
 brew "tmux"
 # Markup-based typesetting system
 brew "typst"
+# Unidata unit conversion library
+brew "udunits"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
 # Web Assembly Binary Toolkit
@@ -142,6 +166,8 @@ brew "wabt"
 brew "wakeonlan"
 # Internet file retriever
 brew "wget"
+# Library to create, extract, and modify Windows Imaging files
+brew "wimlib"
 # HTTP benchmarking tool
 brew "wrk"
 # Feature-rich command-line audio/video downloader
@@ -190,6 +216,8 @@ cask "docker-desktop"
 cask "figma"
 cask "font-new-computer-modern"
 cask "font-symbols-only-nerd-font"
+# 3D parametric modeller
+cask "freecad"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
 # Java IDE by JetBrains
@@ -206,14 +234,16 @@ cask "mathpix-snipping-tool"
 cask "microsoft-excel"
 # Meet, chat, call, and collaborate in just one place
 cask "microsoft-teams"
+# Intercept, modify, replay, save HTTP/S traffic
+cask "mitmproxy"
 # Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
-# Get up and running with large language models locally
-cask "ollama-app"
 # Control your smart light system
 cask "philips-hue-sync"
 # VPN client focusing on security
 cask "protonvpn"
+# Scientific and technical publishing system built on Pandoc
+cask "quarto"
 # Imaging utility to install operating systems to a microSD card
 cask "raspberry-pi-imager"
 # Tool that provides consistent, highly configurable symbols for apps
@@ -224,6 +254,8 @@ cask "skim"
 cask "slack"
 # Open-source BitTorrent client
 cask "transmission"
+# 3D printer and slicing GUI
+cask "ultimaker-cura"
 # Multimedia player
 cask "vlc"
 # Binary releases of VS Code without MS branding/telemetry/licensing
@@ -264,3 +296,6 @@ go "google.golang.org/protobuf/cmd/protoc-gen-go"
 go "github.com/sqlc-dev/sqlc/cmd/sqlc"
 go "honnef.co/go/tools/cmd/staticcheck"
 go "github.com/a-h/templ/cmd/templ"
+cargo "caesiumclt"
+cargo "create-tauri-app"
+cargo "ttyper"
