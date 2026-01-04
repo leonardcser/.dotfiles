@@ -88,7 +88,14 @@ return {
 			},
 		})
 
-		local servers = {
+		vim.lsp.config("beancount", {
+		cmd = { vim.fn.expand("~/dev/thirdparty/beancount-language-server/target/release/beancount-language-server") },
+		init_options = {
+			journal_file = vim.fn.getcwd() .. "/main.beancount",
+		},
+	})
+
+	local servers = {
 			"ts_ls",
 			"rust_analyzer",
 			"zls",
@@ -99,12 +106,14 @@ return {
 			"emmet_ls",
 			"prismals",
 			"svelte",
+			"astro",
 			"jdtls",
 			"clangd",
 			"ruff",
 			"pyright",
 			-- "pyrefly",
 			"dockerls",
+			"beancount",
 		}
 
 		mason.setup({
