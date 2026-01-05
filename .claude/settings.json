@@ -3,16 +3,10 @@
     "CLAUDE_CODE_ENABLE_TELEMETRY": "0"
   },
   "permissions": {
-    "allow": [
-      "mcp__nvim-lsp__read-lints"
-    ],
-    "deny": [
-      "Read(./.env)"
-    ],
-    "ask": [
-      "Bash(curl:*)",
-      "Bash(rm:*)"
-    ]
+    "allow": ["mcp__nvim-lsp__read-lints"],
+    "deny": ["Read(./.env)"],
+    "ask": ["Bash(curl:*)", "Bash(rm:*)"]
   },
+  "model": "opus",
   "alwaysThinkingEnabled": true
 }

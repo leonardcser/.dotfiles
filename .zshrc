@@ -302,3 +302,11 @@ zsh-defer source "$HOME/.sdkman/bin/sdkman-init.sh"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 [ -f "$HOME/.env.term" ] && source "$HOME/.env.term"
+
+# pnpm
+export PNPM_HOME="/Users/leo/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
