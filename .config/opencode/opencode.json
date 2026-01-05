@@ -18,7 +18,12 @@
   "autoupdate": true,
   "permission": {
     "edit": "ask",
-    "bash": "ask",
+    "bash": {
+      "*": "ask",
+      "pwd": "allow",
+      "git status": "allow",
+      "grep": "allow"
+    },
     "webfetch": "deny"
   },
   "agent": {

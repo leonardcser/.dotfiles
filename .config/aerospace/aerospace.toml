@@ -130,16 +130,10 @@ enter = 'mode main'
 esc = 'mode main'
 
 [[on-window-detected]]
-if.app-id = 'com.openai.chat'
-if.during-aerospace-startup = true
-check-further-callbacks = true
-run = ['move-node-to-workspace 1']
-
-[[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
 if.during-aerospace-startup = true
 check-further-callbacks = true
-run = ['move-node-to-workspace 2']
+run = ['move-node-to-workspace 1']
 
 # https://ghostty.org/docs/help/macos-tiling-wms
 [[on-window-detected]]
@@ -147,7 +141,23 @@ if.app-id = 'com.mitchellh.ghostty'
 run = ['layout tiling']
 
 [[on-window-detected]]
+if.app-id = 'com.openai.chat'
+check-further-callbacks = true
+run = ['move-node-to-workspace 2']
+
+[[on-window-detected]]
+if.app-id = 'net.sourceforge.skim-app.skim'
+if.during-aerospace-startup = true
+check-further-callbacks = true
+run = ['move-node-to-workspace 2']
+
+[[on-window-detected]]
 if.app-id = 'com.apple.Safari'
 if.during-aerospace-startup = true
 check-further-callbacks = true
 run = ['move-node-to-workspace 3']
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.teams2'
+check-further-callbacks = true
+run = ['move-node-to-workspace 5']
