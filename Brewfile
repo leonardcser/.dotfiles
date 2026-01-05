@@ -204,10 +204,6 @@ cask "chromium"
 cask "claude"
 # Terminal-based AI coding assistant
 cask "claude-code"
-# Write, edit, and chat about your code with AI
-cask "cursor"
-# Command-line agent for Cursor
-cask "cursor-cli"
 # Browser for SQLite databases
 cask "db-browser-for-sqlite"
 # App to build and share containerised applications and microservices
