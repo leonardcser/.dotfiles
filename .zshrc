@@ -164,6 +164,7 @@ alias ls="ls -1lh --color=auto"
 alias ll="ls -1alh --color=auto"
 alias code="codium"
 alias clear="clear && printf '\e[3J'"
+alias cpwd="pwd | pbcopy"
 
 # Neovim aliasas
 alias nv="nvim"
