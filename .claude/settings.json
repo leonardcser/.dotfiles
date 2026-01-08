@@ -7,6 +7,9 @@
     "deny": ["Read(./.env)"],
     "ask": ["Bash(curl:*)", "Bash(rm:*)"]
   },
-  "model": "opus",
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": true
+  },
   "alwaysThinkingEnabled": true
 }

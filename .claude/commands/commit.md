@@ -1,7 +1,7 @@
 ---
 model: claude-haiku-4-5
 allowed-tools:
-  Bash(git add:*), Bash(git status:*), Bash(git log:*), Bash(git commit:*)
+  Bash(git add:*, dangerouslyDisableSandbox), Bash(git status:*, dangerouslyDisableSandbox), Bash(git log:*, dangerouslyDisableSandbox), Bash(git commit:*, dangerouslyDisableSandbox)
 argument-hint: [message]
 description: Create a git commit
 ---
