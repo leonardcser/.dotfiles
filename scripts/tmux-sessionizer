@@ -2,7 +2,26 @@
 
 # Configuration constants
 SEARCH_DIRS=("$HOME/dev" "$HOME/.dotfiles")
-IGNORE_DIRS=("node_modules" ".git" ".venv" "build" "dist" "target" ".oh-my-zsh" ".svelte-kit")
+IGNORE_DIRS=(
+    # Dependencies
+    "node_modules" "vendor" ".bundle"
+    # Version control
+    ".git"
+    # Python
+    ".venv" "venv" "env" "__pycache__" ".pytest_cache" ".mypy_cache" ".ruff_cache"
+    # Build outputs
+    "build" "dist" "target" "out" "coverage"
+    # Framework-specific
+    ".svelte-kit" ".next" ".turbo" ".nuxt"
+    # Language-specific caches
+    ".zig-cache" ".cargo" ".gradle"
+    # Expo/React Native
+    ".expo" ".expo-shared"
+    # IDE/Editor
+    ".vscode" ".cursor" ".idea"
+    # Misc
+    ".oh-my-zsh" ".cache" ".wrangler" ".github" "tmp"
+)
 MIN_DEPTH=0
 MAX_DEPTH=6
 

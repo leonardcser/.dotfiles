@@ -99,7 +99,7 @@ function zvm_config() {
 function zvm_after_init() {
   # fzf
   source <(fzf --zsh)
-  export FZF_DEFAULT_COMMAND='find . \( -name node_modules -o -name .git -o -name .venv -o -name build -o -name dist -o -name target -o -name .svelte-kit\) -prune -o -print'
+  export FZF_DEFAULT_COMMAND='find . \( -name node_modules -o -name vendor -o -name .bundle -o -name .git -o -name .venv -o -name venv -o -name env -o -name __pycache__ -o -name .pytest_cache -o -name .mypy_cache -o -name .ruff_cache -o -name build -o -name dist -o -name target -o -name out -o -name coverage -o -name .svelte-kit -o -name .next -o -name .turbo -o -name .nuxt -o -name .zig-cache -o -name .cargo -o -name .gradle -o -name .expo -o -name .expo-shared -o -name .vscode -o -name .cursor -o -name .idea -o -name .oh-my-zsh -o -name .cache -o -name .wrangler -o -name .github -o -name tmp \) -prune -o ! -name .DS_Store -print'
   alias tx=tmux-sessionizer
   # run tmux sessionizer on ctrl-f
   bindkey -s '^F' 'tx\n'
