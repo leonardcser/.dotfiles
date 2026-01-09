@@ -88,14 +88,26 @@ return {
 			},
 		})
 
-		vim.lsp.config("beancount", {
-		cmd = { vim.fn.expand("~/dev/thirdparty/beancount-language-server/target/release/beancount-language-server") },
-		init_options = {
-			journal_file = vim.fn.getcwd() .. "/main.beancount",
-		},
-	})
+			vim.lsp.config("beancount", {
+			cmd = { vim.fn.expand("~/dev/thirdparty/beancount-language-server/target/release/beancount-language-server") },
+			init_options = {
+				journal_file = vim.fn.getcwd() .. "/main.beancount",
+			},
+		})
 
-	local servers = {
+		-- Biome LSP: only activate if biome.json exists in project root
+		vim.lsp.config("biome", {
+			root_dir = function(bufnr, on_dir)
+				local root = vim.fs.root(bufnr, { "biome.json", "biome.jsonc" })
+				if root then
+					on_dir(root)
+				end
+				-- Returns nil if no biome.json, preventing LSP from starting
+			end,
+			single_file_support = false,
+		})
+
+		local servers = {
 			"ts_ls",
 			"rust_analyzer",
 			"zls",
@@ -114,6 +126,7 @@ return {
 			-- "pyrefly",
 			"dockerls",
 			"beancount",
+			"biome",
 		}
 
 		mason.setup({
@@ -139,6 +152,7 @@ return {
 				"eslint_d",
 				"clang-format",
 				"typstyle",
+				"biome",
 			},
 		})
 

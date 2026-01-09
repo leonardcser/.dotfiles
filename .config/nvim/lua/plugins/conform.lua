@@ -4,17 +4,35 @@ return {
 	config = function()
 		local conform = require("conform")
 
+		-- Helper: returns biome if biome.json exists in project, else prettierd
+		local function biome_or_prettierd(bufnr)
+			local root = vim.fs.root(bufnr, { "biome.json", "biome.jsonc" })
+			if root then
+				return { "biome" }
+			end
+			return { "prettierd" }
+		end
+
+		-- Helper: returns biome if biome.json exists in project, else prettier
+		local function biome_or_prettier(bufnr)
+			local root = vim.fs.root(bufnr, { "biome.json", "biome.jsonc" })
+			if root then
+				return { "biome" }
+			end
+			return { "prettier" }
+		end
+
 		conform.setup({
 			formatters_by_ft = {
-				javascript = { "prettierd" },
-				typescript = { "prettierd" },
-				javascriptreact = { "prettierd" },
-				typescriptreact = { "prettierd" },
+				javascript = biome_or_prettierd,
+				typescript = biome_or_prettierd,
+				javascriptreact = biome_or_prettierd,
+				typescriptreact = biome_or_prettierd,
 				svelte = { "prettierd" },
-				css = { "prettier" },
+				css = biome_or_prettier,
 				html = { "prettierd" },
-				json = { "prettierd" },
-				jsonc = { "prettierd" },
+				json = biome_or_prettierd,
+				jsonc = biome_or_prettierd,
 				yaml = { "prettierd" },
 				markdown = { "prettierd" },
 				lua = { "stylua" },
