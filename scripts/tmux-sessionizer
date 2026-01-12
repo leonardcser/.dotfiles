@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Configuration constants
-SEARCH_DIRS=("$HOME/dev" "$HOME/.dotfiles")
+SEARCH_DIRS=("$HOME/dev" "$HOME/.dotfiles" "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Documents/vault")
 IGNORE_DIRS=(
     # Dependencies
     "node_modules" "vendor" ".bundle"
