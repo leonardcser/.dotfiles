@@ -90,6 +90,8 @@ brew "librsvg"
 brew "graphviz"
 # GNU grep, egrep and fgrep
 brew "grep"
+# Kubernetes package manager
+brew "helm"
 # Improved top (interactive process viewer)
 brew "htop"
 # Lightweight and flexible command-line JSON processor
@@ -210,6 +212,8 @@ cask "db-browser-for-sqlite"
 cask "docker-desktop"
 # Collaborative team software
 cask "figma"
+cask "font-inter"
+cask "font-jetbrains-mono"
 cask "font-new-computer-modern"
 cask "font-symbols-only-nerd-font"
 # 3D parametric modeller
@@ -292,6 +296,7 @@ go "google.golang.org/protobuf/cmd/protoc-gen-go"
 go "github.com/sqlc-dev/sqlc/cmd/sqlc"
 go "honnef.co/go/tools/cmd/staticcheck"
 go "github.com/a-h/templ/cmd/templ"
+go "github.com/wailsapp/wails/v2/cmd/wails"
 cargo "caesiumclt"
 cargo "create-tauri-app"
 cargo "ttyper"
