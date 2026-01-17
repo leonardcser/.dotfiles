@@ -106,7 +106,7 @@ keymap.set("n", "<leader>ex", "<cmd>!chmod +x %<CR>", { desc = "Make current fil
 keymap.set("n", "<leader>sp", "a<C-X>s", { desc = "Show spelling suggestions" })
 
 -- Search selected text in browser
-keymap.set("v", "<leader>d", function()
+keymap.set("v", "<leader>o", function()
 	-- Get the selected text
 	vim.cmd('noau normal! "vy"')
 	local selected_text = vim.fn.getreg("v")
