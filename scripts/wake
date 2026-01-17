@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+TARGET=${1:-box}  # Default to "box" if no argument provided
+PI_HOST="pi"
+
+# Lookup target configuration
+case "$TARGET" in
+    box)
+        MAC=$BOX_WOL_MAC
+        HOST="box"
+        ;;
+    # Add more targets here as needed
+    # example)
+    #     MAC="XX:XX:XX:XX:XX:XX"
+    #     HOST="example"
+    #     ;;
+    *)
+        echo "Unknown target: $TARGET"
+        echo "Available targets: box"
+        exit 1
+        ;;
+esac
+
+if ! ping -c 1 -W 1 "$HOST" &>/dev/null; then
+    echo "Waking $HOST via Pi..."
+    ssh -o ConnectTimeout=5 dev@$PI_HOST "wakeonlan $MAC"
+fi
