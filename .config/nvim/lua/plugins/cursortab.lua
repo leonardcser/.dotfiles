@@ -3,10 +3,12 @@ return {
 	build = "cd server && go build -o cursortab .",
 	config = function()
 		require("cursortab").setup({
+			log_level = "debug",
 			debug_immediate_shutdown = true,
-			provider = "zeta",
-			provider_model = "zeta",
-			provider_url = "http://llm.box.local",
+			provider = "sweep",
+			provider_model = "sweep-next-edit-1.5b",
+			provider_url = "http://localhost:8000",
+			provider_max_tokens = 256,
 		})
 
 		-- set keymaps

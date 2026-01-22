@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+# Create a git worktree and open it in tmux-sessionizer
+# Usage: wt <branch>
+
+set -e
+
+if [[ $# -lt 1 ]]; then
+    echo "Usage: wt <branch>"
+    echo "Creates a worktree at ../<reponame>-<branch> and opens it in tmux"
+    exit 1
+fi
+
+# Check if we're in a git repo
+if ! git rev-parse --git-dir > /dev/null 2>&1; then
+    echo "Error: Not in a git repository"
+    exit 1
+fi
+
+branch="$1"
+repo_name=$(basename "$(git rev-parse --show-toplevel)")
+# Sanitize branch name for directory: replace / and other problematic chars with -
+branch_safe=$(echo "$branch" | tr '/:@' '-')
+worktree_path="../${repo_name}-${branch_safe}"
+
+# Check if worktree already exists
+if [[ -d "$worktree_path" ]]; then
+    echo "Worktree already exists at $worktree_path"
+else
+    # Check if branch exists locally or remotely
+    if git show-ref --verify --quiet "refs/heads/$branch"; then
+        # Local branch exists
+        git worktree add "$worktree_path" "$branch"
+    elif git show-ref --verify --quiet "refs/remotes/origin/$branch"; then
+        # Remote branch exists, create tracking branch
+        git worktree add "$worktree_path" "$branch"
+    else
+        # Branch doesn't exist, create new branch
+        git worktree add -b "$branch" "$worktree_path"
+    fi
+    echo "Created worktree at $worktree_path"
+fi
+
+# Convert to absolute path and run tmux-sessionizer
+abs_path=$(cd "$worktree_path" && pwd)
+tmux-sessionizer "$abs_path"
