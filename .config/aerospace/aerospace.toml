@@ -146,6 +146,11 @@ check-further-callbacks = true
 run = ['move-node-to-workspace 2']
 
 [[on-window-detected]]
+if.app-id = 'com.anthropic.claudefordesktop'
+check-further-callbacks = true
+run = ['move-node-to-workspace 2']
+
+[[on-window-detected]]
 if.app-id = 'net.sourceforge.skim-app.skim'
 if.during-aerospace-startup = true
 check-further-callbacks = true

@@ -15,10 +15,9 @@
       "Bash(rm:*)"
     ]
   },
-  "model": "sonnet",
   "sandbox": {
     "enabled": true,
     "autoAllowBashIfSandboxed": true
   },
-  "alwaysThinkingEnabled": true
+  "model": "sonnet"
 }
