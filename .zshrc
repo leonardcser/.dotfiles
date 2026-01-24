@@ -279,6 +279,7 @@ export NVM_DIR="$HOME/.nvm"
 # CC=/usr/local/bin/gcc-14
 export CPATH="/usr/local/include:$CPATH"
 export LIBRARY_PATH="/usr/local/lib:$LIBRARY_PATH"
+export LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PATH"
 
 # cmake
 export CMAKE_EXPORT_COMPILE_COMMANDS=ON
