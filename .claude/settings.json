@@ -18,6 +18,5 @@
   "sandbox": {
     "enabled": true,
     "autoAllowBashIfSandboxed": true
-  },
-  "model": "sonnet"
+  }
 }

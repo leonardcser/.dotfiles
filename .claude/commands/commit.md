@@ -17,12 +17,14 @@ description: Create a git commit
 
 ## Your task
 
-Based on the above changes, create a single git commit. Keep the message short
-and to the point WITHOUT COAUTHORS.
+Based on the above changes, create a single git commit using conventional commits format:
 
-If there are a lot of changes include a SHORT description ELSE LEAVE IT EMPTY.
+`type(scope): description`
 
-IMPORTANT: DO NOT INCLUDE "🤖 Generated with
-[Claude Code](https://claude.com/claude-code)" AND DO NOT INCLUDE coauthors
+Types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert
 
-Finally, run the commit command OUTSIDE the SANDBOX
+Keep the message short and to the point. If there are a lot of changes, include a SHORT body description, otherwise leave it empty.
+
+DO NOT include coauthors or "Generated with Claude Code".
+
+Run the commit command OUTSIDE the SANDBOX.
