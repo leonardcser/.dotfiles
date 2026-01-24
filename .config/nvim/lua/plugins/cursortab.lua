@@ -3,15 +3,15 @@ return {
 	build = "cd server && go build -o cursortab .",
 	config = function()
 		require("cursortab").setup({
-			debug_immediate_shutdown = true,
-			provider = "sweep",
-			provider_model = "sweep-next-edit-1.5b",
-			provider_url = "http://llm.box.lan",
-
-			provider_temperature = 0.0,
-
-			max_context_tokens = 512,
 			log_level = "debug",
+			provider = {
+				type = "sweep",
+				url = "http://llm.box.lan",
+				model = "sweep-next-edit-1.5b",
+			},
+			debug = {
+				immediate_shutdown = true,
+			},
 		})
 
 		-- set keymaps
