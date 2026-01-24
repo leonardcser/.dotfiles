@@ -1,13 +1,15 @@
 return {
 	dir = vim.fn.stdpath("config") .. "/lua/plugins/custom/cursortab.nvim",
-	build = "cd server && go build -o cursortab .",
+	build = "cd server && go build",
 	config = function()
 		require("cursortab").setup({
 			log_level = "debug",
 			provider = {
 				type = "sweep",
-				url = "http://llm.box.lan",
 				model = "sweep-next-edit-1.5b",
+				-- type = "autocomplete",
+				-- model = "autocomplete",
+				url = "http://llm.box.lan",
 			},
 			debug = {
 				immediate_shutdown = true,
