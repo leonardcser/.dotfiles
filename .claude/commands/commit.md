@@ -31,31 +31,37 @@ Types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert
 - Keep it short and focused (50 chars or less)
 - Focus on the WHY or overall purpose, not a detailed list of WHAT changed
 
-**Body (optional):**
+**Body (IMPORTANT: optional):**
 
 - ONLY add a body if the subject line needs clarification
-- Maximum 1-2 sentences explaining the purpose or context
+- Keep it brief and to the point
 - DO NOT describe what was changed (git diff shows that)
 - DO explain why the change was needed or what problem it solves
 
 **NEVER include:**
 
-- Bullet point lists of changes
 - Detailed descriptions of every file modified
-- "Added X, Updated Y, Changed Z" style enumerations
 - Coauthors or "Generated with Claude Code"
 
 **Examples:**
 
-Good:
+Good (simple purpose, no body needed):
 
 ```
 feat: add GitHub activity widget
-
-Displays recent events to improve dashboard engagement.
 ```
 
-Bad (too verbose with bullets):
+Good (complex change, bullets explain WHY):
+
+```
+refactor: redesign authentication flow
+
+- Eliminate session token exposure in URLs
+- Enable server-side session validation
+- Support future OAuth integration
+```
+
+Bad (bullets list WHAT changed):
 
 ```
 feat: add GitHub activity widget

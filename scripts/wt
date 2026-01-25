@@ -5,10 +5,27 @@
 
 set -e
 
-if [[ $# -lt 1 ]]; then
+show_help() {
     echo "Usage: wt <branch>"
-    echo "Creates a worktree at ../<reponame>-<branch> and opens it in tmux"
+    echo "Creates a git worktree and opens it in tmux-sessionizer"
+    echo ""
+    echo "Arguments:"
+    echo "  <branch>    Branch name (creates new branch if it doesn't exist)"
+    echo ""
+    echo "Options:"
+    echo "  -h, --help  Show this help message"
+    echo ""
+    echo "The worktree will be created at ../<reponame>-<branch>"
+}
+
+if [[ $# -lt 1 ]]; then
+    show_help
     exit 1
+fi
+
+if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+    show_help
+    exit 0
 fi
 
 # Check if we're in a git repo
