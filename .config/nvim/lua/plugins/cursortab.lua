@@ -7,9 +7,9 @@ return {
 			provider = {
 				type = "sweep",
 				model = "sweep-next-edit-1.5b-mlx",
-				url = "http://llm.box.lan",
-				-- url = "http://localhost:8000",
-				max_tokens = 512,
+				-- url = "http://llm.box.lan",
+				url = "http://localhost:8000",
+				max_tokens = 128,
 			},
 			debug = {
 				immediate_shutdown = true,
