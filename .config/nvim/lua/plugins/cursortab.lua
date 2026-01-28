@@ -6,10 +6,10 @@ return {
 			log_level = "debug",
 			provider = {
 				type = "sweep",
-				model = "sweep-next-edit-1.5b-mlx",
-				-- url = "http://llm.box.lan",
-				url = "http://localhost:8000",
-				max_tokens = 128,
+				-- type = "fim",
+				url = "http://llm.box.lan",
+				-- url = "http://localhost:8000",
+				max_tokens = 1024,
 			},
 			debug = {
 				immediate_shutdown = true,
