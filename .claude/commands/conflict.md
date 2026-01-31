@@ -1,7 +1,9 @@
 ---
 allowed-tools:
-  Bash(git diff:*, dangerouslyDisableSandbox), Bash(git status:*,
-  dangerouslyDisableSandbox), Read, Edit
+  - Bash(git diff:*)
+  - Bash(git status:*)
+  - Read
+  - Edit
 description: Resolve git merge conflicts
 ---
 

@@ -1,9 +1,12 @@
 ---
 model: claude-haiku-4-5
 allowed-tools:
-  Bash(git add:*, dangerouslyDisableSandbox), Bash(git status:*,
-  dangerouslyDisableSandbox), Bash(git log:*, dangerouslyDisableSandbox),
-  Bash(git commit:*, dangerouslyDisableSandbox)
+  - Bash(git add:*)
+  - Bash(git status:*)
+  - Bash(git log:*)
+  - Bash(git commit:*)
+  - Bash(git diff:*)
+  - Bash(git branch:*)
 argument-hint: [message]
 description: Create a git commit
 ---
@@ -72,4 +75,3 @@ feat: add GitHub activity widget
 - Fetch and display events
 ```
 
-Run the commit command OUTSIDE the SANDBOX.

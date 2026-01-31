@@ -66,7 +66,7 @@ brew "esptool"
 brew "exiftool"
 # Low-level access to audio, keyboard, mouse, joystick, and graphics
 brew "sdl2"
-# Play, record, convert, and stream audio and video
+# Play, record, convert, and stream select audio and video codecs
 brew "ffmpeg"
 # Command-line fuzzy finder written in Go
 brew "fzf"
@@ -110,6 +110,8 @@ brew "lnav"
 brew "macmon"
 # Run a Kubernetes cluster locally
 brew "minikube"
+# Replacement for ls, cp and other commands for object storage
+brew "minio-mc"
 # Remote terminal application
 brew "mosh"
 # Ambitious Vim-fork focused on extensibility and agility
@@ -189,7 +191,7 @@ brew "oven-sh/bun/bun"
 # The AI coding agent built for the terminal.
 brew "sst/tap/opencode"
 # AeroSpace is an i3-like tiling window manager for macOS
-cask "aerospace"
+cask "nikitabobko/tap/aerospace"
 # Application launcher and productivity software
 cask "alfred"
 # Automatic tiling window manager similar to xmonad
@@ -228,6 +230,8 @@ cask "kindavim"
 cask "knockknock"
 # Free cross-platform office suite, fresh version
 cask "libreoffice"
+# Discover, download, and run local LLMs
+cask "lm-studio"
 # Scanner app for math and science
 cask "mathpix-snipping-tool"
 # Spreadsheet software
@@ -285,6 +289,7 @@ vscode "yoavbls.pretty-ts-errors"
 vscode "yzhang.markdown-all-in-one"
 go "github.com/google/addlicense"
 go "github.com/air-verse/air"
+go "golang.org/x/tools/cmd/deadcode"
 go "fyne.io/fyne/v2/cmd/fyne"
 go "github.com/melkeydev/go-blueprint"
 go "github.com/golang_starter"

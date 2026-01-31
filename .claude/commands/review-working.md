@@ -1,7 +1,7 @@
 ---
 allowed-tools:
-  Bash(git diff:*, dangerouslyDisableSandbox), Bash(git status:*,
-  dangerouslyDisableSandbox)
+  - Bash(git diff:*)
+  - Bash(git status:*)
 description: Review uncommitted changes
 ---
 

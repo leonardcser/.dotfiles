@@ -4,13 +4,20 @@ return {
 	config = function()
 		require("cursortab").setup({
 			log_level = "debug",
+			-- keymaps = {
+			-- 	accept = false, -- Let blink.cmp manage <Tab>
+			-- },
 			provider = {
-				type = "sweep",
-				-- type = "fim",
-				url = "http://llm.box.lan",
 				-- url = "http://localhost:8000",
-				max_tokens = 1024,
+				url = "http://llm.box.lan",
+				type = "sweep",
+				api_key_env = "CURSORTAB_AUTH_TOKEN",
+				max_tokens = 512,
 			},
+			-- blink = {
+			-- 	enabled = true,
+			-- 	ghost_text = true,
+			-- },
 			debug = {
 				immediate_shutdown = true,
 			},
