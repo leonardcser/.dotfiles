@@ -14,6 +14,9 @@ return {
 				api_key_env = "CURSORTAB_AUTH_TOKEN",
 				max_tokens = 512,
 			},
+			-- behavior = {
+			-- 	max_visible_lines = 2,
+			-- },
 			-- blink = {
 			-- 	enabled = true,
 			-- 	ghost_text = true,
