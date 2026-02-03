@@ -29,49 +29,28 @@ Types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert
 
 ### Commit Message Guidelines
 
-**Subject line:**
+IMPORTANT: Create ONLY a subject line. NO body. NO coauthors. NO description.
 
-- Keep it short and focused (50 chars or less)
-- Focus on the WHY or overall purpose, not a detailed list of WHAT changed
+- Subject line only (50 chars or less)
+- Focus on the WHY or overall purpose, not WHAT changed
 
-**Body (IMPORTANT: optional):**
-
-- ONLY add a body if the subject line needs clarification
-- Keep it brief and to the point
-- DO NOT describe what was changed (git diff shows that)
-- DO explain why the change was needed or what problem it solves
-
-**NEVER include:**
-
-- Detailed descriptions of every file modified
-- Coauthors or "Generated with Claude Code"
-
-**Examples:**
-
-Good (simple purpose, no body needed):
+**Good:**
 
 ```
-feat: add GitHub activity widget
+feat(auth): add OAuth2 support for Google login
 ```
 
-Good (complex change, bullets explain WHY):
+**Bad:**
 
 ```
-refactor: redesign authentication flow
+feat(auth): add OAuth2 support for Google login
 
-- Eliminate session token exposure in URLs
-- Enable server-side session validation
-- Support future OAuth integration
+This commit adds OAuth2 authentication flow for Google login. Users can now
+sign in with their Google account instead of creating a new password.
+
+- Add GoogleAuthProvider class
+- Update login page with Google button
+- Store OAuth tokens in session
+
+Co-Authored-By: Claude <noreply@anthropic.com>
 ```
-
-Bad (bullets list WHAT changed):
-
-```
-feat: add GitHub activity widget
-
-- Add GitHubActivity component
-- Update accent color
-- Improve TypeScript types
-- Fetch and display events
-```
-

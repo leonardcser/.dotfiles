@@ -3,17 +3,9 @@
     "CLAUDE_CODE_ENABLE_TELEMETRY": "0"
   },
   "permissions": {
-    "allow": [
-      "mcp__nvim-lsp__read-lints",
-      "Bash(grep:*)"
-    ],
-    "deny": [
-      "Read(./.env)"
-    ],
-    "ask": [
-      "Bash(curl:*)",
-      "Bash(rm:*)"
-    ]
+    "allow": ["mcp__nvim-lsp__read-lints", "Bash(grep:*)", "Bash(find:*)"],
+    "deny": ["Read(./.env)"],
+    "ask": ["Bash(curl:*)", "Bash(rm:*)"]
   },
   "sandbox": {
     "enabled": false

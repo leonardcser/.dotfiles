@@ -4,19 +4,23 @@ return {
 	config = function()
 		require("cursortab").setup({
 			log_level = "debug",
-			-- keymaps = {
-			-- 	accept = false, -- Let blink.cmp manage <Tab>
-			-- },
+			keymaps = {
+				-- accept = false, -- Let blink.cmp manage <Tab>
+				-- partial_accept = false,
+				-- trigger = "<S-Tab>",
+			},
 			provider = {
 				-- url = "http://localhost:8000",
 				url = "http://llm.box.lan",
 				type = "sweep",
 				api_key_env = "CURSORTAB_AUTH_TOKEN",
-				max_tokens = 512,
+				max_tokens = 256,
 			},
-			-- behavior = {
-			-- 	max_visible_lines = 2,
-			-- },
+			behavior = {
+				max_visible_lines = 4,
+				-- idle_completion_delay = -1, -- Delay in ms after idle to trigger completion (-1 to disable)
+				-- text_change_debounce = -1, -- Debounce in ms after text change to trigger completion (-1 to disable)
+			},
 			-- blink = {
 			-- 	enabled = true,
 			-- 	ghost_text = true,
