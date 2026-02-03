@@ -61,7 +61,15 @@ keymap.set("n", "<leader>gp", ":Git push origin<CR>", { desc = "Push git changes
 keymap.set("n", "<leader>gP", ":Git pull --rebase --prune<CR>", { desc = "Pull git changes" })
 keymap.set("n", "<leader>ga", ":Git add -u<CR>", { desc = "Add git changes" })
 keymap.set("n", "<leader>gf", ":Git push --force-with-lease<CR>", { desc = "Push git changes (force-with-lease)" })
-keymap.set("n", "<leader>gr", ":Git rebase -i HEAD~6<CR>", { desc = "Interactive git rebase" })
+keymap.set("n", "<leader>gr", function()
+	local output = vim.fn.system("git rev-list --count HEAD 2>/dev/null"):gsub("\n", "")
+	local commit_count = tonumber(output) or 0
+	if commit_count <= 6 then
+		vim.cmd("Git rebase -i --root")
+	else
+		vim.cmd("Git rebase -i HEAD~6")
+	end
+end, { desc = "Interactive git rebase" })
 local copy_cmd = vim.fn.has("mac") == 1 and "pbcopy" or "xclip -selection clipboard"
 
 keymap.set("n", "<leader>gu", function()
