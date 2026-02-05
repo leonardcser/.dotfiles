@@ -10,7 +10,9 @@
       "Bash(tree *)",
       "Bash(sed *)"
     ],
-    "deny": ["Read(./.env)"],
+    "deny": [
+      "Read(./.env)"
+    ],
     "ask": [
       "Bash(curl *)",
       "Bash(rm *)",

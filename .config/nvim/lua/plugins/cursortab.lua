@@ -11,8 +11,9 @@ return {
 			},
 			provider = {
 				-- url = "http://localhost:8000",
-				url = "http://llm.box.home.arpa",
 				type = "sweep",
+				url = "http://llm.box.home.arpa",
+				model = "sweep-next-edit-1.5B-Q8_0",
 				api_key_env = "CURSORTAB_AUTH_TOKEN",
 				max_tokens = 1024,
 			},
@@ -25,9 +26,9 @@ return {
 			-- 	enabled = true,
 			-- 	ghost_text = true,
 			-- },
-			debug = {
-				immediate_shutdown = true,
-			},
+			-- debug = {
+			-- 	immediate_shutdown = true,
+			-- },
 		})
 
 		-- set keymaps

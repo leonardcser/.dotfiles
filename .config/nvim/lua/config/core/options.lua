@@ -72,8 +72,21 @@ vim.opt.showtabline = 0
 -- backspace
 opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
 
--- clipboard
-opt.clipboard:append("unnamedplus") -- use system clipboard as default register
+-- clipboard (OSC 52 for remote clipboard sync over SSH/mosh)
+opt.clipboard:append("unnamedplus")
+if os.getenv("SSH_TTY") or os.getenv("SSH_CONNECTION") then
+	vim.g.clipboard = {
+		name = "OSC 52",
+		copy = {
+			["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+			["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+		},
+		paste = {
+			["+"] = require("vim.ui.clipboard.osc52").paste("+"),
+			["*"] = require("vim.ui.clipboard.osc52").paste("*"),
+		},
+	}
+end
 
 -- split windows
 opt.splitright = true -- split vertical window to the right
