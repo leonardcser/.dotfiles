@@ -14,7 +14,7 @@ return {
 				url = "http://llm.box.home.arpa",
 				type = "sweep",
 				api_key_env = "CURSORTAB_AUTH_TOKEN",
-				max_tokens = 512,
+				max_tokens = 1024,
 			},
 			behavior = {
 				max_visible_lines = 4,
