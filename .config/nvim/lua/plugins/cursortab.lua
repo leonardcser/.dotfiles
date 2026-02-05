@@ -11,10 +11,10 @@ return {
 			},
 			provider = {
 				-- url = "http://localhost:8000",
-				url = "http://llm.box.lan",
+				url = "http://llm.box.home.arpa",
 				type = "sweep",
 				api_key_env = "CURSORTAB_AUTH_TOKEN",
-				max_tokens = 256,
+				max_tokens = 512,
 			},
 			behavior = {
 				max_visible_lines = 4,

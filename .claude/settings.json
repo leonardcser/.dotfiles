@@ -3,9 +3,23 @@
     "CLAUDE_CODE_ENABLE_TELEMETRY": "0"
   },
   "permissions": {
-    "allow": ["mcp__nvim-lsp__read-lints", "Bash(grep:*)", "Bash(find:*)"],
+    "allow": [
+      "mcp__nvim-lsp__read-lints",
+      "Bash(grep *)",
+      "Bash(find *)",
+      "Bash(tree *)",
+      "Bash(sed *)"
+    ],
     "deny": ["Read(./.env)"],
-    "ask": ["Bash(curl:*)", "Bash(rm:*)"]
+    "ask": [
+      "Bash(curl *)",
+      "Bash(rm *)",
+      "Bash(sed -i*)",
+      "Bash(sed * -i *)",
+      "Bash(sed * -i'*)",
+      "Bash(sed --in-place*)",
+      "Bash(sed * --in-place *)"
+    ]
   },
   "sandbox": {
     "enabled": false

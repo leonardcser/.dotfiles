@@ -92,12 +92,8 @@ keymap.set("n", "<leader>ql", "<cmd>clast<CR>", { desc = "Last quickfix item" })
 
 -- Function to toggle diagnostics
 vim.api.nvim_create_user_command("DiagnosticsToggle", function()
-	local current_value = vim.diagnostic.is_enabled()
-	if current_value then
-		vim.diagnostic.enable(false)
-	else
-		vim.diagnostic.enable()
-	end
+	local current_value = vim.diagnostic.is_enabled({ bufnr = 0 })
+	vim.diagnostic.enable(not current_value, { bufnr = 0 })
 end, {})
 
 keymap.set(
