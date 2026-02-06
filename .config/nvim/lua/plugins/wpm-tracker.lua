@@ -1,5 +1,5 @@
 return {
-	dir = vim.fn.stdpath("config") .. "/lua/plugins/custom/wpm-tracker.nvim",
+	dir = vim.fn.stdpath("config") .. "/custom/wpm-tracker.nvim",
 	config = function()
 		require("wpm-tracker").setup({
 			-- Log file location (CSV format)
