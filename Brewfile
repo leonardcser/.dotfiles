@@ -112,6 +112,8 @@ brew "macmon"
 brew "minikube"
 # Replacement for ls, cp and other commands for object storage
 brew "minio-mc"
+# Simple tool to make locally trusted development certificates
+brew "mkcert"
 # Remote terminal application
 brew "mosh"
 # Ambitious Vim-fork focused on extensibility and agility
@@ -146,6 +148,8 @@ brew "r"
 brew "rustup"
 # Command-line tool for Stripe
 brew "stripe-cli"
+# Open source continuous file synchronization application
+brew "syncthing"
 # System performance benchmark tool
 brew "sysbench"
 # User interface to the TELNET protocol
@@ -210,6 +214,8 @@ cask "claude"
 cask "claude-code"
 # Browser for SQLite databases
 cask "db-browser-for-sqlite"
+# Voice and text chat software
+cask "discord"
 # App to build and share containerised applications and microservices
 cask "docker-desktop"
 # Collaborative team software
@@ -220,6 +226,8 @@ cask "font-new-computer-modern"
 cask "font-symbols-only-nerd-font"
 # 3D parametric modeller
 cask "freecad"
+# Set of tools to manage resources and applications hosted on Google Cloud
+cask "gcloud-cli"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
 # Java IDE by JetBrains
@@ -289,7 +297,9 @@ vscode "yoavbls.pretty-ts-errors"
 vscode "yzhang.markdown-all-in-one"
 go "github.com/google/addlicense"
 go "github.com/air-verse/air"
+go "github.com/leo/claude-mux"
 go "golang.org/x/tools/cmd/deadcode"
+go "github.com/oug-t/difi/cmd/difi"
 go "fyne.io/fyne/v2/cmd/fyne"
 go "github.com/melkeydev/go-blueprint"
 go "github.com/golang_starter"

@@ -12,9 +12,9 @@ return {
 			provider = {
 				-- url = "http://localhost:8000",
 				type = "sweep",
-				url = "http://llm.box.home.arpa",
+				url = "https://llm.box.home.arpa",
 				model = "sweep-next-edit-1.5B-Q8_0",
-				api_key_env = "CURSORTAB_AUTH_TOKEN",
+				api_key_env = "BOX_AUTH_TOKEN",
 				max_tokens = 1024,
 			},
 			behavior = {

@@ -70,3 +70,6 @@ Env
 auth
 Keymap
 VTS
+tmux
+claude
+mux

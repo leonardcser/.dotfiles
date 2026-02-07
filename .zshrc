@@ -143,7 +143,8 @@ export LC_ALL=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 
 # Security
-HOMEBREW_NO_INSECURE_REDIRECT=1
+export HOMEBREW_NO_INSECURE_REDIRECT=1
+export NODE_EXTRA_CA_CERTS="$HOME/.local/share/ca-certificates.pem"
 
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"

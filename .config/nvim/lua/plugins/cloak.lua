@@ -13,7 +13,16 @@ return {
 						"wrangler.toml",
 						".dev.vars",
 					},
-					cloak_pattern = "=.+",
+					cloak_pattern = "(=[\"']?)[^\"']+",
+					replace = "%1",
+				},
+				{
+					file_pattern = {
+						"*secret*.yml",
+						"*secret*.yaml",
+					},
+					cloak_pattern = "(:%s?[\"']?)[^\"']+",
+					replace = "%1",
 				},
 			},
 		})

@@ -6,6 +6,7 @@
     "allow": [
       "mcp__nvim-lsp__read-lints",
       "Bash(grep *)",
+      "Bash(rg *)",
       "Bash(find *)",
       "Bash(tree *)",
       "Bash(sed *)",
@@ -30,5 +31,49 @@
   },
   "sandbox": {
     "enabled": false
+  },
+  "fastMode": true,
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/claude-mux-state.sh busy"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "permission_prompt|elicitation_dialog",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/claude-mux-state.sh needs_attention"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/claude-mux-state.sh idle"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/claude-mux-state.sh cleanup"
+          }
+        ]
+      }
+    ]
   }
 }

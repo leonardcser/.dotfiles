@@ -13,6 +13,19 @@
           "name": "qwen3:8b"
         }
       }
+    },
+    "box": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "box",
+      "options": {
+        "baseURL": "https://llm.box.home.arpa",
+        "apiKey": "{env:BOX_AUTH_TOKEN}"
+      },
+      "models": {
+        "Qwen3-Coder-Next-Q6_K": {
+          "name": "Qwen3-Coder-Next"
+        }
+      }
     }
   },
   "autoupdate": true,
