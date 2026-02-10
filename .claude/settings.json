@@ -10,15 +10,16 @@
       "Bash(find *)",
       "Bash(tree *)",
       "Bash(sed *)",
-      "Bash(ls:*)",
-      "Bash(wc:*)",
+      "Bash(mkdir *)",
+      "Bash(ls *)",
+      "Bash(wc *)",
       "Bash(gh issue view:*)",
       "Bash(gh pr view:*)",
-      "Bash(gh pr diff:*)"
+      "Bash(gh pr diff:*)",
+      "WebFetch",
+      "WebSearch"
     ],
-    "deny": [
-      "Read(./.env)"
-    ],
+    "deny": ["Read(./.env)"],
     "ask": [
       "Bash(curl *)",
       "Bash(rm *)",
