@@ -134,7 +134,8 @@ async function fetchUser(id) {
 
 ### Rule 3: Complete Removal of Dead Code
 
-When removing functionality, delete it entirely. No commented-out code, no "removed" markers.
+When removing functionality, delete it entirely. No commented-out code, no
+"removed" markers.
 
 **Good:**
 
@@ -217,3 +218,8 @@ when:
 
 Otherwise, default to clean, complete replacements that look like the new code
 was always there.
+
+## Exploring the codebase
+
+Do not use the explore subagent for exploring things unless the user asks to do
+so.

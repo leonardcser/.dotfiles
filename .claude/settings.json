@@ -19,7 +19,9 @@
       "WebFetch",
       "WebSearch"
     ],
-    "deny": ["Read(./.env)"],
+    "deny": [
+      "Read(./.env)"
+    ],
     "ask": [
       "Bash(curl *)",
       "Bash(rm *)",
@@ -33,48 +35,5 @@
   "sandbox": {
     "enabled": false
   },
-  "fastMode": true,
-  "hooks": {
-    "UserPromptSubmit": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/claude-mux-state.sh busy"
-          }
-        ]
-      }
-    ],
-    "Notification": [
-      {
-        "matcher": "permission_prompt|elicitation_dialog",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/claude-mux-state.sh needs_attention"
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/claude-mux-state.sh idle"
-          }
-        ]
-      }
-    ],
-    "SessionEnd": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/claude-mux-state.sh cleanup"
-          }
-        ]
-      }
-    ]
-  }
+  "skipDangerousModePermissionPrompt": true
 }

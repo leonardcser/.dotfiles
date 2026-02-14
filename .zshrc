@@ -165,7 +165,7 @@ alias ls="ls -1lh --color=auto"
 alias ll="ls -1alh --color=auto"
 alias code="codium"
 alias clear="clear && printf '\e[3J'"
-alias cpwd="pwd | pbcopy"
+alias cpwd="pwd | tr -d '\n' | pbcopy"
 
 # Neovim aliasas
 alias nv="nvim"
@@ -300,6 +300,10 @@ export PATH=$PATH:$HOME/.cargo/bin
 # java
 export SDKMAN_DIR="$HOME/.sdkman"
 zsh-defer source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# android
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export PATH="$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
