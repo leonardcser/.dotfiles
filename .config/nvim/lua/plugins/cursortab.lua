@@ -11,16 +11,16 @@ return {
 			},
 			provider = {
 				-- url = "http://localhost:8000",
-				type = "sweepapi",
+				type = "sweep",
 				url = "https://llm.box.home.arpa",
 				model = "sweep-next-edit-1.5B-Q8_0",
-				-- api_key_env = "BOX_AUTH_TOKEN",
-				api_key_env = "SWEEPAI_API_KEY",
+				api_key_env = "BOX_AUTH_TOKEN",
+				-- api_key_env = "SWEEPAI_API_KEY",
 				max_tokens = 1024,
 			},
 			behavior = {
 				max_visible_lines = 4,
-				enabled_modes = { "insert" }, -- Modes where completions are active
+				-- enabled_modes = { "insert" }, -- Modes where completions are active
 				-- idle_completion_delay = -1, -- Delay in ms after idle to trigger completion (-1 to disable)
 				-- text_change_debounce = -1, -- Debounce in ms after text change to trigger completion (-1 to disable)
 			},

@@ -30,6 +30,8 @@ brew "autossh"
 brew "aws-vault"
 # Official Amazon AWS command-line interface
 brew "awscli"
+# Microsoft Azure CLI 2.0
+brew "azure-cli"
 # Command-line tool for interacting with the balenaCloud and balena API
 brew "balena-cli"
 # Control and limit battery charging on Apple Silicon MacBooks
@@ -42,6 +44,8 @@ brew "cdrtools"
 brew "cloc"
 # Cross-platform make
 brew "cmake"
+# Dependency manager for Cocoa projects
+brew "cocoapods"
 # Tool for provisioning self-hosted development environments with Terraform
 brew "coder"
 # Search tool like grep and The Silver Searcher
@@ -68,6 +72,8 @@ brew "exiftool"
 brew "sdl2"
 # Play, record, convert, and stream select audio and video codecs
 brew "ffmpeg"
+# Firebase command-line tools
+brew "firebase-cli"
 # Command-line fuzzy finder written in Go
 brew "fzf"
 # Interact with Google Gemini AI models from the command-line
@@ -96,10 +102,14 @@ brew "helm"
 brew "htop"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
+# Handy way to save and run project-specific commands
+brew "just"
 # Kubernetes command-line interface
 brew "kubernetes-cli"
 # Simple terminal UI for git commands
 brew "lazygit"
+# Utilities for the PST file format
+brew "libpst"
 # LLM inference in C/C++
 brew "llama.cpp"
 # LLVM Project Linker
@@ -134,6 +144,8 @@ brew "pipx"
 brew "plantuml"
 # Fast, disk space efficient package manager
 brew "pnpm"
+# Tool for managing OCI containers and pods
+brew "podman"
 # Python version management
 brew "pyenv"
 # Generic machine emulator and virtualizer
@@ -149,7 +161,7 @@ brew "rustup"
 # Command-line tool for Stripe
 brew "stripe-cli"
 # Open source continuous file synchronization application
-brew "syncthing"
+brew "syncthing", restart_service: :changed
 # System performance benchmark tool
 brew "sysbench"
 # User interface to the TELNET protocol
@@ -172,6 +184,8 @@ brew "uv"
 brew "wabt"
 # Sends magic packets to wake up network-devices
 brew "wakeonlan"
+# Watch files and take action when they change
+brew "watchman"
 # Internet file retriever
 brew "wget"
 # Library to create, extract, and modify Windows Imaging files
@@ -200,6 +214,10 @@ cask "nikitabobko/tap/aerospace"
 cask "alfred"
 # Automatic tiling window manager similar to xmonad
 cask "amethyst"
+# Command-line tools for building and debugging Android apps
+cask "android-commandlinetools"
+# Tools for building Android applications
+cask "android-studio"
 # Memory training application
 cask "anki"
 # Application uninstaller
@@ -287,6 +305,7 @@ vscode "ms-toolsai.jupyter-keymap"
 vscode "ms-toolsai.jupyter-renderers"
 vscode "ms-toolsai.vscode-jupyter-cell-tags"
 vscode "ms-toolsai.vscode-jupyter-slideshow"
+vscode "repreng.csv"
 vscode "ritwickdey.liveserver"
 vscode "supermaven.supermaven"
 vscode "svelte.svelte-vscode"
@@ -296,8 +315,8 @@ vscode "vscodevim.vim"
 vscode "yoavbls.pretty-ts-errors"
 vscode "yzhang.markdown-all-in-one"
 go "github.com/google/addlicense"
+go "github.com/leo/agent-mux"
 go "github.com/air-verse/air"
-go "github.com/leo/claude-mux"
 go "golang.org/x/tools/cmd/deadcode"
 go "github.com/oug-t/difi/cmd/difi"
 go "fyne.io/fyne/v2/cmd/fyne"
