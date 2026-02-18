@@ -19,11 +19,17 @@
       "name": "box",
       "options": {
         "baseURL": "https://llm.box.home.arpa",
-        "apiKey": "{env:BOX_AUTH_TOKEN}"
+        "apiKey": "{env:BOX_API_KEY}"
       },
       "models": {
         "Qwen3-Coder-Next-Q6_K": {
           "name": "Qwen3-Coder-Next"
+        },
+        "GLM-4.7-Flash-Q6_K_XL": {
+          "name": "GLM-4.7-Flash"
+        },
+        "gpt-oss-120b-Q8_0": {
+          "name": "gpt-oss-120b"
         }
       }
     }

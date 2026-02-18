@@ -11,6 +11,7 @@
       "Bash(tree *)",
       "Bash(sed *)",
       "Bash(mkdir *)",
+      "Bash(mkdir -p*)",
       "Bash(ls *)",
       "Bash(wc *)",
       "Bash(gh issue view:*)",
@@ -30,11 +31,11 @@
       "Bash(sed * --in-place *)"
     ]
   },
+  "enabledPlugins": {
+    "frontend-design@claude-plugins-official": true
+  },
   "sandbox": {
     "enabled": false
   },
-  "skipDangerousModePermissionPrompt": false,
-  "enabledPlugins": {
-    "frontend-design@claude-plugins-official": true
-  }
+  "skipDangerousModePermissionPrompt": true
 }

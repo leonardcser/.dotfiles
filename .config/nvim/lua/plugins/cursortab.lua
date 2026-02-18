@@ -14,7 +14,7 @@ return {
 				type = "sweep",
 				url = "https://llm.box.home.arpa",
 				model = "sweep-next-edit-1.5B-Q8_0",
-				api_key_env = "BOX_AUTH_TOKEN",
+				api_key_env = "BOX_API_KEY",
 				-- api_key_env = "SWEEPAI_API_KEY",
 				max_tokens = 1024,
 			},
