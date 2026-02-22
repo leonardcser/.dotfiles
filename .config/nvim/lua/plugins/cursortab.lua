@@ -1,7 +1,10 @@
 return {
+	-- "leonardcser/cursortab.nvim",
+	-- version = "*",  -- Use latest tagged version for more stability
 	dir = vim.fn.stdpath("config") .. "/custom/cursortab.nvim",
-	-- dir = "/Users/leo/.dotfiles/.config/nvim/custom/cursortab.nvim-feat-ts-ghost-text"
+	-- dir = "/Users/leo/.dotfiles/.config/nvim/custom/cursortab.nvim-feat-side-side",
 	build = "cd server && go build",
+	lazy = false,
 	config = function()
 		require("cursortab").setup({
 			log_level = "debug",
@@ -12,11 +15,12 @@ return {
 			},
 			provider = {
 				-- url = "http://localhost:8000",
-				type = "sweep",
+				type = "sweepapi",
 				url = "https://llm.box.home.arpa",
-				model = "sweep-next-edit-1.5B-Q8_0",
-				api_key_env = "BOX_API_KEY",
-				-- api_key_env = "SWEEPAI_API_KEY",
+				-- model = "sweep-next-edit-1.5B-Q8_0",
+				model = "Qwen2.5-Coder-1.5B-Q8_0",
+				-- api_key_env = "BOX_API_KEY",
+				api_key_env = "SWEEPAI_API_KEY",
 				max_tokens = 1024,
 			},
 			behavior = {

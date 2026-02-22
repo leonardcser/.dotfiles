@@ -24,7 +24,9 @@
       "WebFetch",
       "WebSearch"
     ],
-    "deny": ["Read(./.env)"],
+    "deny": [
+      "Read(./.env)"
+    ],
     "ask": [
       "Bash(curl *)",
       "Bash(rm *)",
