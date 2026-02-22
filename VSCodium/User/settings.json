@@ -19,5 +19,6 @@
     },
     "svg.preview.mode": "svg",
     "git.openRepositoryInParentFolders": "never",
-    "dvc.doNotRecommendRedHatExtension": true
+    "dvc.doNotRecommendRedHatExtension": true,
+    "supermaven.allowGitignore": true
 }

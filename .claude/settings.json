@@ -17,6 +17,10 @@
       "Bash(gh issue view:*)",
       "Bash(gh pr view:*)",
       "Bash(gh pr diff:*)",
+      "Bash(go test:*)",
+      "Bash(go vet:*)",
+      "Bash(deadcode:*)",
+      "Bash(gofmt:*)",
       "WebFetch",
       "WebSearch"
     ],
@@ -37,5 +41,6 @@
   "sandbox": {
     "enabled": false
   },
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "effortLevel": "low"
 }

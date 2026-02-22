@@ -223,3 +223,17 @@ was always there.
 
 Do not use the explore subagent for exploring things unless the user asks to do
 so.
+
+## Exploring External Repositories
+
+When tasked with exploring an external repository or its dependencies and the
+repository exists on GitHub, clone it into `/tmp` with a shallow clone and
+explore it from there.
+
+```bash
+git clone --depth 1 https://github.com/<owner>/<repo>.git /tmp/<repo>
+```
+
+Then read and navigate the code from `/tmp/<repo>`. This avoids polluting the
+current working directory and keeps the clone minimal. Clean up afterward if the
+repository is no longer needed.
