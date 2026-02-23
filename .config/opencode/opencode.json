@@ -41,29 +41,64 @@
       "*": "ask",
       "pwd": "allow",
       "git status": "allow",
-      "grep": "allow"
-    },
-    "webfetch": "deny"
+      "grep *": "allow",
+      "rg *": "allow",
+      "find *": "allow",
+      "tree *": "allow",
+      "sed *": "allow",
+      "mkdir *": "allow",
+      "mkdir -p*": "allow",
+      "ls *": "allow",
+      "wc *": "allow",
+      "gh issue view:*": "allow",
+      "gh pr view:*": "allow",
+      "gh pr diff:*": "allow",
+      "go test:*": "allow",
+      "go vet:*": "allow",
+      "deadcode:*": "allow",
+      "gofmt:*": "allow",
+      "curl *": "ask",
+      "rm *": "ask",
+      "sed -i*": "ask",
+      "sed * -i *": "ask",
+      "sed * -i' *": "ask",
+      "sed --in-place*": "ask",
+      "sed * --in-place *": "ask"
+    }
   },
   "agent": {
-    "apply": {
+    "build": {
       "mode": "primary",
       "permission": {
-        "edit": "allow",
+        "edit": "ask",
         "bash": "ask"
       }
     },
-    "review": {
+    "plan": {
       "mode": "primary",
       "permission": {
         "edit": "deny",
         "bash": {
-          "git status": "allow",
-          "git log*": "allow",
-          "git diff*": "allow",
-          "git show*": "allow",
-          "git blame*": "allow"
+          "mkdir *": "ask",
+          "mkdir -p*": "ask"
         }
+      }
+    },
+    "review": {
+      "mode": "subagent",
+      "description": "Reviews code for best practices and potential issues",
+      "permission": {
+        "edit": "deny",
+        "bash": {
+          "mkdir *": "ask",
+          "mkdir -p*": "ask"
+        }
+      }
+    },
+    "apply": {
+      "mode": "primary",
+      "permission": {
+        "edit": "allow"
       }
     }
   },
@@ -77,6 +112,11 @@
       "template": "Review the current branch changes against main and find issues/code that was not updated correctly and suggest improvements",
       "description": "Review branch changes against main for issues",
       "agent": "review"
+    },
+    "commit": {
+      "template": "Create a git commit using conventional commits format: type(scope): description\n\nTypes: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert\n\nGuidelines:\n- Create ONLY a subject line. NO body. NO coauthors.\n- Subject line only (50 chars or less)\n- Focus on the WHY or overall purpose, not WHAT changed\n\nCurrent context:\n- Git status: `git status`\n- Git diff: `git diff HEAD`\n- Current branch: `git branch --show-current`\n- Recent commits: `git log --oneline -10`",
+      "description": "Create a git commit with conventional commit message",
+      "agent": "build"
     }
   },
   "mcp": {
