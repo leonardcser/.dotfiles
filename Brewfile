@@ -56,6 +56,8 @@ brew "codex"
 brew "convmv"
 # Secure runtime for JavaScript and TypeScript
 brew "deno"
+# Load/unload environment variables based on $PWD
+brew "direnv"
 # View disk space usage and delete unwanted data, fast
 brew "dua-cli"
 # Lean Theorem Prover installer and version manager
@@ -100,6 +102,8 @@ brew "grep"
 brew "helm"
 # Improved top (interactive process viewer)
 brew "htop"
+# Command-line benchmarking tool
+brew "hyperfine"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
 # Handy way to save and run project-specific commands
@@ -108,6 +112,8 @@ brew "just"
 brew "kubernetes-cli"
 # Simple terminal UI for git commands
 brew "lazygit"
+# C library for reading and writing MATLAB MAT files
+brew "libmatio"
 # Utilities for the PST file format
 brew "libpst"
 # LLM inference in C/C++
@@ -122,6 +128,8 @@ brew "macmon"
 brew "minikube"
 # Replacement for ls, cp and other commands for object storage
 brew "minio-mc"
+# Polyglot runtime manager (asdf rust clone)
+brew "mise"
 # Simple tool to make locally trusted development certificates
 brew "mkcert"
 # Remote terminal application
@@ -146,8 +154,6 @@ brew "plantuml"
 brew "pnpm"
 # Tool for managing OCI containers and pods
 brew "podman"
-# Python version management
-brew "pyenv"
 # Generic machine emulator and virtualizer
 brew "qemu"
 # QR Code generation
@@ -158,6 +164,8 @@ brew "qt"
 brew "r"
 # Rust toolchain installer
 brew "rustup"
+# SOund eXchange: universal sound sample translator
+brew "sox"
 # Command-line tool for Stripe
 brew "stripe-cli"
 # Open source continuous file synchronization application
@@ -230,6 +238,8 @@ cask "chromium"
 cask "claude"
 # Terminal-based AI coding assistant
 cask "claude-code"
+# Write, edit, and chat about your code with AI
+cask "cursor"
 # Browser for SQLite databases
 cask "db-browser-for-sqlite"
 # Voice and text chat software
