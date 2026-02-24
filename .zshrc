@@ -1,12 +1,7 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
 # OS Detection
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -15,196 +10,137 @@ else
   export OS_TYPE="linux"
 fi
 
-# Path to your Oh My Zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time Oh My Zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
-
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment one of the following lines to change the auto-update behavior
-# zstyle ':omz:update' mode disabled  # disable automatic updates
-# zstyle ':omz:update' mode auto      # update automatically without asking
-# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
-
-# Uncomment the following line to change how often to auto-update (in days).
-# zstyle ':omz:update' frequency 13
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# You can also set it to another string to have that shown instead of the default red dots.
-# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
-# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Preferred editor for local and remote sessions
+# Editor
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
   export EDITOR='nvim'
 fi
 
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
+# --- Zinit ---
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+if [[ ! -d "$ZINIT_HOME" ]]; then
+  mkdir -p "$(dirname $ZINIT_HOME)"
+  git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
+source "${ZINIT_HOME}/zinit.zsh"
+
+# Theme
+zinit ice depth=1
+zinit light romkatv/powerlevel10k
+
+# Vi mode
 function zvm_config() {
   ZVM_CURSOR_STYLE_ENABLED=false
   ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 }
+zinit ice depth=1
+zinit light jeffreytse/zsh-vi-mode
 
 function zvm_after_init() {
   # fzf
-  source <(fzf --zsh)
+  local _cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/fzf.zsh"
+  [[ -f "$_cache" ]] && source "$_cache"
   export FZF_DEFAULT_COMMAND='find . \( -name node_modules -o -name vendor -o -name .bundle -o -name .git -o -name .venv -o -name venv -o -name env -o -name __pycache__ -o -name .pytest_cache -o -name .mypy_cache -o -name .ruff_cache -o -name build -o -name dist -o -name target -o -name out -o -name coverage -o -name .svelte-kit -o -name .next -o -name .turbo -o -name .nuxt -o -name .zig-cache -o -name .cargo -o -name .gradle -o -name .expo -o -name .expo-shared -o -name .vscode -o -name .cursor -o -name .idea -o -name .oh-my-zsh -o -name .cache -o -name .wrangler -o -name .github -o -name tmp \) -prune -o ! -name .DS_Store -print'
   alias tx=tmux-sessionizer
-  # run tmux sessionizer on ctrl-f
   bindkey -s '^F' 'tx\n'
 }
 
-plugins=(zsh-vi-mode)
+# Plugins (turbo-loaded)
+zinit wait lucid for \
+  atload"_zsh_autosuggest_start" zsh-users/zsh-autosuggestions \
+  zsh-users/zsh-syntax-highlighting \
+  OMZP::colored-man-pages \
+  OMZP::colorize
 
-source $ZSH/oh-my-zsh.sh
-source $ZSH/custom/plugins/zsh-defer/zsh-defer.plugin.zsh # zsh-defer
+# --- Shell options ---
+DISABLE_AUTO_TITLE="true"
+setopt PRINT_EXIT_VALUE
+unsetopt PROMPT_SP
 
-source $ZSH/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
-source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
-source $ZSH/plugins/colored-man-pages/colored-man-pages.plugin.zsh
-source $ZSH/plugins/colorize/colorize.plugin.zsh
-
-# USER CONFIGURATION
-# prompt
+# Prompt
 MODE_INDICATOR="%F{white}-%f"
 INSERT_MODE_INDICATOR="%F{cyan}+%f"
 PROMPT="\$(vi_mode_prompt_info)$PROMPT"
 RPROMPT=""
-setopt PRINT_EXIT_VALUE
-
-# export MANPATH="/usr/local/man:$MANPATH"
 VIRTUAL_ENV_DISABLE_PROMPT=
-# https://superuser.com/questions/645599/why-is-a-percent-sign-appearing-before-each-prompt-on-zsh-in-windows
-unsetopt PROMPT_SP
 
+# History
+setopt HIST_EXPIRE_DUPS_FIRST HIST_IGNORE_DUPS HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE HIST_FIND_NO_DUPS HIST_SAVE_NO_DUPS
 
-# history
-setopt HIST_EXPIRE_DUPS_FIRST
-setopt HIST_IGNORE_DUPS
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_IGNORE_SPACE
-setopt HIST_FIND_NO_DUPS
-setopt HIST_SAVE_NO_DUPS
-
-# You may need to manually set your language environment
+# --- Environment ---
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
-
-# Security
 export HOMEBREW_NO_INSECURE_REDIRECT=1
 export NODE_EXTRA_CA_CERTS="$HOME/.local/share/ca-certificates.pem"
+export CPATH="/usr/local/include:$CPATH"
+export LIBRARY_PATH="/usr/local/lib:$LIBRARY_PATH"
+export LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PATH"
+export CMAKE_EXPORT_COMPILE_COMMANDS=ON
+export ANDROID_HOME="$HOME/Library/Android/sdk"
 
-# Compilation flags
-# export ARCHFLAGS="-arch $(uname -m)"
+# --- Static tool inits (auto-generate if missing) ---
+_zsh_cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
+[[ -d "$_zsh_cache" ]] || mkdir -p "$_zsh_cache"
 
-# Set personal aliases, overriding those provided by Oh My Zsh libs,
-# plugins, and themes. Aliases can be placed here, though Oh My Zsh
-# users are encouraged to define aliases within a top-level file in
-# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
-# - $ZSH_CUSTOM/aliases.zsh
-# - $ZSH_CUSTOM/macos.zsh
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
+if [[ ! -f "$_zsh_cache/fzf.zsh" ]] && (( $+commands[fzf] )); then
+  fzf --zsh > "$_zsh_cache/fzf.zsh"
+fi
+if [[ ! -f "$_zsh_cache/zoxide.zsh" ]] && (( $+commands[zoxide] )); then
+  zoxide init zsh > "$_zsh_cache/zoxide.zsh"
+fi
+if [[ ! -f "$_zsh_cache/mise.zsh" ]] && (( $+commands[mise] )); then
+  mise activate zsh > "$_zsh_cache/mise.zsh"
+fi
+
+# Source cached inits (fzf is sourced in zvm_after_init instead)
+[[ -f "$_zsh_cache/zoxide.zsh" ]] && source "$_zsh_cache/zoxide.zsh"
+[[ -f "$_zsh_cache/mise.zsh" ]] && source "$_zsh_cache/mise.zsh"
+
+unset _zsh_cache
+
+# GPG (deferred to avoid tty fork at startup)
+_gpg_tty_init() { export GPG_TTY=$(tty); }
+precmd_functions+=(_gpg_tty_init)
+
+# --- PATH ---
+export PATH="${PATH}:${HOME}/.local/bin"
+export PATH="${PATH}:${HOME}/.local/bin/scripts"
+export PATH="${PATH}:/usr/local/sbin"
+export PATH="$PATH:$HOME/go/bin"
+[[ $OS_TYPE == "macos" ]] && export PATH="$PATH:/opt/homebrew/opt/rustup/bin"
+export PATH="$PATH:$HOME/.cargo/bin"
+export PATH="$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin"
+
+# pnpm
+export PNPM_HOME="$HOME/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+export PATH="$PATH:$HOME/.lmstudio/bin"
+
+# --- Aliases ---
 alias zshconfig="nvim ~/.zshrc"
-alias ohmyzsh="nvim ~/.oh-my-zsh"
-
 alias ls="ls -1lh --color=auto"
 alias ll="ls -1alh --color=auto"
 alias claude="command claude --allow-dangerously-skip-permissions"
 alias code="codium"
 alias clear="clear && printf '\e[3J'"
 alias cpwd="pwd | tr -d '\n' | pbcopy"
-
-# Neovim aliasas
 alias nv="nvim"
 alias .="nvim ."
 alias vi="vim"
-
-# zoxide
-eval "$(zoxide init zsh)"
-
-# PERSONAL FUNCTIONS
-
-# macOS-specific functions
-if [[ $OS_TYPE == "macos" ]]; then
-  # Shortcut Function
-  cdf() {
-      target=`osascript -e 'tell application "Finder" to if (count of Finder windows) > 0 then get POSIX path of (target of front Finder window as text)'`
-      if [ "$target" != "" ]; then
-          cd "$target"; pwd
-      else
-          echo 'No Finder window found' >&2
-      fi
-  }
-
-  # Open finder
-  alias f='open -a Finder ./'
-fi
-
-# Prevent from perm. delete
-# alias rm=trash
-
-# Count lines of code
 alias sloc="wc -l **/*.*"
 
+# --- Functions ---
 clrhist() {
     echo "" > ~/.zsh_history & exec $SHELL -l
 }
 
-# Kill apps that match string
 kill-apps() {
   IFS=$'\n'
   red=$(tput setaf 1)
@@ -235,19 +171,10 @@ kill-apps() {
   fi
 }
 
-# macOS-specific tools
-if [[ $OS_TYPE == "macos" ]]; then
-  pdwatch() {
-      /Users/leo/dev/go/pdwatch/pdwatch $@
-  }
-fi
-
-# Help to remember list of my commands
 mycommands() {
     cat <<"EOF"
 MY CUSTOM COMMANDS.........................................
 -  zshconfig      Open ~/.zshrc in nvim
--  ohmyzsh        Open ~/.oh-my-zsh in nvim
 -  f              Open finder in current dir
 -  cdf            cd to opened finder window
 -  nv             Alias for nvim
@@ -261,65 +188,22 @@ MY CUSTOM COMMANDS.........................................
 EOF
 }
 
-# bin paths
-export PATH="${PATH}:${HOME}/.local/bin"
-export PATH="${PATH}:${HOME}/.local/bin/scripts"
-export PATH="${PATH}:/usr/local/sbin"
-
-# Python
-if command -v pyenv 1>/dev/null 2>&1; then
-  zsh-defer eval "$(pyenv init -)"
-fi
-export PATH=$HOME/.pyenv/shims:$PATH
-
-# nvm
-export NVM_DIR="$HOME/.nvm"
-[[ -s "$NVM_DIR/nvm.sh" ]] && zsh-defer source "$NVM_DIR/nvm.sh"
-[[ -s "$NVM_DIR/bash_completion" ]] && zsh-defer source "$NVM_DIR/bash_completion"
-
-# c/cpp
-# CC=/usr/local/bin/gcc-14
-export CPATH="/usr/local/include:$CPATH"
-export LIBRARY_PATH="/usr/local/lib:$LIBRARY_PATH"
-export LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PATH"
-
-# cmake
-export CMAKE_EXPORT_COMPILE_COMMANDS=ON
-
-# GPG
-export GPG_TTY=$(tty)
-
-# go
-export PATH=$PATH:$HOME/go/bin
-
-# rust
+# macOS-specific
 if [[ $OS_TYPE == "macos" ]]; then
-  export PATH=$PATH:/opt/homebrew/opt/rustup/bin
+  cdf() {
+      target=`osascript -e 'tell application "Finder" to if (count of Finder windows) > 0 then get POSIX path of (target of front Finder window as text)'`
+      if [ "$target" != "" ]; then
+          cd "$target"; pwd
+      else
+          echo 'No Finder window found' >&2
+      fi
+  }
+  alias f='open -a Finder ./'
+  pdwatch() { /Users/leo/dev/go/pdwatch/pdwatch $@; }
 fi
-export PATH=$PATH:$HOME/.cargo/bin
 
-# java
-export SDKMAN_DIR="$HOME/.sdkman"
-zsh-defer source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-# android
-export ANDROID_HOME="$HOME/Library/Android/sdk"
-export PATH="$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin"
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
+# --- Env file ---
 [ -f "$HOME/.env.term" ] && source "$HOME/.env.term"
 
-# pnpm
-export PNPM_HOME="/Users/leo/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/leo/.lmstudio/bin"
-# End of LM Studio CLI section
-
+# Powerlevel10k config
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

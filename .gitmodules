@@ -1,6 +1,3 @@
-[submodule ".oh-my-zsh"]
-	path = .oh-my-zsh
-	url = git@github.com:ohmyzsh/ohmyzsh.git
 [submodule ".config/nvim/custom/cursortab.nvim"]
 	path = .config/nvim/custom/cursortab.nvim
 	url = git@github.com:leonardcser/cursortab.nvim.git
