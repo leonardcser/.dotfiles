@@ -2,34 +2,43 @@
 
 # Frecency tracker — logs directory visits and sorts paths by frequency + recency.
 # Usage:
-#   frecency log <path>         Log a visit (appends timestamp, prunes old entries)
-#   frecency top                Output known paths sorted by frecency (highest first)
+#   frecency log [--context=NAME] <path>   Log a visit (appends timestamp, prunes old entries)
+#   frecency top [--context=NAME]          Output known paths sorted by frecency (highest first)
 
 set -euo pipefail
 
-HISTORY_FILE="${XDG_DATA_HOME:-$HOME/.local/share}/frecency/history"
+FRECENCY_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/frecency"
+CONTEXT="default"
 PRUNE_DAYS=90
 
+history_file() {
+    echo "${FRECENCY_DIR}/${CONTEXT}.history"
+}
+
 ensure_history() {
-    [[ -f "$HISTORY_FILE" ]] || { mkdir -p "$(dirname "$HISTORY_FILE")" && touch "$HISTORY_FILE"; }
+    local f
+    f=$(history_file)
+    [[ -f "$f" ]] || { mkdir -p "$(dirname "$f")" && touch "$f"; }
 }
 
 cmd_log() {
-    local path="$1"
+    local path="$1" f
     ensure_history
+    f=$(history_file)
     local now cutoff
     now=$(date +%s)
     cutoff=$((now - PRUNE_DAYS * 86400))
 
-    # Append new entry then prune old ones in-place
-    echo -e "${now}\t${path}" >> "$HISTORY_FILE"
-    awk -F'\t' -v cutoff="$cutoff" '$1 >= cutoff' "$HISTORY_FILE" > "${HISTORY_FILE}.tmp" \
-        && mv "${HISTORY_FILE}.tmp" "$HISTORY_FILE"
+    echo -e "${now}\t${path}" >> "$f"
+    awk -F'\t' -v cutoff="$cutoff" '$1 >= cutoff' "$f" > "${f}.tmp" \
+        && mv "${f}.tmp" "$f"
 }
 
 
 cmd_top() {
     ensure_history
+    local f
+    f=$(history_file)
     awk -F'\t' -v now="$(date +%s)" -v home="$HOME" '
     function normalize(p) {
         if (substr(p, 1, length(home)) == home)
@@ -48,19 +57,24 @@ cmd_top() {
     END {
         for (p in score) print score[p] "\t" p
     }
-    ' "$HISTORY_FILE" | sort -t'	' -k1,1rn | cut -f2
+    ' "$f" | sort -t'	' -k1,1rn | cut -f2
 }
 
-case "${1:-}" in
+cmd="${1:-}"; shift || true
+while [[ "${1:-}" == --context=* ]]; do
+    CONTEXT="${1#--context=}"; shift
+done
+
+case "$cmd" in
     log)
-        [[ -n "${2:-}" ]] || { echo "Usage: frecency log <path>" >&2; exit 1; }
-        cmd_log "$2"
+        [[ -n "${1:-}" ]] || { echo "Usage: frecency log [--context=NAME] <path>" >&2; exit 1; }
+        cmd_log "$1"
         ;;
-top)
+    top)
         cmd_top
         ;;
     *)
-        echo "Usage: frecency {log|top} [args]" >&2
+        echo "Usage: frecency {log|top} [--context=NAME] [args]" >&2
         exit 1
         ;;
 esac
