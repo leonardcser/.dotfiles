@@ -58,6 +58,7 @@ zinit wait lucid for \
 
 # --- Shell options ---
 DISABLE_AUTO_TITLE="true"
+setopt AUTO_CD
 setopt PRINT_EXIT_VALUE
 unsetopt PROMPT_SP
 
