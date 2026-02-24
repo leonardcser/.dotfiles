@@ -31,7 +31,7 @@ Types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert
 
 IMPORTANT: Create ONLY a subject line. NO body. NO coauthors. NO description.
 
-- Subject line only (50 chars or less)
+- Subject line only
 - Focus on the WHY or overall purpose, not WHAT changed
 
 **Good:**
