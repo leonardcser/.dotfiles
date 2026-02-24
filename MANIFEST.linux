@@ -9,6 +9,7 @@
 .clang-format|symlink|
 .prettierrc.json|symlink|
 .config/fd|symlink|
+.config/zsh|symlink|
 .config/nvim|symlink|
 #.config/ghostty|symlink|
 #.config/aerospace|symlink|

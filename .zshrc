@@ -39,9 +39,8 @@ zinit ice depth=1
 zinit light jeffreytse/zsh-vi-mode
 
 function zvm_after_init() {
-  # fzf
-  local _cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/fzf.zsh"
-  [[ -f "$_cache" ]] && source "$_cache"
+  # fzf (must be sourced here because zvm overrides keybindings)
+  (( $+commands[fzf] )) && _evalcache fzf --zsh
   export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
   alias tx=tmux-sessionizer
   bindkey -s '^F' 'tx\n'
@@ -85,29 +84,12 @@ export LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PATH"
 export CMAKE_EXPORT_COMPILE_COMMANDS=ON
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 
-# --- Static tool inits (auto-generate if missing) ---
-_zsh_cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
-[[ -d "$_zsh_cache" ]] || mkdir -p "$_zsh_cache"
+# --- Tool inits (cached via evalcache) ---
+source "${HOME}/.config/zsh/plugins/evalcache.plugin.zsh"
 
-if [[ ! -f "$_zsh_cache/fzf.zsh" ]] && (( $+commands[fzf] )); then
-  fzf --zsh > "$_zsh_cache/fzf.zsh"
-fi
-if [[ ! -f "$_zsh_cache/zoxide.zsh" ]] && (( $+commands[zoxide] )); then
-  zoxide init zsh > "$_zsh_cache/zoxide.zsh"
-fi
-if [[ ! -f "$_zsh_cache/mise.zsh" ]] && (( $+commands[mise] )); then
-  mise activate zsh > "$_zsh_cache/mise.zsh"
-fi
-if [[ ! -f "$_zsh_cache/direnv.zsh" ]] && (( $+commands[direnv] )); then
-  direnv hook zsh > "$_zsh_cache/direnv.zsh"
-fi
-
-# Source cached inits (fzf is sourced in zvm_after_init instead)
-[[ -f "$_zsh_cache/zoxide.zsh" ]] && source "$_zsh_cache/zoxide.zsh"
-[[ -f "$_zsh_cache/mise.zsh" ]] && source "$_zsh_cache/mise.zsh"
-[[ -f "$_zsh_cache/direnv.zsh" ]] && source "$_zsh_cache/direnv.zsh"
-
-unset _zsh_cache
+(( $+commands[zoxide] )) && _evalcache zoxide init zsh
+(( $+commands[mise] )) && _evalcache mise activate zsh
+(( $+commands[direnv] )) && _evalcache direnv hook zsh
 
 # GPG (deferred to avoid tty fork at startup)
 _gpg_tty_init() { export GPG_TTY=$(tty); }
