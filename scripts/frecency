@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+
+# Frecency tracker — logs directory visits and sorts paths by frequency + recency.
+# Usage:
+#   frecency log <path>         Log a visit (appends timestamp, prunes old entries)
+#   frecency top                Output known paths sorted by frecency (highest first)
+
+set -euo pipefail
+
+HISTORY_FILE="${XDG_DATA_HOME:-$HOME/.local/share}/frecency/history"
+PRUNE_DAYS=90
+
+ensure_history() {
+    [[ -f "$HISTORY_FILE" ]] || { mkdir -p "$(dirname "$HISTORY_FILE")" && touch "$HISTORY_FILE"; }
+}
+
+cmd_log() {
+    local path="$1"
+    ensure_history
+    local now cutoff
+    now=$(date +%s)
+    cutoff=$((now - PRUNE_DAYS * 86400))
+
+    # Append new entry then prune old ones in-place
+    echo -e "${now}\t${path}" >> "$HISTORY_FILE"
+    awk -F'\t' -v cutoff="$cutoff" '$1 >= cutoff' "$HISTORY_FILE" > "${HISTORY_FILE}.tmp" \
+        && mv "${HISTORY_FILE}.tmp" "$HISTORY_FILE"
+}
+
+
+cmd_top() {
+    ensure_history
+    awk -F'\t' -v now="$(date +%s)" -v home="$HOME" '
+    function normalize(p) {
+        if (substr(p, 1, length(home)) == home)
+            return "~" substr(p, length(home) + 1)
+        return p
+    }
+    {
+        path = normalize($2)
+        age = (now - $1) / 3600
+        if (age < 1)        score[path] += 16
+        else if (age < 24)  score[path] += 8
+        else if (age < 168) score[path] += 4
+        else if (age < 720) score[path] += 2
+        else                score[path] += 1
+    }
+    END {
+        for (p in score) print score[p] "\t" p
+    }
+    ' "$HISTORY_FILE" | sort -t'	' -k1,1rn | cut -f2
+}
+
+case "${1:-}" in
+    log)
+        [[ -n "${2:-}" ]] || { echo "Usage: frecency log <path>" >&2; exit 1; }
+        cmd_log "$2"
+        ;;
+top)
+        cmd_top
+        ;;
+    *)
+        echo "Usage: frecency {log|top} [args]" >&2
+        exit 1
+        ;;
+esac

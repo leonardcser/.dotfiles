@@ -19,7 +19,7 @@ if [[ $# -eq 1 ]]; then
         fi
     fi
 else
-    selected=$($FD --type d --hidden --exclude .git --max-depth $MAX_DEPTH . "${SEARCH_DIRS[@]}" | while read -r path; do echo "~/${path#$HOME/}"; done | fzf)
+    selected=$({ frecency top; $FD --type d --hidden --exclude .git --max-depth $MAX_DEPTH . "${SEARCH_DIRS[@]}" | sed "s|^$HOME/|~/|"; } | awk '!seen[$0]++' | fzf --no-sort)
 fi
 
 if [[ -z $selected ]]; then
@@ -35,6 +35,9 @@ elif [[ "$selected" != /* ]]; then
 fi
 
 selected_name=$(basename "$selected" | tr . _)
+
+# Log visit for frecency sorting
+frecency log "$selected"
 
 # Check if the session already exists
 if ! tmux has-session -t="$selected_name" 2> /dev/null; then

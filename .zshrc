@@ -43,6 +43,8 @@ function zvm_after_init() {
   # Use whence instead of $+commands which has a stale hash at this point
   whence -p fzf &>/dev/null && _evalcache fzf --zsh
   export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
+  export FZF_CTRL_T_COMMAND='{ frecency top; fd --type d --hidden --exclude .git; } | awk '"'"'!seen[$0]++'"'"''
+  export FZF_CTRL_T_OPTS='--no-sort --bind "enter:execute-silent(frecency log {})+accept"'
   alias tx=tmux-sessionizer
   bindkey -s '^F' 'tx\n'
 }
