@@ -2,6 +2,7 @@
 
 # Configuration constants
 SEARCH_DIRS=("$HOME/dev" "$HOME/.dotfiles" "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Documents/vault")
+FD=$(command -v fd || command -v fdfind)
 MAX_DEPTH=6
 
 if [[ $# -eq 1 ]]; then
@@ -18,7 +19,7 @@ if [[ $# -eq 1 ]]; then
         fi
     fi
 else
-    selected=$(fd --type d --hidden --exclude .git --max-depth $MAX_DEPTH . "${SEARCH_DIRS[@]}" | while read -r path; do echo "~/${path#$HOME/}"; done | fzf)
+    selected=$($FD --type d --hidden --exclude .git --max-depth $MAX_DEPTH . "${SEARCH_DIRS[@]}" | while read -r path; do echo "~/${path#$HOME/}"; done | fzf)
 fi
 
 if [[ -z $selected ]]; then
