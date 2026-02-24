@@ -49,7 +49,7 @@ function zvm_after_init() {
 # Plugins (turbo-loaded)
 zinit wait lucid for \
   atload"_zsh_autosuggest_start" zsh-users/zsh-autosuggestions \
-  zsh-users/zsh-syntax-highlighting \
+  zdharma-continuum/fast-syntax-highlighting \
   OMZP::colored-man-pages \
   OMZP::colorize
 
