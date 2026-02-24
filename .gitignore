@@ -13,7 +13,8 @@ Thumbs.db
 .Spotlight-V100
 .Trashes
 
-.env.term
+.envrc
+.secrets-keys
 tmp/
 
 # Claude

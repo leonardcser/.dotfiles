@@ -94,10 +94,14 @@ fi
 if [[ ! -f "$_zsh_cache/mise.zsh" ]] && (( $+commands[mise] )); then
   mise activate zsh > "$_zsh_cache/mise.zsh"
 fi
+if [[ ! -f "$_zsh_cache/direnv.zsh" ]] && (( $+commands[direnv] )); then
+  direnv hook zsh > "$_zsh_cache/direnv.zsh"
+fi
 
 # Source cached inits (fzf is sourced in zvm_after_init instead)
 [[ -f "$_zsh_cache/zoxide.zsh" ]] && source "$_zsh_cache/zoxide.zsh"
 [[ -f "$_zsh_cache/mise.zsh" ]] && source "$_zsh_cache/mise.zsh"
+[[ -f "$_zsh_cache/direnv.zsh" ]] && source "$_zsh_cache/direnv.zsh"
 
 unset _zsh_cache
 
@@ -202,8 +206,16 @@ if [[ $OS_TYPE == "macos" ]]; then
   pdwatch() { /Users/leo/dev/go/pdwatch/pdwatch $@; }
 fi
 
-# --- Env file ---
-[ -f "$HOME/.env.term" ] && source "$HOME/.env.term"
+# --- Secrets (from macOS Keychain, deferred) ---
+if [[ $OS_TYPE == "macos" && -f ~/.secrets-keys ]]; then
+  _load_secrets() {
+    while IFS= read -r key; do
+      [[ -n "$key" ]] && export "$key"=$(security find-generic-password -a "$USER" -s "$key" -w 2>/dev/null)
+    done < ~/.secrets-keys
+    precmd_functions=(${precmd_functions:#_load_secrets})
+  }
+  precmd_functions+=(_load_secrets)
+fi
 
 # Powerlevel10k config
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
