@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Configuration constants
-SEARCH_DIRS=("$HOME/dev" "$HOME/.dotfiles" "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Documents/vault")
+SEARCH_DIRS=("$HOME/dev" "$HOME/.dotfiles" "$HOME/syncthing/vault")
 FD=$(command -v fd || command -v fdfind)
 MAX_DEPTH=6
 

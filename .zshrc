@@ -40,7 +40,8 @@ zinit light jeffreytse/zsh-vi-mode
 
 function zvm_after_init() {
   # fzf (must be sourced here because zvm overrides keybindings)
-  (( $+commands[fzf] )) && _evalcache fzf --zsh
+  # Use whence instead of $+commands which has a stale hash at this point
+  whence -p fzf &>/dev/null && _evalcache fzf --zsh
   export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
   alias tx=tmux-sessionizer
   bindkey -s '^F' 'tx\n'
@@ -49,7 +50,7 @@ function zvm_after_init() {
 # Plugins (turbo-loaded)
 zinit wait lucid for \
   atload"_zsh_autosuggest_start" zsh-users/zsh-autosuggestions \
-  zdharma-continuum/fast-syntax-highlighting \
+  atload"fast-theme ${HOME}/.config/zsh/fsh-default.ini &>/dev/null" zdharma-continuum/fast-syntax-highlighting \
   OMZP::colored-man-pages \
   OMZP::colorize
 
@@ -123,6 +124,11 @@ alias clear="clear && printf '\e[3J'"
 alias cpwd="pwd | tr -d '\n' | pbcopy"
 alias nv="nvim"
 alias .="nvim ."
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ......="cd ../../../../.."
 alias vi="vim"
 alias sloc="wc -l **/*.*"
 
