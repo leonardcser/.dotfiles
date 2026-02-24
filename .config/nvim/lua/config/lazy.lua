@@ -17,11 +17,36 @@ require("lazy").setup({
 		{ import = "plugins" },
 		{ import = "plugins.lsp" },
 	},
+	defaults = {
+		lazy = true,
+	},
 	checker = {
 		enabled = true,
 		notify = false,
 	},
 	change_detection = {
 		notify = false,
+	},
+	performance = {
+		rtp = {
+			disabled_plugins = {
+				"netrw",
+				"netrwPlugin",
+				"netrwSettings",
+				"netrwFileHandlers",
+				"gzip",
+				"zip",
+				"zipPlugin",
+				"tar",
+				"tarPlugin",
+				"getscript",
+				"getscriptPlugin",
+				"vimball",
+				"vimballPlugin",
+				"tohtml",
+				"logipat",
+				"tutor",
+			},
+		},
 	},
 })

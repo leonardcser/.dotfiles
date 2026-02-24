@@ -1,11 +1,12 @@
 return {
 	"derektata/lorem.nvim",
+	cmd = "LoremIpsum",
 	config = function()
 		require("lorem").opts({
-			sentence_length = "mixed", -- using a default configuration
-			comma_chance = 0.3, -- 30% chance to insert a comma
-			max_commas = 2, -- maximum 2 commas per sentence
-			debounce_ms = 500, -- default debounce time in milliseconds
+			sentence_length = "mixed",
+			comma_chance = 0.3,
+			max_commas = 2,
+			debounce_ms = 500,
 		})
 	end,
 }

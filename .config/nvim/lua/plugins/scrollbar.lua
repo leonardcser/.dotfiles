@@ -1,21 +1,25 @@
 return {
 	"petertriho/nvim-scrollbar",
+	event = { "BufReadPost", "BufNewFile" },
+	dependencies = {
+		"lewis6991/gitsigns.nvim",
+	},
 	config = function()
 		require("scrollbar").setup({
 			show = true,
 			show_in_active_only = false,
 			set_highlights = true,
-			folds = 1000, -- handle folds, set to number to disable folds if no. of lines in buffer exceeds this
-			max_lines = false, -- disables if no. of lines in buffer exceeds this
-			hide_if_all_visible = true, -- Hides everything if all lines are visible
+			folds = 1000,
+			max_lines = false,
+			hide_if_all_visible = true,
 			throttle_ms = 100,
 			handle = {
 				text = " ",
-				blend = 50, -- Integer between 0 and 100. 0 for fully opaque and 100 to full transparent. Defaults to 30.
+				blend = 50,
 				color = nil,
-				color_nr = nil, -- cterm
+				color_nr = nil,
 				highlight = "CursorColumn",
-				hide_if_all_visible = true, -- Hides handle if all lines are visible
+				hide_if_all_visible = true,
 			},
 			marks = {
 				Cursor = {
@@ -24,7 +28,7 @@ return {
 					gui = nil,
 					color = nil,
 					cterm = nil,
-					color_nr = nil, -- cterm
+					color_nr = nil,
 					highlight = "Normal",
 				},
 				Search = {
@@ -33,7 +37,7 @@ return {
 					gui = nil,
 					color = nil,
 					cterm = nil,
-					color_nr = nil, -- cterm
+					color_nr = nil,
 					highlight = "Search",
 				},
 				Error = {
@@ -42,7 +46,7 @@ return {
 					gui = nil,
 					color = nil,
 					cterm = nil,
-					color_nr = nil, -- cterm
+					color_nr = nil,
 					highlight = "DiagnosticVirtualTextError",
 				},
 				Warn = {
@@ -51,7 +55,7 @@ return {
 					gui = nil,
 					color = nil,
 					cterm = nil,
-					color_nr = nil, -- cterm
+					color_nr = nil,
 					highlight = "DiagnosticVirtualTextWarn",
 				},
 				Info = {
@@ -60,7 +64,7 @@ return {
 					gui = nil,
 					color = nil,
 					cterm = nil,
-					color_nr = nil, -- cterm
+					color_nr = nil,
 					highlight = "DiagnosticVirtualTextInfo",
 				},
 				Hint = {
@@ -69,7 +73,7 @@ return {
 					gui = nil,
 					color = nil,
 					cterm = nil,
-					color_nr = nil, -- cterm
+					color_nr = nil,
 					highlight = "DiagnosticVirtualTextHint",
 				},
 				Misc = {
@@ -78,7 +82,7 @@ return {
 					gui = nil,
 					color = nil,
 					cterm = nil,
-					color_nr = nil, -- cterm
+					color_nr = nil,
 					highlight = "Normal",
 				},
 				GitAdd = {
@@ -87,7 +91,7 @@ return {
 					gui = nil,
 					color = nil,
 					cterm = nil,
-					color_nr = nil, -- cterm
+					color_nr = nil,
 					highlight = "GitSignsAdd",
 				},
 				GitChange = {
@@ -96,7 +100,7 @@ return {
 					gui = nil,
 					color = nil,
 					cterm = nil,
-					color_nr = nil, -- cterm
+					color_nr = nil,
 					highlight = "GitSignsChange",
 				},
 				GitDelete = {
@@ -105,7 +109,7 @@ return {
 					gui = nil,
 					color = nil,
 					cterm = nil,
-					color_nr = nil, -- cterm
+					color_nr = nil,
 					highlight = "GitSignsDelete",
 				},
 			},
@@ -144,10 +148,10 @@ return {
 			handlers = {
 				cursor = false,
 				diagnostic = true,
-				gitsigns = true, -- Requires gitsigns
+				gitsigns = true,
 				handle = true,
-				search = false, -- Requires hlslens
-				ale = false, -- Requires ALE
+				search = false,
+				ale = false,
 			},
 		})
 	end,

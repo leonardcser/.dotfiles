@@ -1,4 +1,7 @@
-vim.cmd("let g:netrw_liststyle = 3")
+-- Disable unused providers
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_node_provider = 0
 
 local opt = vim.opt -- for conciseness
 
@@ -94,7 +97,7 @@ opt.splitbelow = true -- split horizontal window to the bottom
 
 -- turn off swapfile
 opt.swapfile = false
-opt.updatetime = 50
+opt.updatetime = 200
 
 -- highlight when yanking (copying) text
 vim.api.nvim_create_autocmd("TextYankPost", {

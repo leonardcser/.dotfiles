@@ -1,11 +1,11 @@
 return {
 	"nvim-lualine/lualine.nvim",
+	lazy = false,
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
 		local lualine = require("lualine")
-		local lazy_status = require("lazy.status") -- to configure lazy pending updates count
+		local lazy_status = require("lazy.status")
 
-		-- LSP progress tracking
 		local lsp_progress = {
 			client_name = "",
 			message = "",
@@ -13,7 +13,6 @@ return {
 			is_active = false,
 		}
 
-		-- Handler for LSP progress
 		vim.api.nvim_create_autocmd("LspProgress", {
 			callback = function(args)
 				local client = vim.lsp.get_client_by_id(args.data.client_id)
@@ -22,8 +21,6 @@ return {
 					lsp_progress.message = args.data.params.value.message or ""
 					lsp_progress.percentage = args.data.params.value.percentage or 0
 					lsp_progress.is_active = args.data.params.value.kind ~= "end"
-
-					-- Refresh status line
 					vim.cmd("redrawstatus")
 				end
 			end,
@@ -73,12 +70,9 @@ return {
 			},
 		}
 
-		-- configure lualine with modified theme
 		lualine.setup({
 			options = {
 				theme = my_lualine_theme,
-				-- section_separators = "",
-				-- component_separators = "",
 				refresh = {
 					statusline = 50,
 					tabline = 50,
