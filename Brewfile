@@ -70,6 +70,8 @@ brew "entr"
 brew "esptool"
 # Perl lib for reading and writing EXIF metadata
 brew "exiftool"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
 # Low-level access to audio, keyboard, mouse, joystick, and graphics
 brew "sdl2"
 # Play, record, convert, and stream select audio and video codecs
@@ -138,8 +140,6 @@ brew "mosh"
 brew "neovim"
 # Port scanning utility for large networks
 brew "nmap"
-# Manage multiple Node.js versions
-brew "nvm"
 # Cryptography and SSL/TLS Toolkit
 brew "openssl@1.1"
 # Swiss-army knife of markup format conversion

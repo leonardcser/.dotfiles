@@ -2,27 +2,6 @@
 
 # Configuration constants
 SEARCH_DIRS=("$HOME/dev" "$HOME/.dotfiles" "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Documents/vault")
-IGNORE_DIRS=(
-    # Dependencies
-    "node_modules" "vendor" ".bundle"
-    # Version control
-    ".git"
-    # Python
-    ".venv" "venv" "env" "__pycache__" ".pytest_cache" ".mypy_cache" ".ruff_cache"
-    # Build outputs
-    "build" "dist" "target" "out" "coverage"
-    # Framework-specific
-    ".svelte-kit" ".next" ".turbo" ".nuxt"
-    # Language-specific caches
-    ".zig-cache" ".cargo" ".gradle"
-    # Expo/React Native
-    ".expo" ".expo-shared"
-    # IDE/Editor
-    ".vscode" ".cursor" ".idea"
-    # Misc
-    ".oh-my-zsh" ".cache" ".wrangler" ".github" "tmp"
-)
-MIN_DEPTH=0
 MAX_DEPTH=6
 
 if [[ $# -eq 1 ]]; then
@@ -39,17 +18,7 @@ if [[ $# -eq 1 ]]; then
         fi
     fi
 else
-    # Build ignore pattern from IGNORE_DIRS array
-    ignore_pattern=""
-    for dir in "${IGNORE_DIRS[@]}"; do
-        if [[ -z "$ignore_pattern" ]]; then
-            ignore_pattern="-name $dir"
-        else
-            ignore_pattern="$ignore_pattern -o -name $dir"
-        fi
-    done
-    
-    selected=$(find "${SEARCH_DIRS[@]}" -mindepth $MIN_DEPTH -maxdepth $MAX_DEPTH -type d \( $ignore_pattern \) -prune -o -type d -print | while read -r path; do echo "~/${path#$HOME/}"; done | fzf)
+    selected=$(fd --type d --hidden --exclude .git --max-depth $MAX_DEPTH . "${SEARCH_DIRS[@]}" | while read -r path; do echo "~/${path#$HOME/}"; done | fzf)
 fi
 
 if [[ -z $selected ]]; then

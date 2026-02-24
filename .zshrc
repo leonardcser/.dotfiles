@@ -41,7 +41,7 @@ function zvm_after_init() {
   # fzf
   local _cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/fzf.zsh"
   [[ -f "$_cache" ]] && source "$_cache"
-  export FZF_DEFAULT_COMMAND='find . \( -name node_modules -o -name vendor -o -name .bundle -o -name .git -o -name .venv -o -name venv -o -name env -o -name __pycache__ -o -name .pytest_cache -o -name .mypy_cache -o -name .ruff_cache -o -name build -o -name dist -o -name target -o -name out -o -name coverage -o -name .svelte-kit -o -name .next -o -name .turbo -o -name .nuxt -o -name .zig-cache -o -name .cargo -o -name .gradle -o -name .expo -o -name .expo-shared -o -name .vscode -o -name .cursor -o -name .idea -o -name .oh-my-zsh -o -name .cache -o -name .wrangler -o -name .github -o -name tmp \) -prune -o ! -name .DS_Store -print'
+  export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
   alias tx=tmux-sessionizer
   bindkey -s '^F' 'tx\n'
 }

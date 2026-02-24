@@ -4,11 +4,11 @@
 .tmux.conf|symlink|
 .vimrc|symlink|
 #.zprofile|symlink|
-.oh-my-zsh|symlink|
 .zshrc|symlink|
 .p10k.zsh|symlink|
 .clang-format|symlink|
 .prettierrc.json|symlink|
+.config/fd|symlink|
 .config/nvim|symlink|
 #.config/ghostty|symlink|
 #.config/aerospace|symlink|

@@ -10,26 +10,7 @@
    git submodule update --init --recursive
    ```
 
-2. Install Oh My Zsh custom theme & plugins:
-
-   ```bash
-   # Theme
-   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \
-     .oh-my-zsh/custom/themes/powerlevel10k
-
-   # Plugins
-   git clone https://github.com/jeffreytse/zsh-vi-mode.git \
-     .oh-my-zsh/custom/plugins/zsh-vi-mode
-
-   git clone https://github.com/romkatv/zsh-defer.git \
-     .oh-my-zsh/custom/plugins/zsh-defer
-
-   git clone https://github.com/zsh-users/zsh-autosuggestions.git \
-     .oh-my-zsh/custom/plugins/zsh-autosuggestions
-
-   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
-     .oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-   ```
+2. Open a new zsh shell — [zinit](https://github.com/zdharma-continuum/zinit) will automatically install plugins on first run.
 
 ## Maintenance
 
