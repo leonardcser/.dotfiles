@@ -8,6 +8,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   export OS_TYPE="macos"
 else
   export OS_TYPE="linux"
+  (( $+commands[fdfind] )) && alias fd=fdfind
 fi
 
 # Editor
