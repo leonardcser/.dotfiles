@@ -10,6 +10,7 @@
 		<string>/System/Library/PreferencePanes</string>
 		<string>~/Library/Mobile Documents</string>
 		<string>~/Library/PreferencePanes</string>
+		<string>~/syncthing/vault</string>
 	</array>
 </dict>
 </plist>
