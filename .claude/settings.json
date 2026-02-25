@@ -41,8 +41,10 @@
     "frontend-design@claude-plugins-official": true
   },
   "sandbox": {
-    "enabled": false
+    "enabled": true,
+    "network": {
+      "allowedDomains": ["*"]
+    }
   },
-  "skipDangerousModePermissionPrompt": true,
-  "effortLevel": "low"
+  "skipDangerousModePermissionPrompt": true
 }
