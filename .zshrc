@@ -136,6 +136,7 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
 alias vi="vim"
+alias md="mkdir"
 alias sloc="wc -l **/*.*"
 
 # --- Functions ---
