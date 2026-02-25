@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Restore tmux sessions saved by tmux-save.
+# Each session gets one window at the saved directory — matching tmux-sessionizer's layout.
+
+SAVE_FILE="$HOME/.tmux-sessions"
+[[ -f "$SAVE_FILE" ]] || exit 0
+
+while IFS='|' read -r name path; do
+    [[ -z "$name" || -z "$path" ]] && continue
+    [[ ! -d "$path" ]] && continue
+    tmux has-session -t="$name" 2>/dev/null && continue
+    tmux new-session -d -s "$name" -c "$path"
+    tmux new-window -t "$name" -c "$path"
+    tmux select-window -t "$name:1"
+    tmux send-keys -t "$name:1" "nvim ." C-m
+done < "$SAVE_FILE"
