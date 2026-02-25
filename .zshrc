@@ -62,8 +62,11 @@ setopt PRINT_EXIT_VALUE
 unsetopt PROMPT_SP
 
 # Completion
+zmodload zsh/complist
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' menu select
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 # Prompt
 MODE_INDICATOR="%F{white}-%f"
