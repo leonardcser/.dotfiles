@@ -61,6 +61,10 @@ setopt AUTO_CD
 setopt PRINT_EXIT_VALUE
 unsetopt PROMPT_SP
 
+# Completion
+autoload -Uz compinit && compinit
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
 # Prompt
 MODE_INDICATOR="%F{white}-%f"
 INSERT_MODE_INDICATOR="%F{cyan}+%f"
