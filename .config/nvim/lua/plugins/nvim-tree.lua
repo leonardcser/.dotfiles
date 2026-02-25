@@ -1,6 +1,9 @@
 return {
 	"nvim-tree/nvim-tree.lua",
-	dependencies = "nvim-tree/nvim-web-devicons",
+	dependencies = {
+		"nvim-tree/nvim-web-devicons",
+		"nvim-tree-crossclip",
+	},
 	cmd = { "NvimTreeToggle", "NvimTreeFindFileToggle", "NvimTreeRefresh" },
 	init = function()
 		-- Open nvim-tree when opening a directory
