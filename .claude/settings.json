@@ -43,8 +43,11 @@
   "sandbox": {
     "enabled": true,
     "network": {
-      "allowedDomains": ["*"]
+      "allowedDomains": [
+        "*"
+      ]
     }
   },
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "effortLevel": "low"
 }
