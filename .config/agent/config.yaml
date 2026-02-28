@@ -1,0 +1,6 @@
+providers:
+  openai-compatible:
+    api_base: https://api.z.ai/api/coding/paas/v4
+    api_key_env: Z_AI_API_KEY
+    model:
+      name: glm-4.7

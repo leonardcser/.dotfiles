@@ -19,7 +19,7 @@ if [[ $# -eq 1 ]]; then
         fi
     fi
 else
-    selected=$({ frecency top --context=sessionizer | sed "s|^$HOME/|~/|"; $FD --type d --hidden --exclude .git --max-depth $MAX_DEPTH . "${SEARCH_DIRS[@]}" | sed "s|/$||; s|^$HOME/|~/|" | sort; } | awk '!seen[$0]++' | fzf --no-sort)
+    selected=$({ frecency top --context=sessionizer | sed "s|^$HOME/|~/|"; $FD --type d --hidden --exclude .git --max-depth $MAX_DEPTH . "${SEARCH_DIRS[@]}" | sed "s|/$||; s|^$HOME/|~/|" | sort; } | awk '!seen[$0]++' | fzf --scheme=history --tiebreak=index)
 fi
 
 if [[ -z $selected ]]; then

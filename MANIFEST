@@ -15,6 +15,7 @@
 .config/aerospace|symlink|
 .config/lazygit|symlink|
 .config/opencode|symlink|
+.config/agent|symlink|
 .claude/settings.json|symlink|
 .claude/commands|symlink|
 .claude/CLAUDE.md|symlink|
