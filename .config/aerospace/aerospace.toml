@@ -117,7 +117,6 @@ alt-shift-r = ['flatten-workspace-tree', 'mode main']
 
 alt-s = 'exec-and-forget open -a /Applications/Safari.app/'
 alt-g = 'exec-and-forget open -a /Applications/Ghostty.app/'
-alt-a = 'exec-and-forget open -a /Applications/ChatGPT.app/'
 
 alt-r = 'mode resize'
 
@@ -139,11 +138,6 @@ run = ['move-node-to-workspace 1']
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
 run = ['layout tiling']
-
-[[on-window-detected]]
-if.app-id = 'com.openai.chat'
-check-further-callbacks = true
-run = ['move-node-to-workspace 2']
 
 [[on-window-detected]]
 if.app-id = 'com.anthropic.claudefordesktop'
