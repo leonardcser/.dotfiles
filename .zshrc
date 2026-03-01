@@ -51,6 +51,7 @@ function zvm_after_init() {
 # Plugins (turbo-loaded)
 zinit wait lucid for \
   atload"_zsh_autosuggest_start" zsh-users/zsh-autosuggestions \
+  atclone"sed -i '' '/chroma-ssh-counter/,\$s/(( next_word = 1 ))/(( next_word = 2 ))/' →chroma/-ssh.ch" atpull"%atclone" \
   atload"fast-theme ${HOME}/.config/zsh/fsh-default.ini &>/dev/null" zdharma-continuum/fast-syntax-highlighting \
   OMZP::colored-man-pages \
   OMZP::colorize
