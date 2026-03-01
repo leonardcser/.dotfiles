@@ -99,7 +99,9 @@ Only pin version constraints when explicitly requested by the user.
 Every change should read as if the new implementation was always there. No
 traces of what came before — no deprecated annotations, no shims, no
 "changed from X to Y" comments, no commented-out blocks, no underscore-prefixed
-dead parameters. Remove the old completely and write the new cleanly.
+dead parameters, no comments that explain why the code was restructured. Comments
+should describe what the code does, not what it used to be or why it was changed.
+Remove the old completely and write the new cleanly.
 
 The only exception: when the user **explicitly requests** backward compatibility.
 
