@@ -93,7 +93,6 @@ export CPATH="/usr/local/include:$CPATH"
 export LIBRARY_PATH="/usr/local/lib:$LIBRARY_PATH"
 export LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PATH"
 export CMAKE_EXPORT_COMPILE_COMMANDS=ON
-export ANDROID_HOME="$HOME/Library/Android/sdk"
 
 # --- Tool inits (cached via evalcache) ---
 source "${HOME}/.config/zsh/plugins/evalcache.plugin.zsh"
@@ -105,24 +104,6 @@ source "${HOME}/.config/zsh/plugins/evalcache.plugin.zsh"
 # GPG (deferred to avoid tty fork at startup)
 _gpg_tty_init() { export GPG_TTY=$(tty); }
 precmd_functions+=(_gpg_tty_init)
-
-# --- PATH ---
-export PATH="${PATH}:${HOME}/.local/bin"
-export PATH="${PATH}:${HOME}/.local/bin/scripts"
-export PATH="${PATH}:/usr/local/sbin"
-export PATH="$PATH:$HOME/go/bin"
-[[ $OS_TYPE == "macos" ]] && export PATH="$PATH:/opt/homebrew/opt/rustup/bin"
-export PATH="$PATH:$HOME/.cargo/bin"
-export PATH="$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin"
-
-# pnpm
-export PNPM_HOME="$HOME/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-
-export PATH="$PATH:$HOME/.lmstudio/bin"
 
 # --- Aliases ---
 alias zshconfig="nvim ~/.zshrc"

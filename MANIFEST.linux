@@ -4,6 +4,7 @@
 .tmux.conf|symlink|
 .vimrc|symlink|
 #.zprofile|symlink|
+.zshenv|symlink|
 .zshrc|symlink|
 .p10k.zsh|symlink|
 .clang-format|symlink|
