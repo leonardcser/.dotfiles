@@ -82,6 +82,25 @@ keymap.set("n", "<leader>gu", function()
 	print("Copied remote URL: " .. remote_url)
 end, { desc = "Copy remote git URL" })
 
+-- LSP toggle
+vim.g.lsp_enabled = false
+keymap.set("n", "<leader>la", function()
+	if vim.g.lsp_enabled then
+		for _, client in ipairs(vim.lsp.get_clients()) do
+			client:stop(true)
+		end
+		vim.g.lsp_enabled = false
+		_G.lsp_progress = { client = "", msg = "", pct = 0, active = false }
+		vim.cmd("redrawstatus")
+		vim.notify("LSP disabled", vim.log.levels.INFO)
+	else
+		require("lazy").load({ plugins = { "mason.nvim", "nvim-lspconfig" } })
+		vim.g.lsp_enabled = true
+		vim.cmd("doautocmd FileType " .. vim.bo.filetype)
+		vim.notify("LSP enabled", vim.log.levels.INFO)
+	end
+end, { desc = "Toggle LSP" })
+
 -- Quickfix list keymaps
 keymap.set("n", "<leader>qo", "<cmd>copen<CR>", { desc = "Open quickfix list" })
 keymap.set("n", "<leader>qc", "<cmd>cclose<CR>", { desc = "Close quickfix list" })
@@ -90,18 +109,6 @@ keymap.set("n", "<leader>qp", "<cmd>cprev<CR>", { desc = "Previous quickfix item
 keymap.set("n", "<leader>qf", "<cmd>cfirst<CR>", { desc = "First quickfix item" })
 keymap.set("n", "<leader>ql", "<cmd>clast<CR>", { desc = "Last quickfix item" })
 
--- Function to toggle diagnostics
-vim.api.nvim_create_user_command("DiagnosticsToggle", function()
-	local current_value = vim.diagnostic.is_enabled({ bufnr = 0 })
-	vim.diagnostic.enable(not current_value, { bufnr = 0 })
-end, {})
-
-keymap.set(
-	"n",
-	"<leader>mt",
-	'<cmd>lua vim.cmd("DiagnosticsToggle")<CR>',
-	{ desc = "Toggle inline diagnostics", noremap = true, silent = true }
-)
 
 -- Make current file executable
 keymap.set("n", "<leader>ex", "<cmd>!chmod +x %<CR>", { desc = "Make current file executable" })

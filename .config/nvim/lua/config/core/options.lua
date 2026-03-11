@@ -67,6 +67,120 @@ opt.signcolumn = "yes" -- show sign column so that text doesn't shift
 opt.scrolloff = 8
 opt.sidescrolloff = 10
 opt.showmode = false
+opt.laststatus = 2
+
+-- lsp progress
+_G.lsp_progress = { client = "", msg = "", pct = 0, active = false }
+vim.api.nvim_create_autocmd("LspProgress", {
+	callback = function(args)
+		local client = vim.lsp.get_client_by_id(args.data.client_id)
+		if client then
+			local val = args.data.params.value
+			lsp_progress.client = client.name
+			lsp_progress.msg = val.message or ""
+			lsp_progress.pct = val.percentage or 0
+			lsp_progress.active = val.kind ~= "end"
+			vim.cmd("redrawstatus")
+		end
+	end,
+})
+
+-- statusline
+local spinner_frames = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
+local function statusline()
+	local modes = {
+		["n"] = { "NORMAL", "StlNormal" },
+		["i"] = { "INSERT", "StlInsert" },
+		["v"] = { "VISUAL", "StlVisual" },
+		["V"] = { "V-LINE", "StlVisual" },
+		["\22"] = { "V-BLOCK", "StlVisual" },
+		["c"] = { "COMMAND", "StlCommand" },
+		["R"] = { "REPLACE", "StlReplace" },
+		["t"] = { "TERMINAL", "StlNormal" },
+	}
+
+	local mode = vim.api.nvim_get_mode().mode
+	local m = modes[mode] or { mode:upper(), "StlNormal" }
+
+	local diag = ""
+	local counts = vim.diagnostic.count(0)
+	local errors = counts[vim.diagnostic.severity.ERROR] or 0
+	local warnings = counts[vim.diagnostic.severity.WARN] or 0
+	if errors > 0 then
+		diag = diag .. "  %#StlError#󰅚 " .. errors
+	end
+	if warnings > 0 then
+		diag = diag .. " %#StlWarn#" .. warnings
+	end
+
+	local lsp = ""
+	if lsp_progress.active then
+		local idx = math.floor(vim.fn.reltimestr(vim.fn.reltime()) * 10) % #spinner_frames + 1
+		local text = lsp_progress.client
+		if lsp_progress.msg ~= "" then
+			text = text .. ": " .. lsp_progress.msg
+		end
+		if lsp_progress.pct > 0 then
+			text = text .. string.format(" (%d%%%%)", lsp_progress.pct)
+		end
+		local max = 30
+		if #text > max then
+			text = text:sub(1, max - 1) .. "…"
+		end
+		lsp = "%#StlLsp# " .. spinner_frames[idx] .. " " .. text .. " "
+	end
+
+	local wpm = ""
+	local ok, tracker = pcall(require, "wpm-tracker")
+	if ok and tracker.get_current_wpm() > 0 then
+		wpm = "%#StlWpm# " .. tracker.get_wpm_display() .. " "
+	end
+
+	local lazy_updates = ""
+	local lok, lazy_status = pcall(require, "lazy.status")
+	if lok and lazy_status.has_updates() then
+		lazy_updates = "%#StlLazy# " .. lazy_status.updates() .. "  "
+	end
+
+	return table.concat({
+		"%#",
+		m[2],
+		"# ",
+		m[1],
+		" %#StatusLine#",
+		diag,
+		"  %f %m%r",
+		"%=",
+		lsp,
+		wpm,
+		lazy_updates,
+		"%#StatusLine#%{&filetype} ",
+		" %{&encoding} ",
+		" %l:%c ",
+		" %p%% ",
+	})
+end
+
+_G.Statusline = statusline
+opt.statusline = "%!v:lua.Statusline()"
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+	group = vim.api.nvim_create_augroup("statusline-colors", { clear = true }),
+	callback = function()
+		local bg = "#112638"
+		vim.api.nvim_set_hl(0, "StatusLine", { fg = "#c3ccdc", bg = bg })
+		vim.api.nvim_set_hl(0, "StlNormal", { fg = bg, bg = "#65D1FF", bold = true })
+		vim.api.nvim_set_hl(0, "StlInsert", { fg = bg, bg = "#3EFFDC", bold = true })
+		vim.api.nvim_set_hl(0, "StlVisual", { fg = bg, bg = "#FF61EF", bold = true })
+		vim.api.nvim_set_hl(0, "StlCommand", { fg = bg, bg = "#FFDA7B", bold = true })
+		vim.api.nvim_set_hl(0, "StlReplace", { fg = bg, bg = "#FF4A4A", bold = true })
+		vim.api.nvim_set_hl(0, "StlLsp", { fg = "#FFDA7B", bg = bg })
+		vim.api.nvim_set_hl(0, "StlWpm", { fg = "#3EFFDC", bg = bg })
+		vim.api.nvim_set_hl(0, "StlLazy", { fg = "#ff9e64", bg = bg })
+		vim.api.nvim_set_hl(0, "StlError", { fg = "#BF616A", bg = bg })
+		vim.api.nvim_set_hl(0, "StlWarn", { fg = "#EBCB8B", bg = bg })
+	end,
+})
 opt.ffs = "unix"
 
 -- tabbar
