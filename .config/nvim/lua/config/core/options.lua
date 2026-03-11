@@ -112,8 +112,12 @@ local function statusline()
 	if warnings > 0 then
 		diag = diag .. " %#StlWarn#" .. warnings
 	end
+	if diag ~= "" then
+		diag = diag .. "%#StatusLine#"
+	end
 
-	local lsp = ""
+	local right = {}
+
 	if lsp_progress.active then
 		local idx = math.floor(vim.fn.reltimestr(vim.fn.reltime()) * 10) % #spinner_frames + 1
 		local text = lsp_progress.client
@@ -123,41 +127,34 @@ local function statusline()
 		if lsp_progress.pct > 0 then
 			text = text .. string.format(" (%d%%%%)", lsp_progress.pct)
 		end
-		local max = 30
-		if #text > max then
-			text = text:sub(1, max - 1) .. "…"
+		if #text > 30 then
+			text = text:sub(1, 29) .. "…"
 		end
-		lsp = "%#StlLsp# " .. spinner_frames[idx] .. " " .. text .. " "
+		table.insert(right, "%#StlLsp#" .. spinner_frames[idx] .. " " .. text)
 	end
 
-	local wpm = ""
 	local ok, tracker = pcall(require, "wpm-tracker")
 	if ok and tracker.get_current_wpm() > 0 then
-		wpm = "%#StlWpm# " .. tracker.get_wpm_display() .. " "
+		table.insert(right, "%#StlWpm#" .. tracker.get_wpm_display())
 	end
 
-	local lazy_updates = ""
 	local lok, lazy_status = pcall(require, "lazy.status")
 	if lok and lazy_status.has_updates() then
-		lazy_updates = "%#StlLazy# " .. lazy_status.updates() .. "  "
+		table.insert(right, "%#StlLazy#" .. lazy_status.updates())
 	end
 
+	table.insert(right, "%#StatusLine#%{&filetype}")
+	table.insert(right, "%{&encoding}")
+	table.insert(right, "%l:%c")
+	table.insert(right, "%p%%")
+
 	return table.concat({
-		"%#",
-		m[2],
-		"# ",
-		m[1],
-		" %#StatusLine#",
+		"%#", m[2], "# ", m[1], " %#StatusLine#",
 		diag,
 		"  %f %m%r",
 		"%=",
-		lsp,
-		wpm,
-		lazy_updates,
-		"%#StatusLine#%{&filetype} ",
-		" %{&encoding} ",
-		" %l:%c ",
-		" %p%% ",
+		table.concat(right, "  "),
+		" ",
 	})
 end
 
