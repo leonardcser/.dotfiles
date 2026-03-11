@@ -48,5 +48,6 @@
       ]
     }
   },
+  "effortLevel": "medium",
   "skipDangerousModePermissionPrompt": true
 }

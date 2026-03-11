@@ -3,6 +3,7 @@
 .gitignore|symlink|
 .tmux.conf|symlink|
 .vimrc|symlink|
+.vim/colors/nord.vim|symlink|
 .zprofile|symlink|
 .zshenv|symlink|
 .zshrc|symlink|

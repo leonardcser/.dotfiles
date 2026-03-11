@@ -12,8 +12,14 @@ providers:
     models:
       - Qwen3.5-122B-A10B-Q4_0
       - Qwen3.5-27B-Q8_0
+      - Qwen3.5-35B-A3B-Q6_K_XL
       - gpt-oss-120b-Q8_0
       - gpt-oss-20b-Q8_0
+  - name: iict
+    type: openai-compatible
+    api_base: https://k8s-ray.iict-heig-vd.in/v1
+    models:
+      - Qwen/Qwen3.5-27B
 
 permissions:
   normal:
