@@ -83,7 +83,7 @@ keymap.set("n", "<leader>gu", function()
 end, { desc = "Copy remote git URL" })
 
 -- LSP toggle
-vim.g.lsp_enabled = false
+vim.g.lsp_enabled = true
 keymap.set("n", "<leader>la", function()
 	if vim.g.lsp_enabled then
 		for _, client in ipairs(vim.lsp.get_clients()) do
