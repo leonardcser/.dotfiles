@@ -10,16 +10,29 @@ providers:
     api_base: https://llm.box.home.arpa
     api_key_env: BOX_API_KEY
     models:
-      - Qwen3.5-122B-A10B-Q4_0
-      - Qwen3.5-27B-Q8_0
-      - Qwen3.5-35B-A3B-Q6_K_XL
-      - gpt-oss-120b-Q8_0
-      - gpt-oss-20b-Q8_0
+      - name: Qwen/Qwen3.5-122B
+        temperature: 0.6
+        top_p: 0.95
+        top_k: 20
+        min_p: 0.0
+        repeat_penalty: 1.0
+      - name: Qwen/Qwen3.5-27B
+        temperature: 0.6
+        top_p: 0.95
+        top_k: 20
+        min_p: 0.0
+        repeat_penalty: 1.0
+      - name: nvidia/nemotron-3-super
+        temperature: 1.0
+        top_p: 0.95
+      - openai/gpt-oss-20b
+
   - name: iict
     type: openai-compatible
     api_base: https://k8s-ray.iict-heig-vd.in/v1
     models:
       - Qwen/Qwen3.5-27B
+      - Qwen/Qwen3.5-122B-A10B-FP8
 
 permissions:
   normal:

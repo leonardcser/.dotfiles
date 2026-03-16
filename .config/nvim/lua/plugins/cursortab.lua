@@ -18,7 +18,7 @@ return {
 				type = "sweep",
 				url = "https://llm.box.home.arpa",
 				model = "sweep-next-edit-1.5B-Q8_0",
-				-- model = "Qwen2.5-Coder-1.5B-Q8_0",
+				-- model = "Qwen/Qwen3.5-0.8B",
 				api_key_env = "BOX_API_KEY",
 				-- api_key_env = "SWEEPAI_API_KEY",
 				-- api_key_env = "MERCURY_API_KEY",

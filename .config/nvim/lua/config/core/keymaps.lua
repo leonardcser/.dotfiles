@@ -110,6 +110,13 @@ keymap.set("n", "<leader>qf", "<cmd>cfirst<CR>", { desc = "First quickfix item" 
 keymap.set("n", "<leader>ql", "<cmd>clast<CR>", { desc = "Last quickfix item" })
 
 
+-- Copy absolute path of current buffer
+keymap.set("n", "<leader>cp", function()
+	local path = vim.fn.expand("%:p")
+	vim.fn.setreg("+", path)
+	vim.notify("Copied: " .. path)
+end, { desc = "Copy absolute path" })
+
 -- Make current file executable
 keymap.set("n", "<leader>ex", "<cmd>!chmod +x %<CR>", { desc = "Make current file executable" })
 
