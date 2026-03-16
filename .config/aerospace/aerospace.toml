@@ -116,7 +116,7 @@ alt-shift-r = ['flatten-workspace-tree', 'mode main']
 # alt-shift-r = 'reload-config'
 
 alt-s = 'exec-and-forget open -a /Applications/Safari.app/'
-alt-g = 'exec-and-forget open -a /Applications/Ghostty.app/'
+alt-enter = 'exec-and-forget open -a /Applications/Alacritty.app/'
 
 alt-r = 'mode resize'
 
@@ -137,6 +137,16 @@ run = ['move-node-to-workspace 1']
 # https://ghostty.org/docs/help/macos-tiling-wms
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
+run = ['layout tiling']
+
+[[on-window-detected]]
+if.app-id = 'org.alacritty'
+if.during-aerospace-startup = true
+check-further-callbacks = true
+run = ['move-node-to-workspace 1']
+
+[[on-window-detected]]
+if.app-id = 'org.alacritty'
 run = ['layout tiling']
 
 [[on-window-detected]]

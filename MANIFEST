@@ -14,6 +14,7 @@
 .config/zsh|symlink|
 .config/nvim|symlink|
 .config/ghostty|symlink|
+.config/alacritty|symlink|
 .config/aerospace|symlink|
 .config/lazygit|symlink|
 .config/opencode|symlink|

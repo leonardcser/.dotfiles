@@ -48,10 +48,6 @@ brew "cmake"
 brew "cocoapods"
 # Tool for provisioning self-hosted development environments with Terraform
 brew "coder"
-# Search tool like grep and The Silver Searcher
-brew "ripgrep"
-# OpenAI's coding agent that runs in your terminal
-brew "codex"
 # Filename encoding conversion tool
 brew "convmv"
 # Secure runtime for JavaScript and TypeScript
@@ -66,6 +62,8 @@ brew "elan-init"
 brew "emscripten"
 # Run arbitrary commands when files change
 brew "entr"
+# Speech synthesizer that supports more than hundred languages and accents
+brew "espeak-ng"
 # ESP8266 and ESP32 serial bootloader utility
 brew "esptool"
 # Perl lib for reading and writing EXIF metadata
@@ -90,6 +88,8 @@ brew "git"
 brew "git-delta"
 # Quickly rewrite git repository history
 brew "git-filter-repo"
+# Audit git repos for secrets
+brew "gitleaks"
 # GNU Privacy Guard (OpenPGP)
 brew "gnupg"
 # Open source programming language to build simple/reliable/efficient software
@@ -126,6 +126,8 @@ brew "lld"
 brew "lnav"
 # Sudoless performance monitoring for Apple Silicon processors
 brew "macmon"
+# Java-based project management
+brew "maven"
 # Run a Kubernetes cluster locally
 brew "minikube"
 # Replacement for ls, cp and other commands for object storage
@@ -162,6 +164,8 @@ brew "qrencode"
 brew "qt"
 # Software environment for statistical computing
 brew "r"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
 # Rust toolchain installer
 brew "rustup"
 # SOund eXchange: universal sound sample translator
@@ -192,6 +196,8 @@ brew "uv"
 brew "wabt"
 # Sends magic packets to wake up network-devices
 brew "wakeonlan"
+# Executes a program periodically, showing output fullscreen
+brew "watch"
 # Watch files and take action when they change
 brew "watchman"
 # Internet file retriever
@@ -218,6 +224,8 @@ brew "oven-sh/bun/bun"
 brew "sst/tap/opencode"
 # AeroSpace is an i3-like tiling window manager for macOS
 cask "nikitabobko/tap/aerospace"
+# GPU-accelerated terminal emulator
+cask "alacritty"
 # Application launcher and productivity software
 cask "alfred"
 # Automatic tiling window manager similar to xmonad
@@ -250,6 +258,7 @@ cask "docker-desktop"
 cask "figma"
 cask "font-inter"
 cask "font-jetbrains-mono"
+cask "font-jetbrains-mono-nerd-font"
 cask "font-new-computer-modern"
 cask "font-symbols-only-nerd-font"
 # 3D parametric modeller
@@ -304,12 +313,9 @@ cask "vscodium"
 cask "zed"
 vscode "aaron-bond.better-comments"
 vscode "bierner.markdown-preview-github-styles"
-vscode "eamodio.gitlens"
-vscode "iterative.dvc"
 vscode "jeanp413.open-remote-ssh"
 vscode "jock.svg"
 vscode "ms-python.debugpy"
-vscode "ms-python.python"
 vscode "ms-toolsai.jupyter"
 vscode "ms-toolsai.jupyter-keymap"
 vscode "ms-toolsai.jupyter-renderers"
@@ -318,7 +324,6 @@ vscode "ms-toolsai.vscode-jupyter-slideshow"
 vscode "repreng.csv"
 vscode "ritwickdey.liveserver"
 vscode "supermaven.supermaven"
-vscode "svelte.svelte-vscode"
 vscode "tomoki1207.pdf"
 vscode "twxs.cmake"
 vscode "vscodevim.vim"
@@ -341,6 +346,13 @@ go "github.com/sqlc-dev/sqlc/cmd/sqlc"
 go "honnef.co/go/tools/cmd/staticcheck"
 go "github.com/a-h/templ/cmd/templ"
 go "github.com/wailsapp/wails/v2/cmd/wails"
+cargo "agent"
 cargo "caesiumclt"
 cargo "create-tauri-app"
 cargo "ttyper"
+uv "asitop"
+uv "bpytop"
+uv "jupyterlab"
+uv "marker-pdf[full]"
+uv "markitdown[pdf]"
+uv "pix2tex"
