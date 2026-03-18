@@ -17,6 +17,7 @@
 .config/alacritty|symlink|
 .config/aerospace|symlink|
 .config/lazygit|symlink|
+.config/mise|symlink|
 .config/opencode|symlink|
 .config/agent|symlink|
 .claude/settings.json|symlink|

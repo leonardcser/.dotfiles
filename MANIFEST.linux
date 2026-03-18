@@ -16,6 +16,7 @@
 #.config/ghostty|symlink|
 #.config/aerospace|symlink|
 #.config/lazygit|symlink|
+.config/mise|symlink|
 #.config/opencode|symlink|
 .claude/settings.json|symlink|
 .claude/commands|symlink|

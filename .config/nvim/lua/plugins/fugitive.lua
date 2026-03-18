@@ -106,32 +106,34 @@ return {
 
 		local function apply_annotations(buf, unstaged_stats, staged_stats)
 			vim.api.nvim_buf_clear_namespace(buf, ns, 0, -1)
-			local all_stats = vim.deepcopy(unstaged_stats)
-			for file, s in pairs(staged_stats) do
-				all_stats[file] = { add = (all_stats[file] and all_stats[file].add or 0) + s.add, del = (all_stats[file] and all_stats[file].del or 0) + s.del }
-			end
 			local unstaged_add, unstaged_del = total_stats(unstaged_stats)
 			local staged_add, staged_del = total_stats(staged_stats)
 			local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+			local current_section = nil
 			for i, line in ipairs(lines) do
-				-- Totals on section headers (e.g. "Unstaged (3)", "Staged (2)")
 				if line:match("^Unstaged") then
+					current_section = "unstaged"
 					local chunks = make_stat_chunks(unstaged_add, unstaged_del)
 					if #chunks > 0 then
 						vim.api.nvim_buf_set_extmark(buf, ns, i - 1, 0, { virt_text = chunks, virt_text_pos = "eol", hl_mode = "combine" })
 					end
 				elseif line:match("^Staged") then
+					current_section = "staged"
 					local chunks = make_stat_chunks(staged_add, staged_del)
 					if #chunks > 0 then
 						vim.api.nvim_buf_set_extmark(buf, ns, i - 1, 0, { virt_text = chunks, virt_text_pos = "eol", hl_mode = "combine" })
 					end
+				elseif line:match("^Unpushed") or line:match("^Unmerged") or line:match("^Head:") or line:match("^Push:") then
+					current_section = nil
 				end
-				-- Per-file stats
 				local file = line:match("^[MDARCU?!]%s+(.+)$")
-				if file and all_stats[file] then
-					local chunks = make_stat_chunks(all_stats[file].add, all_stats[file].del)
-					if #chunks > 0 then
-						vim.api.nvim_buf_set_extmark(buf, ns, i - 1, 0, { virt_text = chunks, virt_text_pos = "eol", hl_mode = "combine" })
+				if file and current_section then
+					local section_stats = current_section == "staged" and staged_stats or unstaged_stats
+					if section_stats[file] then
+						local chunks = make_stat_chunks(section_stats[file].add, section_stats[file].del)
+						if #chunks > 0 then
+							vim.api.nvim_buf_set_extmark(buf, ns, i - 1, 0, { virt_text = chunks, virt_text_pos = "eol", hl_mode = "combine" })
+						end
 					end
 				end
 			end

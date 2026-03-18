@@ -61,6 +61,12 @@ return {
 			})
 		end, { desc = "Format file or range (in visual mode)" })
 
+		vim.keymap.set("n", "<leader>lf", function()
+			vim.g.disable_autoformat = not vim.g.disable_autoformat
+			local status = vim.g.disable_autoformat and "disabled" or "enabled"
+			vim.notify("Autoformat-on-save " .. status, vim.log.info)
+		end, { desc = "Toggle autoformat-on-save" })
+
 		vim.api.nvim_create_user_command("FormatDisable", function(args)
 			if args.bang then
 				-- FormatDisable! will disable formatting just for this buffer
