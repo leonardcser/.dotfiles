@@ -7,7 +7,7 @@ return {
 	lazy = false,
 	config = function()
 		require("cursortab").setup({
-			log_level = "debug",
+			log_level = "trace",
 			keymaps = {
 				-- accept = false, -- Let blink.cmp manage <Tab>
 				-- partial_accept = false,

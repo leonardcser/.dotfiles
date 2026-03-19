@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Credit to https://github.com/ThePrimeagen/tmux-sessionizer
 
 # Configuration constants
 SEARCH_DIRS=("$HOME/dev" "$HOME/.dotfiles" "$HOME/syncthing/vault")
