@@ -1,5 +1,7 @@
 [settings]
 fetch_remote_versions_cache = "7d"
+fetch_remote_versions_timeout = "3s"
+prefer_offline = true
 auto_install = false
 not_found_auto_install = false
 

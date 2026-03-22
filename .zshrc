@@ -3,6 +3,27 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Slow startup detection — dumps zprof trace when startup exceeds 2s
+zmodload zsh/datetime
+_zshrc_start=$EPOCHREALTIME
+_zsh_slow_check() {
+  local elapsed=$(( EPOCHREALTIME - _zshrc_start ))
+  if (( elapsed > 2 )); then
+    local dump="/tmp/zsh-slow-startup-$(date +%Y%m%d-%H%M%S).log"
+    {
+      echo "Slow startup detected: ${elapsed}s at $(date)"
+      echo "PWD: $PWD"
+      echo "---"
+      zprof
+    } > "$dump"
+    echo "\e[33m[zsh] Slow startup (${elapsed}s) — trace dumped to $dump\e[0m"
+  fi
+  precmd_functions=(${precmd_functions:#_zsh_slow_check})
+  unset _zshrc_start
+}
+zmodload zsh/zprof
+precmd_functions=(_zsh_slow_check $precmd_functions)
+
 # OS Detection
 if [[ "$OSTYPE" == "darwin"* ]]; then
   export OS_TYPE="macos"
@@ -109,7 +130,7 @@ precmd_functions+=(_gpg_tty_init)
 alias zshconfig="nvim ~/.zshrc"
 alias ls="ls -1lh --color=auto"
 alias ll="ls -1alh --color=auto"
-alias claude="command claude --allow-dangerously-skip-permissions"
+alias claude="command claude --allow-dangerously-skip-permissions --dangerously-load-development-channels server:intermcp"
 alias code="codium"
 alias clear="clear && printf '\e[3J'"
 alias cpwd="pwd | tr -d '\n' | pbcopy"
