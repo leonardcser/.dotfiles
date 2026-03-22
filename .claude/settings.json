@@ -24,9 +24,7 @@
       "WebFetch",
       "WebSearch"
     ],
-    "deny": [
-      "Read(./.env)"
-    ],
+    "deny": ["Read(./.env)"],
     "ask": [
       "Bash(curl *)",
       "Bash(rm *)",
@@ -43,12 +41,14 @@
   "sandbox": {
     "enabled": true,
     "network": {
-      "allowedDomains": [
-        "*"
-      ]
+      "allowedDomains": ["*"]
     }
   },
   "effortLevel": "medium",
   "skipDangerousModePermissionPrompt": true,
-  "autoMemoryEnabled": false
+  "autoMemoryEnabled": false,
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  }
 }

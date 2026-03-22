@@ -55,7 +55,15 @@ keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer
 
 -- Git keymaps
 keymap.set("n", "<leader>gi", ":Git init<CR>", { desc = "Initialize git repository" })
-keymap.set("n", "<leader>go", ":Git open<CR>", { desc = "Open git repository" })
+keymap.set("n", "<leader>go", function()
+	local remote_url = vim.fn.system("git config --get remote.origin.url"):gsub("\n", "")
+	if remote_url == "" then
+		print("No remote URL found.")
+		return
+	end
+	local url = remote_url:gsub("git@github.com:", "https://github.com/"):gsub("%.git$", "")
+	vim.ui.open(url)
+end, { desc = "Open git repository" })
 keymap.set("n", "<leader>gl", ":Git log<CR>", { desc = "Show git log" })
 keymap.set("n", "<leader>gp", ":Git push origin<CR>", { desc = "Push git changes" })
 keymap.set("n", "<leader>gP", ":Git pull --rebase --prune<CR>", { desc = "Pull git changes" })
