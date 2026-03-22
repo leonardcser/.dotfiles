@@ -70,16 +70,15 @@ keymap.set("n", "<leader>gr", function()
 		vim.cmd("Git rebase -i HEAD~6")
 	end
 end, { desc = "Interactive git rebase" })
-local copy_cmd = vim.fn.has("mac") == 1 and "pbcopy" or "xclip -selection clipboard"
-
 keymap.set("n", "<leader>gu", function()
 	local remote_url = vim.fn.system("git config --get remote.origin.url"):gsub("\n", "")
 	if remote_url == "" then
 		print("No remote URL found.")
 		return
 	end
-	vim.fn.system(string.format("echo -n '%s' | %s", remote_url, copy_cmd))
-	print("Copied remote URL: " .. remote_url)
+	local url = remote_url:gsub("git@github.com:", "https://github.com/"):gsub("%.git$", "")
+	vim.fn.setreg("+", url)
+	print("Copied: " .. url)
 end, { desc = "Copy remote git URL" })
 
 -- LSP toggle
