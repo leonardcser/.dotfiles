@@ -86,3 +86,9 @@ SIGINT
 SIGTERM/!
 Use
 SIGTERM
+Turso
+localhost
+api
+Hono
+LibSQL
+md
