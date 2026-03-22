@@ -1,5 +1,4 @@
 ---
-model: claude-haiku-4-5
 allowed-tools:
   - Bash(git add:*)
   - Bash(git status:*)

@@ -22,7 +22,9 @@
       "Bash(deadcode:*)",
       "Bash(gofmt:*)",
       "WebFetch",
-      "WebSearch"
+      "WebSearch",
+      "mcp__intermcp__list_agents",
+      "mcp__intermcp__send"
     ],
     "deny": ["Read(./.env)"],
     "ask": [
