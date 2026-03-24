@@ -2,10 +2,12 @@ tap "achannarasappa/tap"
 tap "bufbuild/buf"
 tap "danvergara/tools"
 tap "homebrew/bundle"
+tap "libsql/sqld"
 tap "nikitabobko/tap"
 tap "nomandhoni-cs/blinkeye"
 tap "oven-sh/bun"
 tap "sst/tap"
+tap "tursodatabase/tap"
 # Converts abc music notation files to MIDI files
 brew "abcmidi"
 # Search tool like grep, but optimized for programmers
@@ -222,10 +224,9 @@ brew "danvergara/tools/dblab"
 brew "oven-sh/bun/bun"
 # The AI coding agent built for the terminal.
 brew "sst/tap/opencode"
+brew "tursodatabase/tap/turso"
 # AeroSpace is an i3-like tiling window manager for macOS
 cask "nikitabobko/tap/aerospace"
-# GPU-accelerated terminal emulator
-cask "alacritty"
 # Application launcher and productivity software
 cask "alfred"
 # Automatic tiling window manager similar to xmonad
@@ -246,6 +247,8 @@ cask "chromium"
 cask "claude"
 # Terminal-based AI coding assistant
 cask "claude-code"
+# OpenAI's coding agent that runs in your terminal
+cask "codex"
 # Write, edit, and chat about your code with AI
 cask "cursor"
 # Browser for SQLite databases
@@ -348,10 +351,14 @@ go "github.com/a-h/templ/cmd/templ"
 go "github.com/wailsapp/wails/v2/cmd/wails"
 cargo "agent"
 cargo "caesiumclt"
+cargo "cargo-bloat"
 cargo "create-tauri-app"
 cargo "ttyper"
+cargo "tuicr"
 uv "asitop"
 uv "bpytop"
+uv "harbor"
+uv "huggingface-hub[cli]"
 uv "jupyterlab"
 uv "marker-pdf[full]"
 uv "markitdown[pdf]"
