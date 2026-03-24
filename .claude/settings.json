@@ -2,6 +2,10 @@
   "env": {
     "CLAUDE_CODE_ENABLE_TELEMETRY": "0"
   },
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
   "permissions": {
     "allow": [
       "mcp__nvim-lsp__read-lints",
@@ -26,7 +30,9 @@
       "mcp__intermcp__list_agents",
       "mcp__intermcp__send"
     ],
-    "deny": ["Read(./.env)"],
+    "deny": [
+      "Read(./.env)"
+    ],
     "ask": [
       "Bash(curl *)",
       "Bash(rm *)",
@@ -43,14 +49,12 @@
   "sandbox": {
     "enabled": true,
     "network": {
-      "allowedDomains": ["*"]
+      "allowedDomains": [
+        "*"
+      ]
     }
   },
   "effortLevel": "medium",
-  "skipDangerousModePermissionPrompt": true,
   "autoMemoryEnabled": false,
-  "attribution": {
-    "commit": "",
-    "pr": ""
-  }
+  "skipDangerousModePermissionPrompt": true
 }

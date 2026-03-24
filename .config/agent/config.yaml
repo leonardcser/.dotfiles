@@ -40,3 +40,6 @@ permissions:
       allow: ["*"]
     web_search:
       allow: ["*"]
+
+settings:
+  multi_agent: true

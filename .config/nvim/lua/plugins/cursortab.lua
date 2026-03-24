@@ -8,6 +8,7 @@ return {
 	config = function()
 		require("cursortab").setup({
 			log_level = "trace",
+			contribute_data = true,
 			keymaps = {
 				-- accept = false, -- Let blink.cmp manage <Tab>
 				-- partial_accept = false,
@@ -15,12 +16,12 @@ return {
 			},
 			provider = {
 				-- url = "http://localhost:8000",
-				type = "sweep",
+				type = "sweepapi",
 				url = "https://llm.box.home.arpa",
 				model = "sweep-next-edit-1.5B-Q8_0",
 				-- model = "Qwen/Qwen3.5-0.8B",
-				api_key_env = "BOX_API_KEY",
-				-- api_key_env = "SWEEPAI_API_KEY",
+				-- api_key_env = "BOX_API_KEY",
+				api_key_env = "SWEEPAI_API_KEY",
 				-- api_key_env = "MERCURY_API_KEY",
 				max_tokens = 1024,
 			},
