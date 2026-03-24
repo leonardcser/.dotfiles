@@ -57,7 +57,11 @@ cmd_top() {
     END {
         for (p in score) print score[p] "\t" p
     }
-    ' "$f" | sort -t'	' -k1,1rn | cut -f2
+    ' "$f" | sort -t'	' -k1,1rn | cut -f2 | while IFS= read -r p; do
+        # Filter out non-existent directories
+        local expanded="${p/#\~/$HOME}"
+        [[ -d "$expanded" ]] && echo "$p"
+    done
 }
 
 cmd="${1:-}"; shift || true
