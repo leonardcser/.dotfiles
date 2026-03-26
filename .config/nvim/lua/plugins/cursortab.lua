@@ -5,6 +5,7 @@ return {
 	-- dir = "/Users/leo/.dotfiles/.config/nvim/custom/cursortab.nvim-feat-side-side",
 	build = "cd server && go build",
 	lazy = false,
+	dependencies = { "zbirenbaum/copilot.lua" },
 	config = function()
 		require("cursortab").setup({
 			log_level = "trace",
@@ -16,7 +17,7 @@ return {
 			},
 			provider = {
 				-- url = "http://localhost:8000",
-				type = "sweepapi",
+				type = "copilot",
 				url = "https://llm.box.home.arpa",
 				model = "sweep-next-edit-1.5B-Q8_0",
 				-- model = "Qwen/Qwen3.5-0.8B",
