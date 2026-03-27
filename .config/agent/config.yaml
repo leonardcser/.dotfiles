@@ -34,6 +34,10 @@ providers:
       - Qwen/Qwen3.5-27B
       - Qwen/Qwen3.5-122B-A10B-FP8
 
+  - name: codex
+    type: codex
+    api_base: https://chatgpt.com/backend-api/codex
+
 permissions:
   normal:
     web_fetch:
@@ -43,3 +47,8 @@ permissions:
 
 settings:
   multi_agent: true
+
+mcp:
+  nvim_lsp:
+    type: local
+    command: ["/Users/leo/dev/mcp/nvim-lsp-mcp/nvim-lsp-mcp"]
