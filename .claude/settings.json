@@ -9,6 +9,9 @@
   "permissions": {
     "allow": [
       "mcp__nvim-lsp__read-lints",
+      "Bash(head *)",
+      "Bash(tail *)",
+      "Bash(echo *)",
       "Bash(grep *)",
       "Bash(rg *)",
       "Bash(find *)",
@@ -28,13 +31,11 @@
       "WebFetch",
       "WebSearch",
       "mcp__intermcp__list_agents",
-      "mcp__intermcp__send"
+      "mcp__intermcp__send",
+      "Bash(curl *)"
     ],
-    "deny": [
-      "Read(./.env)"
-    ],
+    "deny": ["Read(./.env)"],
     "ask": [
-      "Bash(curl *)",
       "Bash(rm *)",
       "Bash(sed -i*)",
       "Bash(sed * -i *)",
@@ -49,9 +50,7 @@
   "sandbox": {
     "enabled": true,
     "network": {
-      "allowedDomains": [
-        "*"
-      ]
+      "allowedDomains": ["*"]
     }
   },
   "effortLevel": "medium",

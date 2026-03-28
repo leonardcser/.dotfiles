@@ -135,7 +135,7 @@ precmd_functions+=(_gpg_tty_init)
 alias zshconfig="nvim ~/.zshrc"
 alias ls="ls -1lh --color=auto"
 alias ll="ls -1alh --color=auto"
-alias claude="command claude --allow-dangerously-skip-permissions --dangerously-load-development-channels server:intermcp"
+alias claude="command claude --allow-dangerously-skip-permissions"
 alias code="codium"
 alias clear="clear && printf '\e[3J'"
 alias cpwd="pwd | tr -d '\n' | pbcopy"
