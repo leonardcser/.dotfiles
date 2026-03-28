@@ -19,6 +19,7 @@
 .config/lazygit|symlink|
 .config/mise|symlink|
 .config/opencode|symlink|
+.config/uv|symlink|
 .config/agent|symlink|
 .claude/settings.json|symlink|
 .claude/commands|symlink|
