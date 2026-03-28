@@ -13,3 +13,12 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt_local.spell = true
 	end,
 })
+
+-- Enable soft wrap for prose-oriented filetypes and commit buffers
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "markdown", "typst", "tex", "text", "asciidoc", "gitcommit" },
+	callback = function()
+		vim.opt_local.wrap = true
+		vim.opt_local.linebreak = true
+	end,
+})
