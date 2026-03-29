@@ -20,7 +20,7 @@
 .config/mise|symlink|
 .config/opencode|symlink|
 .config/uv|symlink|
-.config/agent|symlink|
+.config/smelt|symlink|
 .claude/settings.json|symlink|
 .claude/commands|symlink|
 .claude/CLAUDE.md|symlink|

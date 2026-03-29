@@ -34,7 +34,9 @@
       "mcp__intermcp__send",
       "Bash(curl *)"
     ],
-    "deny": ["Read(./.env)"],
+    "deny": [
+      "Read(./.env)"
+    ],
     "ask": [
       "Bash(rm *)",
       "Bash(sed -i*)",
@@ -50,7 +52,9 @@
   "sandbox": {
     "enabled": true,
     "network": {
-      "allowedDomains": ["*"]
+      "allowedDomains": [
+        "*"
+      ]
     }
   },
   "effortLevel": "medium",
