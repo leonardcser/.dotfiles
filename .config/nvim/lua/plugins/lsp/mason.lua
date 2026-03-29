@@ -107,27 +107,7 @@ return {
 			single_file_support = false,
 		})
 
-		local servers = {
-			"ts_ls",
-			"rust_analyzer",
-			"zls",
-			"html",
-			"cssls",
-			"tailwindcss",
-			"lua_ls",
-			"emmet_ls",
-			"prismals",
-			"svelte",
-			"astro",
-			"jdtls",
-			"clangd",
-			"ruff",
-			"pyright",
-			-- "pyrefly",
-			"dockerls",
-			"beancount",
-			"biome",
-		}
+		local servers = require("config.servers")
 
 		mason.setup({
 			ui = {
@@ -142,7 +122,12 @@ return {
 		mason_lspconfig.setup({
 			ensure_installed = servers,
 			automatic_installation = true,
+			automatic_enable = false,
 		})
+
+		if vim.g.lsp_enabled then
+			vim.lsp.enable(servers)
+		end
 
 		mason_tool_installer.setup({
 			ensure_installed = {

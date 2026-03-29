@@ -93,17 +93,15 @@ end, { desc = "Copy remote git URL" })
 vim.g.lsp_enabled = true
 keymap.set("n", "<leader>la", function()
 	if vim.g.lsp_enabled then
-		for _, client in ipairs(vim.lsp.get_clients()) do
-			client:stop(true)
-		end
+		vim.lsp.enable(require("config.servers"), false)
 		vim.g.lsp_enabled = false
 		_G.lsp_progress = { client = "", msg = "", pct = 0, active = false }
 		vim.cmd("redrawstatus")
 		vim.notify("LSP disabled", vim.log.levels.INFO)
 	else
 		require("lazy").load({ plugins = { "mason.nvim", "nvim-lspconfig" } })
+		vim.lsp.enable(require("config.servers"))
 		vim.g.lsp_enabled = true
-		vim.cmd("doautocmd FileType " .. vim.bo.filetype)
 		vim.notify("LSP enabled", vim.log.levels.INFO)
 	end
 end, { desc = "Toggle LSP" })
