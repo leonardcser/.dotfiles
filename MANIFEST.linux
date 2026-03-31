@@ -17,7 +17,7 @@
 #.config/aerospace|symlink|
 #.config/lazygit|symlink|
 .config/mise|symlink|
-.config/uv|symlink|
+.config/uv/uv.toml|symlink|
 #.config/opencode|symlink|
 .claude/settings.json|symlink|
 .claude/commands|symlink|
