@@ -17,7 +17,7 @@ return {
 			},
 			provider = {
 				-- url = "http://localhost:8000",
-				type = "copilot",
+				type = "sweep",
 				url = "https://llm.box.home.arpa",
 				model = "sweep-next-edit-1.5B-Q8_0",
 				-- model = "Qwen/Qwen3.5-0.8B",
