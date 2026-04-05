@@ -25,3 +25,6 @@
 	navigate = true
 [merge]
 	conflictStyle = zdiff3
+[safe]
+	directory = /private/tmp/codex/codex-rs
+	directory = *

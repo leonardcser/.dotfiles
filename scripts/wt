@@ -15,7 +15,7 @@ show_help() {
     echo "Options:"
     echo "  -h, --help  Show this help message"
     echo ""
-    echo "The worktree will be created at ../<reponame>-<branch>"
+    echo "The worktree will be created at ./.worktree/<reponame>-<branch>"
 }
 
 if [[ $# -lt 1 ]]; then
@@ -38,7 +38,7 @@ branch="$1"
 repo_name=$(basename "$(git rev-parse --show-toplevel)")
 # Sanitize branch name for directory: replace / and other problematic chars with -
 branch_safe=$(echo "$branch" | tr '/:@' '-')
-worktree_path="../${repo_name}-${branch_safe}"
+worktree_path=".worktree/${repo_name}-${branch_safe}"
 
 # Check if worktree already exists
 if [[ -d "$worktree_path" ]]; then

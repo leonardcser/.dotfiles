@@ -22,3 +22,6 @@ tmp/
 .claude/plans
 
 tasks/
+
+# Git worktrees
+.worktree/

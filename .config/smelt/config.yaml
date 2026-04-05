@@ -39,11 +39,13 @@ providers:
     api_base: https://chatgpt.com/backend-api/codex
 
 permissions:
-  normal:
+  default:
     web_fetch:
       allow: ["*"]
-    web_search:
-      allow: ["*"]
+    tools:
+      allow: [web_search]
+    mcp:
+      allow: [nvim_lsp_read_lints]
 
 settings:
   multi_agent: true
