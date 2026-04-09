@@ -1,4 +1,5 @@
 tap "achannarasappa/tap"
+tap "bjarneo/cliamp"
 tap "bufbuild/buf"
 tap "danvergara/tools"
 tap "homebrew/bundle"
@@ -26,6 +27,10 @@ brew "ansible"
 brew "arduino-cli"
 # Text processor and publishing toolchain for AsciiDoc
 brew "asciidoctor"
+# Automatic configure script builder
+brew "autoconf"
+# Tool for generating GNU Standards-compliant Makefiles
+brew "automake"
 # Automatically restart SSH sessions and tunnels
 brew "autossh"
 # Securely store and access AWS credentials in development environments
@@ -182,12 +187,14 @@ brew "sysbench"
 brew "telnet"
 # Tool to build, change, and version infrastructure
 brew "terraform"
+# Enables extra languages support for Tesseract
+brew "tesseract-lang"
 # Free software distribution for the TeX typesetting system
 brew "texlive"
 # Software synthesizer
 brew "timidity"
 # Terminal multiplexer
-brew "tmux"
+brew "tmux", args: ["HEAD"]
 # Markup-based typesetting system
 brew "typst"
 # Unidata unit conversion library
@@ -216,6 +223,8 @@ brew "zig"
 brew "zoxide"
 # UNIX shell (command interpreter)
 brew "zsh"
+# A retro terminal music player inspired by Winamp 2.x
+brew "bjarneo/cliamp/cliamp"
 # The best way of working with Protocol Buffers.
 brew "bufbuild/buf/buf"
 # Interactive client for PostgreSQL and MySQL
@@ -245,8 +254,6 @@ cask "blockblock"
 cask "chromium"
 # Anthropic's official Claude AI desktop app
 cask "claude"
-# Terminal-based AI coding assistant
-cask "claude-code"
 # OpenAI's coding agent that runs in your terminal
 cask "codex"
 # Write, edit, and chat about your code with AI
@@ -304,6 +311,8 @@ cask "sf-symbols"
 cask "skim"
 # Team communication and collaboration software
 cask "slack"
+# Mesh VPN based on WireGuard
+cask "tailscale-app"
 # Open-source BitTorrent client
 cask "transmission"
 # 3D printer and slicing GUI
@@ -347,12 +356,16 @@ go "connectrpc.com/connect/cmd/protoc-gen-connect-go"
 go "google.golang.org/protobuf/cmd/protoc-gen-go"
 go "github.com/sqlc-dev/sqlc/cmd/sqlc"
 go "honnef.co/go/tools/cmd/staticcheck"
+go "task"
 go "github.com/a-h/templ/cmd/templ"
 go "github.com/wailsapp/wails/v2/cmd/wails"
 cargo "agent"
 cargo "caesiumclt"
 cargo "cargo-bloat"
 cargo "create-tauri-app"
+cargo "inferno"
+cargo "lumen"
+cargo "smelt-agent"
 cargo "ttyper"
 cargo "tuicr"
 uv "asitop"
@@ -363,3 +376,4 @@ uv "jupyterlab"
 uv "marker-pdf[full]"
 uv "markitdown[pdf]"
 uv "pix2tex"
+uv "zensical"
