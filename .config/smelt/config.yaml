@@ -26,14 +26,12 @@ providers:
         temperature: 1.0
         top_p: 0.95
       - openai/gpt-oss-20b
-
   - name: iict
     type: openai-compatible
     api_base: https://k8s-ray.iict-heig-vd.in/v1
     models:
       - Qwen/Qwen3.5-27B
       - Qwen/Qwen3.5-122B-A10B-FP8
-
   - name: codex
     type: codex
     api_base: https://chatgpt.com/backend-api/codex
@@ -41,16 +39,18 @@ providers:
 permissions:
   default:
     web_fetch:
-      allow: ["*"]
+      allow:
+        - "*"
     tools:
-      allow: [web_search]
+      allow:
+        - web_search
     mcp:
-      allow: [nvim_lsp_read_lints]
-
+      allow:
+        - nvim_lsp_read_lints
 settings:
   multi_agent: true
-
 mcp:
   nvim_lsp:
     type: local
-    command: ["/Users/leo/dev/mcp/nvim-lsp-mcp/nvim-lsp-mcp"]
+    command:
+      - /Users/leo/dev/mcp/nvim-lsp-mcp/nvim-lsp-mcp
