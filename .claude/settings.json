@@ -1,6 +1,7 @@
 {
   "env": {
-    "CLAUDE_CODE_ENABLE_TELEMETRY": "0"
+    "CLAUDE_CODE_ENABLE_TELEMETRY": "0",
+    "CLAUDE_CODE_AUTO_COMPACT_WINDOW": "400000"
   },
   "attribution": {
     "commit": "",
@@ -34,9 +35,7 @@
       "mcp__intermcp__send",
       "Bash(curl *)"
     ],
-    "deny": [
-      "Read(./.env)"
-    ],
+    "deny": ["Read(./.env)"],
     "ask": [
       "Bash(rm *)",
       "Bash(sed -i*)",
@@ -52,17 +51,12 @@
   "sandbox": {
     "enabled": true,
     "network": {
-      "allowedDomains": [
-        "*"
-      ]
+      "allowedDomains": ["*"]
     }
   },
   "effortLevel": "low",
-  "voiceEnabled": true,
-  "voice": {
-    "enabled": true,
-    "mode": "hold"
-  },
+  "voiceEnabled": false,
+  "showThinkingSummaries": true,
   "autoMemoryEnabled": false,
   "skipDangerousModePermissionPrompt": true
 }
