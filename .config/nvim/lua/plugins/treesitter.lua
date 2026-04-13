@@ -27,11 +27,20 @@ return {
 			"lua",
 			"vim",
 			"dockerfile",
+			"gitcommit",
+			"git_rebase",
+			"diff",
 			"gitignore",
 			"query",
 			"vimdoc",
 			"c",
 			"cpp",
+		})
+
+		vim.api.nvim_create_autocmd("FileType", {
+			callback = function(args)
+				pcall(vim.treesitter.start, args.buf)
+			end,
 		})
 
 		require("nvim-ts-autotag").setup({
