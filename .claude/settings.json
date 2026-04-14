@@ -1,7 +1,8 @@
 {
   "env": {
     "CLAUDE_CODE_ENABLE_TELEMETRY": "0",
-    "CLAUDE_CODE_AUTO_COMPACT_WINDOW": "400000"
+    "CLAUDE_CODE_AUTO_COMPACT_WINDOW": "400000",
+    "CLAUDE_CODE_NO_FLICKER": "1"
   },
   "attribution": {
     "commit": "",
@@ -54,9 +55,9 @@
       "allowedDomains": ["*"]
     }
   },
-  "effortLevel": "low",
+  "effortLevel": "medium",
   "voiceEnabled": false,
-  "showThinkingSummaries": true,
   "autoMemoryEnabled": false,
+  "showThinkingSummaries": true,
   "skipDangerousModePermissionPrompt": true
 }
