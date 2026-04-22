@@ -34,17 +34,22 @@
       "WebSearch",
       "mcp__intermcp__list_agents",
       "mcp__intermcp__send",
-      "Bash(curl *)"
+      "Bash(curl *)",
+      "Bash(cargo check:*)",
+      "WebFetch(domain:llm.box.home.arpa)",
+      "WebFetch(domain:links.duckduckgo.com)",
+      "Bash(cargo build:*)",
+      "Bash(cargo test:*)",
+      "Bash(cargo fmt:*)",
+      "Bash(cargo clippy:*)",
+      "Bash(cargo run:*)",
+      "Bash(tmux send-keys:*)"
     ],
-    "deny": ["Read(./.env)"],
-    "ask": [
-      "Bash(rm *)",
-      "Bash(sed -i*)",
-      "Bash(sed * -i *)",
-      "Bash(sed * -i'*)",
-      "Bash(sed --in-place*)",
-      "Bash(sed * --in-place *)"
-    ]
+    "deny": [
+      "Read(./.env)"
+    ],
+    "ask": [],
+    "defaultMode": "default"
   },
   "enabledPlugins": {
     "frontend-design@claude-plugins-official": true
@@ -52,12 +57,15 @@
   "sandbox": {
     "enabled": true,
     "network": {
-      "allowedDomains": ["*"]
+      "allowedDomains": [
+        "*"
+      ]
     }
   },
-  "effortLevel": "medium",
-  "voiceEnabled": false,
+  "effortLevel": "high",
   "autoMemoryEnabled": false,
   "showThinkingSummaries": true,
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "skipAutoPermissionPrompt": true,
+  "voiceEnabled": false
 }

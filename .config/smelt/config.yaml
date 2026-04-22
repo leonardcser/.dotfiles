@@ -10,13 +10,13 @@ providers:
     api_base: https://llm.box.home.arpa
     api_key_env: BOX_API_KEY
     models:
-      - name: Qwen/Qwen3.5-122B
+      - name: Qwen/Qwen3.6-27B
         temperature: 0.6
         top_p: 0.95
         top_k: 20
         min_p: 0.0
         repeat_penalty: 1.0
-      - name: Qwen/Qwen3.5-27B
+      - name: Qwen/Qwen3.6-35B-A3B
         temperature: 0.6
         top_p: 0.95
         top_k: 20
@@ -26,6 +26,13 @@ providers:
         temperature: 1.0
         top_p: 0.95
       - openai/gpt-oss-20b
+      - unsloth/MiniMax-M2.7
+  - name: cloudflare
+    type: openai-compatible
+    api_base: https://api.cloudflare.com/client/v4/accounts/2c5064c9595fe36f17aab3533cdd55ff/ai/v1
+    api_key_env: CLOUDFLARE_AUTH_TOKEN
+    models:
+      - "@cf/moonshotai/kimi-k2.6"
   - name: iict
     type: openai-compatible
     api_base: https://k8s-ray.iict-heig-vd.in/v1
@@ -35,7 +42,9 @@ providers:
   - name: codex
     type: codex
     api_base: https://chatgpt.com/backend-api/codex
-
+  - name: copilot
+    type: copilot
+    api_base: https://api.individual.githubcopilot.com
 permissions:
   default:
     web_fetch:
