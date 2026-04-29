@@ -56,8 +56,8 @@ permissions:
     mcp:
       allow:
         - nvim_lsp_read_lints
-settings:
-  multi_agent: true
+# settings:
+#   multi_agent: true
 mcp:
   nvim_lsp:
     type: local

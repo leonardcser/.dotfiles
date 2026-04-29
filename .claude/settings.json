@@ -48,8 +48,7 @@
     "deny": [
       "Read(./.env)"
     ],
-    "ask": [],
-    "defaultMode": "default"
+    "ask": []
   },
   "enabledPlugins": {
     "frontend-design@claude-plugins-official": true
@@ -62,10 +61,14 @@
       ]
     }
   },
-  "effortLevel": "high",
+  "effortLevel": "xhigh",
   "autoMemoryEnabled": false,
   "showThinkingSummaries": true,
   "skipDangerousModePermissionPrompt": true,
+  "editorMode": "vim",
+  "verbose": true,
+  "terminalProgressBarEnabled": false,
+  "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,
   "voiceEnabled": false
 }
