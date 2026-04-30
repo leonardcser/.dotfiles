@@ -83,6 +83,37 @@ return {
 			return stats
 		end
 
+		local function parse_commit_numstat(output)
+			local stats = {}
+			local current = nil
+			for _, line in ipairs(vim.split(output, "\n", { trimempty = true })) do
+				local sha = line:match("^COMMIT (%x+)$")
+				if sha then
+					current = sha
+					stats[current] = { add = 0, del = 0 }
+				elseif current then
+					local add, del = line:match("^(%d+)%s+(%d+)%s+")
+					if add then
+						stats[current].add = stats[current].add + tonumber(add)
+						stats[current].del = stats[current].del + tonumber(del)
+					end
+				end
+			end
+			return stats
+		end
+
+		local function lookup_commit(commit_stats, short_sha)
+			if commit_stats[short_sha] then
+				return commit_stats[short_sha]
+			end
+			for full, stat in pairs(commit_stats) do
+				if full:sub(1, #short_sha) == short_sha then
+					return stat
+				end
+			end
+			return nil
+		end
+
 		local function make_stat_chunks(add, del)
 			local chunks = {}
 			if add > 0 then
@@ -104,35 +135,79 @@ return {
 			return add, del
 		end
 
-		local function apply_annotations(buf, unstaged_stats, staged_stats)
+		local function apply_annotations(buf, unstaged_stats, staged_stats, commit_stats, head_stats)
 			vim.api.nvim_buf_clear_namespace(buf, ns, 0, -1)
-			local unstaged_add, unstaged_del = total_stats(unstaged_stats)
-			local staged_add, staged_del = total_stats(staged_stats)
 			local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+
+			local function set_marks(line_idx, add, del)
+				local chunks = make_stat_chunks(add, del)
+				if #chunks > 0 then
+					vim.api.nvim_buf_set_extmark(buf, ns, line_idx, 0, { virt_text = chunks, virt_text_pos = "eol", hl_mode = "combine" })
+				end
+			end
+
+			-- Pre-compute totals for commit-list sections (Unpushed / Unpulled)
+			local section_totals = {}
+			local section_header = nil
+			for i, line in ipairs(lines) do
+				if line:match("^Unpushed") or line:match("^Unpulled") then
+					section_header = i
+					section_totals[i] = { add = 0, del = 0 }
+				elseif section_header then
+					local sha = line:match("^(%x%x%x%x%x%x%x+)%s")
+					if sha then
+						local stat = lookup_commit(commit_stats, sha)
+						if stat then
+							section_totals[section_header].add = section_totals[section_header].add + stat.add
+							section_totals[section_header].del = section_totals[section_header].del + stat.del
+						end
+					elseif line:match("^%S") then
+						section_header = nil
+					end
+				end
+			end
+
 			local current_section = nil
 			for i, line in ipairs(lines) do
+				local idx = i - 1
 				if line:match("^Unstaged") then
 					current_section = "unstaged"
-					local chunks = make_stat_chunks(unstaged_add, unstaged_del)
-					if #chunks > 0 then
-						vim.api.nvim_buf_set_extmark(buf, ns, i - 1, 0, { virt_text = chunks, virt_text_pos = "eol", hl_mode = "combine" })
-					end
+					local a, d = total_stats(unstaged_stats)
+					set_marks(idx, a, d)
 				elseif line:match("^Staged") then
 					current_section = "staged"
-					local chunks = make_stat_chunks(staged_add, staged_del)
-					if #chunks > 0 then
-						vim.api.nvim_buf_set_extmark(buf, ns, i - 1, 0, { virt_text = chunks, virt_text_pos = "eol", hl_mode = "combine" })
+					local a, d = total_stats(staged_stats)
+					set_marks(idx, a, d)
+				elseif line:match("^Unpushed") or line:match("^Unpulled") then
+					current_section = "commits"
+					local total = section_totals[i]
+					if total then
+						set_marks(idx, total.add, total.del)
 					end
-				elseif line:match("^Unpushed") or line:match("^Unmerged") or line:match("^Head:") or line:match("^Push:") then
+				elseif line:match("^Head:") then
+					current_section = nil
+					if head_stats then
+						local a, d = total_stats(head_stats)
+						set_marks(idx, a, d)
+					end
+				elseif line:match("^Unmerged") or line:match("^Untracked") or line:match("^Push:") then
 					current_section = nil
 				end
-				local file = line:match("^[MDARCU?!]%s+(.+)$")
-				if file and current_section then
-					local section_stats = current_section == "staged" and staged_stats or unstaged_stats
-					if section_stats[file] then
-						local chunks = make_stat_chunks(section_stats[file].add, section_stats[file].del)
-						if #chunks > 0 then
-							vim.api.nvim_buf_set_extmark(buf, ns, i - 1, 0, { virt_text = chunks, virt_text_pos = "eol", hl_mode = "combine" })
+
+				if current_section == "unstaged" or current_section == "staged" then
+					local file = line:match("^[MDARCU?!]%s+(.+)$")
+					if file then
+						local section_stats = current_section == "staged" and staged_stats or unstaged_stats
+						if section_stats[file] then
+							set_marks(idx, section_stats[file].add, section_stats[file].del)
+						end
+					end
+				elseif current_section == "commits" then
+					local sha = line:match("^(%x%x%x%x%x%x%x+)%s")
+					if sha then
+						local stat = lookup_commit(commit_stats, sha)
+						if stat then
+							set_marks(idx, stat.add, stat.del)
 						end
 					end
 				end
@@ -140,27 +215,57 @@ return {
 		end
 
 		local pending_timer = nil
+		local current_gen = 0
 		local function annotate_fugitive(buf)
 			if pending_timer then
 				pending_timer:stop()
 			end
 			pending_timer = vim.defer_fn(function()
 				pending_timer = nil
+				current_gen = current_gen + 1
+				local mygen = current_gen
 				if not vim.api.nvim_buf_is_valid(buf) then
 					return
 				end
+
+				local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+				local shas = {}
+				local seen = {}
+				local in_commits = false
+				for _, line in ipairs(lines) do
+					if line:match("^Unpushed") or line:match("^Unpulled") then
+						in_commits = true
+					elseif line:match("^%S") and not line:match("^%x%x%x%x%x%x%x+%s") then
+						in_commits = false
+					end
+					if in_commits then
+						local sha = line:match("^(%x%x%x%x%x%x%x+)%s")
+						if sha and not seen[sha] then
+							seen[sha] = true
+							table.insert(shas, sha)
+						end
+					end
+				end
+
+				local total_jobs = 3 + ((#shas > 0) and 1 or 0)
 				local done = 0
-				local unstaged_out, staged_out = "", ""
+				local unstaged_out, staged_out, commit_out, head_out = "", "", "", ""
 				local function on_complete()
 					done = done + 1
-					if done < 2 then
+					if done < total_jobs or mygen ~= current_gen then
 						return
 					end
 					vim.schedule(function()
-						if not vim.api.nvim_buf_is_valid(buf) then
+						if not vim.api.nvim_buf_is_valid(buf) or mygen ~= current_gen then
 							return
 						end
-						apply_annotations(buf, parse_numstat(unstaged_out), parse_numstat(staged_out))
+						apply_annotations(
+							buf,
+							parse_numstat(unstaged_out),
+							parse_numstat(staged_out),
+							parse_commit_numstat(commit_out),
+							parse_numstat(head_out)
+						)
 					end)
 				end
 				vim.system({ "git", "diff", "--numstat" }, { text = true }, function(obj)
@@ -171,6 +276,22 @@ return {
 					staged_out = obj.stdout or ""
 					on_complete()
 				end)
+				vim.system({ "git", "diff", "--numstat", "origin/HEAD...HEAD" }, { text = true }, function(obj)
+					if obj.code == 0 then
+						head_out = obj.stdout or ""
+					end
+					on_complete()
+				end)
+				if #shas > 0 then
+					local cmd = { "git", "log", "--no-walk", "--numstat", "--format=COMMIT %H" }
+					for _, sha in ipairs(shas) do
+						table.insert(cmd, sha)
+					end
+					vim.system(cmd, { text = true }, function(obj)
+						commit_out = obj.stdout or ""
+						on_complete()
+					end)
+				end
 			end, 50)
 		end
 
