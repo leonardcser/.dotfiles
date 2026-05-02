@@ -7,6 +7,7 @@ tap "libsql/sqld"
 tap "nikitabobko/tap"
 tap "nomandhoni-cs/blinkeye"
 tap "oven-sh/bun"
+tap "sentrux/tap"
 tap "sst/tap"
 tap "tursodatabase/tap"
 # Converts abc music notation files to MIDI files
@@ -45,6 +46,8 @@ brew "balena-cli"
 brew "batt", restart_service: :changed
 # Generate compilation database for clang tooling
 brew "bear"
+# Next-generation test runner for Rust
+brew "cargo-nextest"
 # CD/DVD/Blu-ray premastering and recording software
 brew "cdrtools"
 # Statistics utility to count lines of code
@@ -81,6 +84,8 @@ brew "fd"
 brew "sdl2"
 # Play, record, convert, and stream select audio and video codecs
 brew "ffmpeg"
+# C routines to compute the Discrete Fourier Transform
+brew "fftw"
 # Firebase command-line tools
 brew "firebase-cli"
 # Command-line fuzzy finder written in Go
@@ -133,6 +138,8 @@ brew "lld"
 brew "lnav"
 # Sudoless performance monitoring for Apple Silicon processors
 brew "macmon"
+# Easily convert Marp Markdown files into static HTML/CSS, PDF, PPT and images
+brew "marp-cli"
 # Java-based project management
 brew "maven"
 # Run a Kubernetes cluster locally
@@ -163,6 +170,8 @@ brew "plantuml"
 brew "pnpm"
 # Tool for managing OCI containers and pods
 brew "podman"
+# PDF rendering library (based on the xpdf-3.0 code base)
+brew "poppler"
 # Generic machine emulator and virtualizer
 brew "qemu"
 # QR Code generation
@@ -195,6 +204,8 @@ brew "texlive"
 brew "timidity"
 # Terminal multiplexer
 brew "tmux", args: ["HEAD"]
+# Parser generator tool
+brew "tree-sitter-cli"
 # Markup-based typesetting system
 brew "typst"
 # Unidata unit conversion library
@@ -231,6 +242,8 @@ brew "bufbuild/buf/buf"
 brew "danvergara/tools/dblab"
 # Incredibly fast JavaScript runtime, bundler, transpiler and package manager - all in one.
 brew "oven-sh/bun/bun"
+# Live codebase visualization and structural quality gate
+brew "sentrux/tap/sentrux"
 # The AI coding agent built for the terminal.
 brew "sst/tap/opencode"
 brew "tursodatabase/tap/turso"
@@ -250,6 +263,8 @@ cask "anki"
 cask "appcleaner"
 # Monitors common persistence locations
 cask "blockblock"
+# OpenAI's official ChatGPT desktop app
+cask "chatgpt"
 # Free and open-source web browser
 cask "chromium"
 # Anthropic's official Claude AI desktop app
@@ -277,6 +292,8 @@ cask "freecad"
 cask "gcloud-cli"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
+# Chromium-based web browser
+cask "helium-browser"
 # Java IDE by JetBrains
 cask "intellij-idea"
 # Use Vim in input fields and non input fields
@@ -328,6 +345,7 @@ vscode "bierner.markdown-preview-github-styles"
 vscode "jeanp413.open-remote-ssh"
 vscode "jock.svg"
 vscode "ms-python.debugpy"
+vscode "ms-python.python"
 vscode "ms-toolsai.jupyter"
 vscode "ms-toolsai.jupyter-keymap"
 vscode "ms-toolsai.jupyter-renderers"
@@ -365,7 +383,9 @@ cargo "cargo-bloat"
 cargo "create-tauri-app"
 cargo "inferno"
 cargo "lumen"
+cargo "samply"
 cargo "smelt-agent"
+cargo "svgwatch"
 cargo "ttyper"
 cargo "tuicr"
 uv "asitop"
@@ -373,6 +393,7 @@ uv "bpytop"
 uv "harbor"
 uv "huggingface-hub[cli]"
 uv "jupyterlab"
+uv "kimi-cli"
 uv "marker-pdf[full]"
 uv "markitdown[pdf]"
 uv "pix2tex"
