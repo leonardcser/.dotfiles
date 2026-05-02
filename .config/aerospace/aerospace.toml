@@ -115,7 +115,7 @@ cmd-alt-6 = ['move-node-to-workspace 6', 'workspace 6']
 alt-shift-r = ['flatten-workspace-tree', 'mode main']
 # alt-shift-r = 'reload-config'
 
-alt-s = 'exec-and-forget open -a /Applications/Safari.app/'
+alt-s = 'exec-and-forget open -a /Applications/Helium.app/'
 alt-enter = 'exec-and-forget open -a /Applications/Alacritty.app/'
 
 alt-r = 'mode resize'
@@ -159,6 +159,12 @@ if.app-id = 'net.sourceforge.skim-app.skim'
 if.during-aerospace-startup = true
 check-further-callbacks = true
 run = ['move-node-to-workspace 2']
+
+[[on-window-detected]]
+if.app-id = 'net.imput.helium'
+if.during-aerospace-startup = true
+check-further-callbacks = true
+run = ['move-node-to-workspace 3']
 
 [[on-window-detected]]
 if.app-id = 'com.apple.Safari'
