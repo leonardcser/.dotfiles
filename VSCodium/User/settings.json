@@ -20,5 +20,8 @@
     "svg.preview.mode": "svg",
     "git.openRepositoryInParentFolders": "never",
     "dvc.doNotRecommendRedHatExtension": true,
-    "supermaven.allowGitignore": true
+    "supermaven.allowGitignore": true,
+    "files.associations": {
+        "*.rmd": "markdown"
+    }
 }

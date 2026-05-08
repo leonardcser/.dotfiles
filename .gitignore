@@ -20,6 +20,7 @@ tmp/
 # Claude
 .claude/settings.local.json
 .claude/plans
+.claude/worktrees
 
 tasks/
 

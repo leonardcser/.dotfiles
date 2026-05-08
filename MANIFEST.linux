@@ -10,6 +10,7 @@
 .p10k.zsh|symlink|
 .clang-format|symlink|
 .prettierrc.json|symlink|
+.lintr|symlink|
 .config/fd|symlink|
 .config/zsh|symlink|
 .config/nvim|symlink|
