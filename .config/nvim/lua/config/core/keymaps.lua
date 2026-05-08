@@ -62,6 +62,11 @@ keymap.set("n", "<leader>go", function()
 		return
 	end
 	local url = remote_url:gsub("git@github.com:", "https://github.com/"):gsub("%.git$", "")
+	local branch = vim.fn.system("git rev-parse --abbrev-ref HEAD"):gsub("\n", "")
+	if branch ~= "" and branch ~= "main" and branch ~= "master" and branch ~= "HEAD" then
+		local pr_url = vim.fn.system("gh pr view --json url -q .url 2>/dev/null"):gsub("\n", "")
+		url = pr_url ~= "" and pr_url or url .. "/tree/" .. branch
+	end
 	vim.ui.open(url)
 end, { desc = "Open git repository" })
 keymap.set("n", "<leader>gl", ":Git log<CR>", { desc = "Show git log" })
