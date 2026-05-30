@@ -33,14 +33,15 @@ smelt.provider.register("box", {
 			min_p = 0.0,
 			repeat_penalty = 1.0,
 		},
-		{
-			name = "nvidia/nemotron-3-super",
-			temperature = 1.0,
-			top_p = 0.95,
-		},
 		"openai/gpt-oss-20b",
-		"unsloth/MiniMax-M2.7",
 	},
+})
+
+smelt.provider.register("kimi-code", {
+	type = "anthropic-compatible",
+	api_base = "https://api.kimi.com/coding/v1",
+	api_key_env = "KIMI_CODE_API_KEY",
+	models = { "kimi-k2.6" },
 })
 
 smelt.provider.register("cloudflare", {
@@ -94,11 +95,16 @@ smelt.settings.vim = true
 -- smelt.settings.show_tps = true              -- tokens/sec in statusline
 -- smelt.settings.show_tokens = true           -- token usage in statusline
 -- smelt.settings.show_cost = true             -- session cost in statusline
--- smelt.settings.show_prediction = true       -- ghost-text input prediction
+smelt.settings.show_prediction = false -- ghost-text input prediction
 -- smelt.settings.show_slug = true             -- task slug pill in statusline
 -- smelt.settings.show_thinking = true         -- render thinking blocks
 -- smelt.settings.restrict_to_workspace = true -- block tool writes outside cwd
--- smelt.settings.redact_secrets = true        -- strip secrets before LLM
+smelt.settings.redact_secrets = false -- strip secrets before LLM
+--
+smelt.settings.autoupgrade = "notify"
+smelt.settings.autoupgrade_channel = "unstable"
 
 -- Demo: snake game (F11 to toggle, or `:snake`).
 require("smelt.examples.snake")
+require("smelt.examples.diff")
+require("smelt.examples.banner_picker")

@@ -10,11 +10,13 @@
    git submodule update --init --recursive
    ```
 
-2. Open a new zsh shell — [zinit](https://github.com/zdharma-continuum/zinit) will automatically install plugins on first run.
+2. Open a new zsh shell — [zinit](https://github.com/zdharma-continuum/zinit)
+   will automatically install plugins on first run.
 
 ## Secrets
 
-Secrets are stored in macOS Keychain and exported as environment variables on shell startup.
+Secrets are stored in macOS Keychain and exported as environment variables on
+shell startup.
 
 ```bash
 # Add a new secret

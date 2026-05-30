@@ -1,8 +1,18 @@
 local function apply_nord_highlights()
+	-- HTML
 	vim.cmd([[highlight @tag gui=bold guifg=#9BBAD8]])
 	vim.cmd([[highlight @tag.delimiter gui=bold guifg=#7A8CAA]])
-	vim.cmd([[highlight @tag.attribute guifg=#81A1C1]])
-	-- vim.cmd([[highlight @attribute guifg=#FFD75E]])
+	vim.cmd([[highlight @tag.attribute guifg=#9876AA]])
+
+	-- Goto labels & function decorators
+	vim.cmd([[highlight @attribute guifg=#EBCB8B]])
+
+	-- Highligting
+	vim.cmd([[highlight CursorLine guibg=#191D23]])
+	vim.cmd([[highlight ColorColumn guibg=#191D23]])
+	vim.cmd([[highlight TreesitterContext guibg=#191D23]])
+	vim.cmd([[highlight IblIndent guifg=#191D23]])
+
 	vim.cmd([[highlight Comment guifg=#5E6A80 gui=NONE]])
 	vim.cmd([[highlight @comment guifg=#5E6A80 gui=NONE]])
 	vim.cmd([[highlight Identifier guifg=#ECEFF4]])
@@ -10,10 +20,6 @@ local function apply_nord_highlights()
 	vim.cmd([[highlight @variable.member guifg=#ECEFF4]])
 	vim.cmd([[highlight @property guifg=#ECEFF4]])
 	vim.cmd([[highlight @field guifg=#ECEFF4]])
-	-- vim.cmd([[highlight Constant guifg=#FFD75E]])
-	-- vim.cmd([[highlight @constant guifg=#FFD75E]])
-	-- vim.cmd([[highlight @constant.builtin guifg=#FFD75E]])
-	-- vim.cmd([[highlight @constant.macro guifg=#FFD75E]])
 	vim.cmd([[highlight Function guifg=#88C0D0]])
 	vim.cmd([[highlight @function guifg=#88C0D0]])
 	vim.cmd([[highlight @function.method guifg=#88C0D0]])
@@ -24,10 +30,6 @@ local function apply_nord_highlights()
 	vim.cmd([[highlight @string guifg=#B8D89A]])
 	vim.cmd([[highlight Keyword guifg=#81A1C1]])
 	vim.cmd([[highlight @keyword guifg=#81A1C1]])
-	vim.cmd([[highlight CursorLine guibg=#141920]])
-	vim.cmd([[highlight ColorColumn guibg=#141920]])
-	vim.cmd([[highlight TreesitterContext guibg=#141920]])
-	vim.cmd([[highlight IblIndent guifg=#2A303C]])
 end
 
 return {

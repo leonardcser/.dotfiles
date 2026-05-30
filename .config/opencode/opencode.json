@@ -1,6 +1,37 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "provider": {
+    "nebula-kimi": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Nebula (Kimi via Nebula proxy)",
+      "options": {
+        "baseURL": "http://localhost:8080/v1",
+        "apiKey": "set-in-nebula-env",
+        "headers": {
+          "x-nebula-provider": "kimi",
+          "x-nebula-session": "opencode-kimi",
+          "x-nebula-user": "Leonard"
+        }
+      },
+      "models": {
+        "kimi-k2.6": {
+          "name": "Kimi K2.6 via Nebula",
+          "limit": { "context": 256000, "output": 32000 }
+        },
+        "kimi-k2.5": {
+          "name": "Kimi K2.5 via Nebula",
+          "limit": { "context": 256000, "output": 32000 }
+        },
+        "moonshot-v1-128k": {
+          "name": "Moonshot V1 128k via Nebula",
+          "limit": { "context": 131072, "output": 8192 }
+        },
+        "moonshot-v1-auto": {
+          "name": "Moonshot V1 Auto via Nebula",
+          "limit": { "context": 131072, "output": 8192 }
+        }
+      }
+    },
     "box": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "box",

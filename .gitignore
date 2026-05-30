@@ -25,4 +25,4 @@ tmp/
 tasks/
 
 # Git worktrees
-.worktree/
+.worktrees/
