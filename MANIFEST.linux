@@ -19,6 +19,7 @@
 #.config/lazygit|symlink|
 .config/mise|symlink|
 .config/uv/uv.toml|symlink|
+.config/smelt|symlink|
 #.config/opencode|symlink|
 .claude/settings.json|symlink|
 .claude/commands|symlink|
