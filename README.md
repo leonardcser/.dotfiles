@@ -10,7 +10,13 @@
    git submodule update --init --recursive
    ```
 
-2. Open a new zsh shell — [zinit](https://github.com/zdharma-continuum/zinit)
+2. Symlink the Linux dotfiles:
+
+   ```bash
+   ./deploy.sh MANIFEST.linux
+   ```
+
+3. Open a new zsh shell — [zinit](https://github.com/zdharma-continuum/zinit)
    will automatically install plugins on first run.
 
 ## Secrets
