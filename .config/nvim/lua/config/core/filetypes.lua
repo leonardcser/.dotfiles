@@ -6,12 +6,21 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	end,
 })
 
+local function spelllang_available(lang)
+	return #vim.fn.globpath(vim.o.runtimepath, "spell/" .. lang .. ".*.spl", false, true) > 0
+end
+
+local prose_spelllangs = { "en" }
+if spelllang_available("fr") then
+	table.insert(prose_spelllangs, "fr")
+end
+
 -- Enable spell checking for markdown and typst files
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = { "markdown", "typst" },
 	callback = function()
+		vim.opt_local.spelllang = prose_spelllangs
 		vim.opt_local.spell = true
-		vim.opt_local.spelllang = { "en", "fr" }
 	end,
 })
 
