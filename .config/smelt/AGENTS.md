@@ -5,9 +5,6 @@ If the user asks your to address a task and provides you and id like
 your should look in the root project original path. You should update it when
 you start working on it and if you complete it.
 
-# Worktrees
+# Writing
 
-If the user asks you to make the changes in a new worktree, create a new git
-worktree in the ./.worktrees folder (create the folder if it does not exist
-already), and then work from that worktree only. (ex:
-./.worktrees/<branch-name>)
+- don't use em dash (—) unless asked
