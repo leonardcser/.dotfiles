@@ -1,4 +1,9 @@
 # PATH (sourced for all zsh sessions, including non-interactive SSH commands)
+export BUN_INSTALL="$HOME/.bun"
+case ":$PATH:" in
+  *":$BUN_INSTALL/bin:"*) ;;
+  *) export PATH="$BUN_INSTALL/bin:$PATH" ;;
+esac
 export PATH="$HOME/.local/bin:$HOME/.local/bin/scripts:$PATH"
 export PATH="$PATH:/usr/local/sbin"
 export PATH="$PATH:$HOME/go/bin"
