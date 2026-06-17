@@ -44,4 +44,5 @@ bell-features = no-system,no-audio,attention,title,no-border
 
 quick-terminal-animation-duration = 0.0
 keybind = cmd+shift+space=toggle_quick_terminal
-keybind = shift+enter=text:\x1b\r
+keybind = shift+enter=csi:13;2u
+keybind = ctrl+enter=csi:13;5u

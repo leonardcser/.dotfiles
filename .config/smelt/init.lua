@@ -37,13 +37,6 @@ smelt.provider.register("box", {
 	},
 })
 
-smelt.provider.register("kimi-code", {
-	type = "anthropic-compatible",
-	api_base = "https://api.kimi.com/coding/v1",
-	api_key_env = "KIMI_CODE_API_KEY",
-	models = { "kimi-k2.6" },
-})
-
 smelt.provider.register("cloudflare", {
 	type = "openai-compatible",
 	api_base = "https://api.cloudflare.com/client/v4/accounts/2c5064c9595fe36f17aab3533cdd55ff/ai/v1",
@@ -70,10 +63,19 @@ smelt.provider.register("copilot", {
 	api_base = "https://api.individual.githubcopilot.com",
 })
 
+-- Opt-in plugins
+require("smelt.plugins.which_key")
+
+-- Keymaps
+smelt.keymap.set_leader("<space>")
+smelt.keymap.set("n", "<leader>r", function()
+	smelt.cmd.run("resume")
+end, { desc = "resume session" })
+
 -- MCP servers
-smelt.mcp.register("nvim_lsp", {
-	command = { "/Users/leo/dev/mcp/nvim-lsp-mcp/nvim-lsp-mcp" },
-})
+-- smelt.mcp.register("nvim_lsp", {
+-- 	command = { "/Users/leo/dev/mcp/nvim-lsp-mcp/nvim-lsp-mcp" },
+-- })
 
 -- Permissions
 --
@@ -103,6 +105,8 @@ smelt.settings.redact_secrets = false -- strip secrets before LLM
 --
 smelt.settings.autoupgrade = "notify"
 smelt.settings.autoupgrade_channel = "unstable"
+
+smelt.settings.file_icons = true
 
 -- Demo: snake game (F11 to toggle, or `:snake`).
 require("smelt.examples.snake")
