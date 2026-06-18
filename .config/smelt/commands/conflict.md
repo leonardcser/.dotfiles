@@ -1,5 +1,5 @@
 ---
-description: Resolve git merge conflicts
+description: resolve git merge conflicts
 tools:
   allow: [read_file, edit_file]
 bash:

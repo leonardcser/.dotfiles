@@ -1,5 +1,5 @@
 ---
-description: Create a git commit
+description: create a git commit
 bash:
   allow:
     [

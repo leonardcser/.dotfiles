@@ -1,5 +1,5 @@
 ---
-description: Review uncommitted changes
+description: review uncommitted changes
 bash:
   allow: ["git diff *", "git status *"]
 ---

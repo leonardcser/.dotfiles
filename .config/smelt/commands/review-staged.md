@@ -1,5 +1,5 @@
 ---
-description: Review staged changes
+description: review staged changes
 bash:
   allow: ["git diff *", "git status *"]
 ---

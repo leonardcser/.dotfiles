@@ -1,5 +1,5 @@
 ---
-description: Convert a PDF to markdown via the Box pdf-to-text utility
+description: convert a PDF to markdown via the Box pdf-to-text utility
 bash:
   allow: ["curl *"]
 ---
