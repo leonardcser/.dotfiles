@@ -110,4 +110,4 @@ smelt.settings.file_icons = true
 
 -- Demo: snake game (F11 to toggle, or `:snake`).
 require("smelt.examples.snake")
-require("smelt.examples.diff")
+-- require("smelt.plugins.diff_viewer")
