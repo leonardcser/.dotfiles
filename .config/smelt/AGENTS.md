@@ -1,3 +1,12 @@
+# Exploration
+
+When exploring an external GitHub repository, shallow-clone it into `/tmp` to
+keep things clean:
+
+```bash
+git clone --depth 1 https://github.com/<owner>/<repo>.git /tmp/<repo>
+```
+
 # Tasks
 
 If the user asks your to address a task and provides you and id like
