@@ -139,7 +139,6 @@ alias ll="ls -1alh --color=auto"
 alias claude="command claude --allow-dangerously-skip-permissions"
 alias code="codium"
 alias clear="clear && printf '\e[3J'"
-alias cpwd="pwd | tr -d '\n' | pbcopy"
 alias nv="nvim"
 alias .="nvim ."
 alias ..="cd .."
@@ -152,6 +151,21 @@ alias md="mkdir"
 alias sloc="wc -l **/*.*"
 
 # --- Functions ---
+osc52_copy() {
+  local encoded
+  if (( $# > 0 )); then
+    encoded=$(printf "%s" "$*" | base64 | tr -d "\n")
+  else
+    encoded=$(base64 | tr -d "\n")
+  fi
+  printf "\033]52;c;%s\a" "$encoded"
+}
+
+cpwd() {
+  osc52_copy "$PWD"
+  printf "Copied: %s\n" "$PWD"
+}
+
 clrhist() {
     echo "" > ~/.zsh_history & exec $SHELL -l
 }

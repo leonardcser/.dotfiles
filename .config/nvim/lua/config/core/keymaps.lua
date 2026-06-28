@@ -3,6 +3,11 @@ vim.g.mapleader = " "
 
 local keymap = vim.keymap -- for conciseness
 
+local function copy_to_clipboard(text)
+	vim.fn.setreg("+", text)
+	vim.notify("Copied: " .. text)
+end
+
 -- General Keymaps -------------------
 -- disable moving up and down
 vim.api.nvim_set_keymap("", "<Up>", "<Nop>", { noremap = true, silent = true })
@@ -90,8 +95,7 @@ keymap.set("n", "<leader>gu", function()
 		return
 	end
 	local url = remote_url:gsub("git@github.com:", "https://github.com/"):gsub("%.git$", "")
-	vim.fn.setreg("+", url)
-	print("Copied: " .. url)
+	copy_to_clipboard(url)
 end, { desc = "Copy remote git URL" })
 
 -- LSP toggle
@@ -123,8 +127,7 @@ keymap.set("n", "<leader>ql", "<cmd>clast<CR>", { desc = "Last quickfix item" })
 -- Copy absolute path of current buffer
 keymap.set("n", "<leader>cp", function()
 	local path = vim.fn.expand("%:p")
-	vim.fn.setreg("+", path)
-	vim.notify("Copied: " .. path)
+	copy_to_clipboard(path)
 end, { desc = "Copy absolute path" })
 
 -- Make current file executable
