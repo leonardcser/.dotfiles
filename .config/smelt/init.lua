@@ -65,6 +65,17 @@ smelt.provider.register("copilot", {
 
 -- Opt-in plugins
 require("smelt.plugins.which_key")
+require("smelt.plugins.lsp").setup({
+	start = "background",
+	servers = {
+		["rust-analyzer"] = {
+			cmd = { "rust-analyzer" },
+			extensions = { "rs" },
+			language_id = "rust",
+			root_markers = { "Cargo.toml", "rust-project.json", ".git" },
+		},
+	},
+})
 
 -- Keymaps
 smelt.keymap.set_leader("<space>")
@@ -83,11 +94,13 @@ end, { desc = "resume session" })
 -- Inside each mode, `tools = { allow/ask/deny }` is the per-tool list;
 -- every other key is a per-tool subpattern bucket (e.g. `bash`,
 -- `web_fetch`, `mcp`, or any custom-named tool).
-smelt.permissions.set_rules({
+smelt.permissions.extend({
 	default = {
-		web_fetch = { allow = { "*" } },
 		tools = { allow = { "web_search" } },
-		mcp = { allow = { "nvim_lsp_read_lints" } },
+		patterns = {
+			web_fetch = { allow = { "*" } },
+			mcp = { allow = { "nvim_lsp_read_lints" } },
+		},
 	},
 })
 
