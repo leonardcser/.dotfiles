@@ -3,8 +3,25 @@
 
 # Configuration constants
 SEARCH_DIRS=("$HOME/dev" "$HOME/.dotfiles" "$HOME/syncthing/vault")
-FD=$(command -v fd || command -v fdfind)
 MAX_DEPTH=6
+
+for command in fzf frecency tmux; do
+    if ! command -v "$command" >/dev/null; then
+        echo "tmux-sessionizer: required command not found: $command" >&2
+        exit 1
+    fi
+done
+
+FD=$(command -v fd || command -v fdfind)
+if [[ -z "$FD" ]]; then
+    echo "tmux-sessionizer: required command not found: fd or fdfind" >&2
+    exit 1
+fi
+
+existing_search_dirs=()
+for directory in "${SEARCH_DIRS[@]}"; do
+    [[ -d "$directory" ]] && existing_search_dirs+=("$directory")
+done
 
 if [[ $# -eq 1 ]]; then
     if [[ "$1" == "." ]]; then
@@ -14,13 +31,13 @@ if [[ $# -eq 1 ]]; then
     else
         selected=$1
         selected_name=$(basename "$selected" | tr . _)
-        if [[ ! -d "$selected" ]] && ! tmux has-session -t="$selected_name" 3>/dev/null; then
+        if [[ ! -d "$selected" ]] && ! tmux has-session -t="$selected_name" 2>/dev/null; then
             echo "Error: Could not find '$selected'."
             exit 1
         fi
     fi
 else
-    selected=$({ frecency top --context=sessionizer | sed "s|^$HOME/|~/|"; printf '%s\n' "${SEARCH_DIRS[@]}" | sed "s|^$HOME/|~/|"; $FD --type d --hidden --exclude .git --max-depth $MAX_DEPTH . "${SEARCH_DIRS[@]}" | sed "s|/$||; s|^$HOME/|~/|" | sort; } | awk '!seen[$0]++' | fzf --scheme=history --tiebreak=index)
+    selected=$({ frecency top --context=sessionizer | sed "s|^$HOME/|~/|"; printf '%s\n' "${existing_search_dirs[@]}" | sed "s|^$HOME/|~/|"; "$FD" --type d --hidden --exclude .git --max-depth "$MAX_DEPTH" . "${existing_search_dirs[@]}" | sed "s|/$||; s|^$HOME/|~/|" | sort; } | awk '!seen[$0]++' | fzf --scheme=history --tiebreak=index)
 fi
 
 if [[ -z $selected ]]; then
