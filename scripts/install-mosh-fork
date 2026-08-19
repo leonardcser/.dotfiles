@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+source_dir="${HOME}/dev/mosh"
+
+if [[ ! -x "${source_dir}/configure" ]]; then
+  "${source_dir}/autogen.sh"
+fi
+
+cd "${source_dir}"
+./configure --prefix="${HOME}/.local"
+make -j"$(sysctl -n hw.logicalcpu)"
+make install
+
+"${HOME}/.local/bin/mosh-client" --version

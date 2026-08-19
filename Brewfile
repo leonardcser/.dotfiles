@@ -150,8 +150,6 @@ brew "minio-mc"
 brew "mise"
 # Simple tool to make locally trusted development certificates
 brew "mkcert"
-# Remote terminal application
-brew "mosh"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Port scanning utility for large networks

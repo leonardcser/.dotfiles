@@ -5,44 +5,35 @@
 -- Known fields: name, temperature, top_p, top_k, min_p, repeat_penalty,
 -- tool_calling, input_cost, output_cost, cache_read_cost, cache_write_cost.
 
-smelt.provider.register("zai", {
-	type = "openai-compatible",
-	api_base = "https://api.z.ai/api/coding/paas/v4",
-	api_key_env = "Z_AI_API_KEY",
-	models = { "glm-4.7" },
-})
+-- smelt.provider.register("zai", {
+-- 	type = "openai-compatible",
+-- 	api_base = "https://api.z.ai/api/coding/paas/v4",
+-- 	api_key_env = "Z_AI_API_KEY",
+-- 	models = { "glm-4.7" },
+-- })
 
 smelt.provider.register("box", {
 	type = "openai-compatible",
-	api_base = "https://llm.box.home.arpa",
+	api_base = "https://llm.home.devleo.ch",
 	api_key_env = "BOX_API_KEY",
 	models = {
 		{
-			name = "Qwen/Qwen3.6-27B",
+			name = "Qwen/Qwen3.8-27B-FP8",
 			temperature = 0.6,
 			top_p = 0.95,
 			top_k = 20,
 			min_p = 0.0,
 			repeat_penalty = 1.0,
 		},
-		{
-			name = "Qwen/Qwen3.6-35B-A3B",
-			temperature = 0.6,
-			top_p = 0.95,
-			top_k = 20,
-			min_p = 0.0,
-			repeat_penalty = 1.0,
-		},
-		"openai/gpt-oss-20b",
 	},
 })
 
-smelt.provider.register("cloudflare", {
-	type = "openai-compatible",
-	api_base = "https://api.cloudflare.com/client/v4/accounts/2c5064c9595fe36f17aab3533cdd55ff/ai/v1",
-	api_key_env = "CLOUDFLARE_AUTH_TOKEN",
-	models = { "@cf/moonshotai/kimi-k2.6" },
-})
+-- smelt.provider.register("cloudflare", {
+-- 	type = "openai-compatible",
+-- 	api_base = "https://api.cloudflare.com/client/v4/accounts/2c5064c9595fe36f17aab3533cdd55ff/ai/v1",
+-- 	api_key_env = "CLOUDFLARE_AUTH_TOKEN",
+-- 	models = { "@cf/moonshotai/kimi-k2.6" },
+-- })
 
 smelt.provider.register("iict", {
 	type = "openai-compatible",
