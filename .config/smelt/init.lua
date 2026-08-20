@@ -25,6 +25,14 @@ smelt.provider.register("box", {
 			min_p = 0.0,
 			repeat_penalty = 1.0,
 		},
+		{
+			name = "orcarouter/Qwen3.8-27B-Uncensored-FP8",
+			temperature = 0.6,
+			top_p = 0.95,
+			top_k = 20,
+			min_p = 0.0,
+			repeat_penalty = 1.0,
+		},
 	},
 })
 
