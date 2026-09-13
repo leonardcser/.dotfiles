@@ -20,3 +20,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   esac
   export PATH="$PATH:$HOME/.lmstudio/bin"
 fi
+
+# Local secrets (gitignored)
+[ -f "$HOME/.dotfiles/.env" ] && source "$HOME/.dotfiles/.env"

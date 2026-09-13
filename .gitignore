@@ -26,3 +26,6 @@ tasks/
 
 # Git worktrees
 .worktrees/
+
+# Local secrets
+.env
