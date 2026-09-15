@@ -1,4 +1,4 @@
-xwfont-family = "JetBrains Mono"
+font-family = "JetBrains Mono"
 font-style = semibold
 font-size = 16
 background = #000000

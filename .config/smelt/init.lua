@@ -26,8 +26,32 @@ smelt.provider.register("box", {
 			repeat_penalty = 1.0,
 		},
 		{
-			name = "orcarouter/Qwen3.8-27B-Uncensored-FP8",
+			name = "orcarouter/Qwen3.8-27B-Uncensored-NVFP4",
 			temperature = 0.6,
+			top_p = 0.95,
+			top_k = 20,
+			min_p = 0.0,
+			repeat_penalty = 1.0,
+		},
+		{
+			name = "orcarouter/Qwen3.8-Flash-Next-Uncensored-GGUF:Q4_K_M",
+			temperature = 0.6,
+			top_p = 0.95,
+			top_k = 20,
+			min_p = 0.0,
+			repeat_penalty = 1.0,
+		},
+	},
+})
+
+smelt.provider.register("as", {
+	type = "openai-compatible",
+	api_base = "https://litellm.hackathon.intlab.ch",
+	api_key_env = "AS_API_KEY",
+	models = {
+		{
+			name = "Qwen/Qwen3.8-Flash-Next",
+			temperature = 0.4,
 			top_p = 0.95,
 			top_k = 20,
 			min_p = 0.0,
