@@ -14,6 +14,8 @@
 - Apply that same high standard to engineering excellence: lint, test failures,
   and test flakiness. If you see one, even if it is not caused by what you are
   working on right now, still get it fixed.
+- When formatting, prefer using the language or tooling to format instead of
+  manually formatting
 
 # Exploration
 

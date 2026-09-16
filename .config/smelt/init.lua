@@ -27,6 +27,9 @@ smelt.provider.register("box", {
 		},
 		{
 			name = "orcarouter/Qwen3.8-27B-Uncensored-NVFP4",
+			supports_reasoning = true,
+			supported_reasoning_efforts = { "off", "low", "medium", "xhigh" },
+			default_reasoning_effort = "xhigh",
 			temperature = 0.6,
 			top_p = 0.95,
 			top_k = 20,
@@ -87,6 +90,7 @@ smelt.provider.register("copilot", {
 })
 
 -- Opt-in plugins
+require("smelt.plugins.subagents")
 require("smelt.plugins.which_key")
 require("smelt.plugins.lsp").setup({
 	start = "background",
