@@ -14,7 +14,7 @@
 
 smelt.provider.register("box", {
 	type = "openai-compatible",
-	api_base = "https://llm.home.devleo.ch",
+	api_base = "https://llm.home.devleo.ch/v1",
 	api_key_env = "BOX_API_KEY",
 	models = {
 		{
@@ -90,7 +90,7 @@ smelt.provider.register("copilot", {
 })
 
 -- Opt-in plugins
-require("smelt.plugins.subagents")
+-- require("smelt.plugins.subagents")
 require("smelt.plugins.which_key")
 require("smelt.plugins.lsp").setup({
 	start = "background",
