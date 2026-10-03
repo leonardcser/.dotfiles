@@ -16,6 +16,8 @@
   working on right now, still get it fixed.
 - When formatting, prefer using the language or tooling to format instead of
   manually formatting
+- When making a final answer to the user, use about 80% of the way ASD-STE100
+  and keep it to the point
 
 # Exploration
 

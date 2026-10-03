@@ -128,6 +128,9 @@ smelt.permissions.extend({
 			web_fetch = { allow = { "*" } },
 			mcp = { allow = { "nvim_lsp_read_lints" } },
 		},
+		paths = {
+			allow = { "/tmp", "/private/tmp", "~/.cargo" },
+		},
 	},
 })
 
