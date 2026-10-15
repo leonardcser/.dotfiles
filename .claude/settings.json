@@ -51,6 +51,7 @@
     "ask": [],
     "defaultMode": "auto"
   },
+  "model": "sonnet",
   "enabledPlugins": {
     "frontend-design@claude-plugins-official": true
   },
@@ -63,11 +64,19 @@
     }
   },
   "effortLevel": "high",
+  "modelSettings": {
+    "claude-sonnet-5-5": {
+      "effortLevel": "medium"
+    },
+    "claude-opus-5-5": {
+      "effortLevel": "medium"
+    }
+  },
   "autoMemoryEnabled": false,
   "showThinkingSummaries": true,
   "skipDangerousModePermissionPrompt": true,
   "editorMode": "vim",
-  "verbose": true,
+  "verbose": false,
   "terminalProgressBarEnabled": false,
   "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,

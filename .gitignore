@@ -29,3 +29,5 @@ tasks/
 
 # Local secrets
 .env
+
+**/.claude/.cc-writes/

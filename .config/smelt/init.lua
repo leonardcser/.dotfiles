@@ -36,14 +36,14 @@ smelt.provider.register("box", {
 			min_p = 0.0,
 			repeat_penalty = 1.0,
 		},
-		{
-			name = "orcarouter/Qwen3.8-Flash-Next-Uncensored-GGUF:Q4_K_M",
-			temperature = 0.6,
-			top_p = 0.95,
-			top_k = 20,
-			min_p = 0.0,
-			repeat_penalty = 1.0,
-		},
+		-- {
+		-- 	name = "orcarouter/Qwen3.8-Flash-Next-Uncensored-GGUF:Q4_K_M",
+		-- 	temperature = 0.6,
+		-- 	top_p = 0.95,
+		-- 	top_k = 20,
+		-- 	min_p = 0.0,
+		-- 	repeat_penalty = 1.0,
+		-- },
 	},
 })
 
@@ -143,7 +143,7 @@ smelt.settings.vim = true
 smelt.settings.show_prediction = false -- ghost-text input prediction
 -- smelt.settings.show_slug = true             -- task slug pill in statusline
 -- smelt.settings.show_thinking = true         -- render thinking blocks
--- smelt.settings.restrict_to_workspace = true -- block tool writes outside cwd
+smelt.settings.restrict_to_workspace = false -- allow tool access outside workspace
 smelt.settings.redact_secrets = false -- strip secrets before LLM
 --
 smelt.settings.autoupgrade = "notify"
