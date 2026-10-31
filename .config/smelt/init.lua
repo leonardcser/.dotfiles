@@ -146,11 +146,6 @@ smelt.settings.show_prediction = false -- ghost-text input prediction
 smelt.settings.restrict_to_workspace = false -- allow tool access outside workspace
 smelt.settings.redact_secrets = false -- strip secrets before LLM
 --
-smelt.settings.autoupgrade = "notify"
 smelt.settings.autoupgrade_channel = "unstable"
 
 smelt.settings.file_icons = true
-
--- Demo: snake game (F11 to toggle, or `:snake`).
-require("smelt.examples.snake")
--- require("smelt.plugins.diff_viewer")

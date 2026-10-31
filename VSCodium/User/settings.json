@@ -23,5 +23,7 @@
     "supermaven.allowGitignore": true,
     "files.associations": {
         "*.rmd": "markdown"
-    }
+    },
+    "remote.autoForwardPortsSource": "hybrid",
+    "workbench.colorTheme": "Dark Modern"
 }
