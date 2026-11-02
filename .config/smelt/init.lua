@@ -144,8 +144,5 @@ smelt.settings.show_prediction = false -- ghost-text input prediction
 -- smelt.settings.show_slug = true             -- task slug pill in statusline
 -- smelt.settings.show_thinking = true         -- render thinking blocks
 smelt.settings.restrict_to_workspace = false -- allow tool access outside workspace
-smelt.settings.redact_secrets = false -- strip secrets before LLM
---
 smelt.settings.autoupgrade_channel = "unstable"
-
 smelt.settings.file_icons = true
