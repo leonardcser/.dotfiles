@@ -22,6 +22,7 @@
 .config/opencode|symlink|
 .config/uv/uv.toml|symlink|
 .config/smelt|symlink|
+.config/agent-mux|symlink|
 .claude/settings.json|symlink|
 .claude/commands|symlink|
 .claude/CLAUDE.md|symlink|

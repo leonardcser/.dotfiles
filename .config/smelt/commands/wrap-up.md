@@ -47,6 +47,8 @@ Finish this worktree and land it on `main`.
 6. Switch Smelt's cwd back to the base checkout before removing the worktree.
 7. Remove the managed worktree.
 8. Delete the finished local branch.
-9. Just stop and answer with a sentence.
+9. Stop and answer with one sentence naming the source worktree/branch and the
+   destination branch and checkout path, e.g. "Landed `clarify-background-waiting`
+   into `main` in `/home/dev/dev/smelt`; removed the source worktree and branch."
 
 Do not push or publish anything remotely unless I explicitly ask.

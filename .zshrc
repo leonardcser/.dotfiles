@@ -242,6 +242,9 @@ if [[ $OS_TYPE == "macos" && -f ~/.secrets-keys ]]; then
   precmd_functions+=(_load_secrets)
 fi
 
+# Machine-local settings
+[[ ! -f ~/.zshrc.local ]] || source ~/.zshrc.local
+
 # Powerlevel10k config
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 

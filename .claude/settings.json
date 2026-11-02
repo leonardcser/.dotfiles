@@ -76,6 +76,7 @@
   "autoMemoryEnabled": false,
   "showThinkingSummaries": true,
   "skipDangerousModePermissionPrompt": true,
+  "theme": "dark",
   "editorMode": "vim",
   "verbose": false,
   "terminalProgressBarEnabled": false,

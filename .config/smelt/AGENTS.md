@@ -19,6 +19,17 @@
 - When making a final answer to the user, use about 80% of the way ASD-STE100
   and keep it to the point
 
+# Commit messages
+
+`type(scope): summary`, subject only, at most 60 characters.
+
+- Imperative. No articles, possessives or filler words.
+- One change. No "and", "so ..." or "by ..." clauses.
+- Say what changed for users, not how.
+
+Example: `perf(test): cut suite time 4x`, not `perf(test): cut suite time 4x by
+optimizing the test profile and removing real-time waits`.
+
 # Exploration
 
 When exploring a thirdparty dependency or an external GitHub repository,
