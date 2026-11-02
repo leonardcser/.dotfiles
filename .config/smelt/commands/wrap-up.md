@@ -3,6 +3,7 @@ description: commit, rebase, land, and clean up a managed worktree
 bash:
   allow:
     [
+      "smelt session complete",
       "git status *",
       "git diff *",
       "git log *",
@@ -47,7 +48,9 @@ Finish this worktree and land it on `main`.
 6. Switch Smelt's cwd back to the base checkout before removing the worktree.
 7. Remove the managed worktree.
 8. Delete the finished local branch.
-9. Stop and answer with one sentence naming the source worktree/branch and the
+9. After all steps succeed, run `smelt session complete` through the bash tool.
+   Report any failure.
+10. Stop and answer with one sentence naming the source worktree/branch and the
    destination branch and checkout path, e.g. "Landed `clarify-background-waiting`
    into `main` in `/home/dev/dev/smelt`; removed the source worktree and branch."
 

@@ -4,9 +4,13 @@
 - When making technical decisions, do not give much weight to development cost.
   Instead, preter quality, simplicity, robustness, scalability, and long term
   maintainability.
-- When doing bug fixes, always start with reproducing the bug in an E2E setting
-  as closely aligned with how an end user would interact with the product. This
-  makes sure you find the real problem so your fix will actually solve it.
+- Reproduce bugs and verify fixes through the real user workflow when practical.
+- Favor tests that protect meaningful behavior, but don't add one for every
+  change. Add coverage where it reduces a real regression risk, not where it
+  merely duplicates existing coverage or restates the implementation. Keep tests
+  proportionate to the risk and their long-term maintenance cost. Test names and
+  assertions should describe the current behavioral contract, not the change
+  history or merely the absence of an old implementation.
 - When end-to-end testing a product, be picky about the UI you see and be
   obsessed with pixel perfection.
 - If something clearly looks off, even if it is not directly related to what you

@@ -1,1 +1,4 @@
 new_window_command = "smelt"
+
+[sidebar]
+working = "manual"
