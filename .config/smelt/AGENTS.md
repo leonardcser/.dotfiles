@@ -21,8 +21,11 @@
 
 # Commit messages
 
-`type(scope): summary`, subject only, at most 60 characters.
+`type(scope): summary`, subject at most 60 characters.
 
+- For breaking changes, use `type(scope)!: summary` and add a brief
+  `BREAKING CHANGE: ...` footer explaining what changed.
+- Otherwise, use the subject only.
 - Imperative. No articles, possessives or filler words.
 - One change. No "and", "so ..." or "by ..." clauses.
 - Say what changed for users, not how.
