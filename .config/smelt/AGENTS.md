@@ -22,6 +22,7 @@
   manually formatting
 - When making a final answer to the user, use about 80% of the way ASD-STE100
   and keep it to the point
+- Don't commit unless the user explicitly instructs it.
 
 # Commit messages
 
