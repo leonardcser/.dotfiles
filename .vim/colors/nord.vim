@@ -26,8 +26,8 @@ let g:colors_name = "nord"
 
 " Editor
 hi Normal        guifg=#D8DEE9 guibg=NONE
-hi CursorLine    guibg=#191D23
-hi CursorLineNr  guifg=#D8DEE9
+hi CursorLine    guibg=#191D23 gui=NONE term=NONE cterm=NONE
+hi CursorLineNr  guifg=#D8DEE9 gui=NONE term=NONE cterm=NONE
 hi LineNr        guifg=#4C566A
 hi ColorColumn   guibg=#191D23
 hi SignColumn     guibg=NONE
