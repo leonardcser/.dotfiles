@@ -1,7 +1,7 @@
 return {
 	"nvim-telescope/telescope.nvim",
 	branch = "master",
-	cmd = { "Telescope", "TodoTelescope" },
+	cmd = "Telescope",
 	keys = {
 		{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Fuzzy find files in cwd" },
 		{
@@ -32,7 +32,6 @@ return {
 		"nvim-lua/plenary.nvim",
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		"nvim-tree/nvim-web-devicons",
-		"folke/todo-comments.nvim",
 	},
 	config = function()
 		local telescope = require("telescope")

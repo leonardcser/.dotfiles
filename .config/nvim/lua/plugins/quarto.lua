@@ -1,12 +1,14 @@
 return {
 	{
 		"quarto-dev/quarto-nvim",
+		init = function()
+			require("config.dev").load_on_filetype("quarto-nvim", { "quarto", "markdown" })
+		end,
 		dependencies = {
 			"jmbuhr/otter.nvim",
 			"nvim-treesitter/nvim-treesitter",
 			"Vigemus/iron.nvim",
 		},
-		ft = { "quarto", "markdown" },
 		opts = {
 			lspFeatures = {
 				enabled = true,

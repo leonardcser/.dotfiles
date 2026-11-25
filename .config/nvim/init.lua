@@ -1,3 +1,10 @@
 vim.loader.enable()
 require("config.core")
+require("config.viewer")
 require("config.lazy")
+require("config.statusline")
+require("config.theme").restore()
+
+vim.api.nvim_create_user_command("Dev", function()
+	require("config.dev").enable()
+end, { desc = "Enable development tools in this session" })

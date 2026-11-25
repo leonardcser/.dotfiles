@@ -1,6 +1,7 @@
 return {
 	"nvim-treesitter/nvim-treesitter-context",
-	event = { "BufReadPre", "BufNewFile" },
+	event = "User Dev",
+	cmd = "TSContext",
 	config = function()
 		require("treesitter-context").setup({
 			enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)

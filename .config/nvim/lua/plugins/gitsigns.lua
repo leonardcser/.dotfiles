@@ -1,6 +1,8 @@
 return {
 	"lewis6991/gitsigns.nvim",
-	event = { "BufReadPost", "BufNewFile" },
+	module = false, -- Optional integrations must not load Gitsigns before opt-in.
+	event = "User Dev",
+	cmd = "Gitsigns",
 	opts = {
 		on_attach = function(bufnr)
 			local gs = package.loaded.gitsigns

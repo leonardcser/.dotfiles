@@ -1,9 +1,7 @@
 return {
 	"petertriho/nvim-scrollbar",
-	event = { "BufReadPost", "BufNewFile" },
-	dependencies = {
-		"lewis6991/gitsigns.nvim",
-	},
+	event = "User Dev",
+	cmd = "ScrollbarShow",
 	config = function()
 		require("scrollbar").setup({
 			scrollbar = {

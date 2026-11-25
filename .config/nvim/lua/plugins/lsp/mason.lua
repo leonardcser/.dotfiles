@@ -1,6 +1,6 @@
 return {
 	"williamboman/mason.nvim",
-	event = { "BufReadPre", "BufNewFile" },
+	event = "User Dev",
 	dependencies = {
 		"neovim/nvim-lspconfig",
 		"hrsh7th/cmp-nvim-lsp",
@@ -84,8 +84,10 @@ return {
 			},
 		})
 
-			vim.lsp.config("beancount", {
-			cmd = { vim.fn.expand("~/dev/thirdparty/beancount-language-server/target/release/beancount-language-server") },
+		vim.lsp.config("beancount", {
+			cmd = {
+				vim.fn.expand("~/dev/thirdparty/beancount-language-server/target/release/beancount-language-server"),
+			},
 			init_options = {
 				journal_file = vim.fn.getcwd() .. "/main.beancount",
 			},
@@ -115,26 +117,16 @@ return {
 			},
 		})
 
-		-- bigfile.nvim clears the filetype after detection. Veto activation before
-		-- a server can start for the transient filetype, not after LspAttach.
-		for _, name in ipairs(servers) do
-			local root_dir = vim.lsp.config[name].root_dir
-			vim.lsp.config(name, {
-				root_dir = function(bufnr, on_dir)
-					if vim.b[bufnr].bigfile_detected == 1 then
-						return
-					end
-					if type(root_dir) == "function" then
-						return root_dir(bufnr, on_dir)
-					end
-					on_dir(root_dir) -- nil preserves native root_markers lookup
-				end,
-			})
-		end
-
-		if vim.g.lsp_enabled then
-			vim.lsp.enable(servers)
-		end
+		local lsp_enabled = true
+		vim.lsp.enable(servers)
+		vim.keymap.set("n", "<leader>la", function()
+			lsp_enabled = not lsp_enabled
+			vim.lsp.enable(servers, lsp_enabled)
+			if not lsp_enabled then
+				require("config.statusline").clear_progress()
+			end
+			vim.notify(lsp_enabled and "LSP enabled" or "LSP disabled", vim.log.levels.INFO)
+		end, { desc = "Toggle LSP" })
 
 		-- Disable ruff hover in favor of python lsp
 		vim.api.nvim_create_autocmd("LspAttach", {

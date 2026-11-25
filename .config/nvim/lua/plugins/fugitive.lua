@@ -1,13 +1,51 @@
+local function output(argv)
+	local cwd = vim.fn.FugitiveWorkTree()
+	if cwd == "" or vim.fn.executable(argv[1]) == 0 then return nil end
+	local result = vim.system(argv, { cwd = cwd, text = true }):wait()
+	if result.code == 0 then return vim.trim(result.stdout) end
+end
+
+local function remote_url()
+	local url = output({ "git", "remote", "get-url", "origin" })
+	if not url then
+		vim.notify("No origin remote for this repository", vim.log.levels.WARN)
+		return nil
+	end
+	return (url:gsub("^git@github.com:", "https://github.com/"):gsub("%.git$", ""))
+end
+
 return {
 	"tpope/vim-fugitive",
 	cmd = { "Git", "G", "Gdiffsplit", "Gvdiffsplit", "Gread", "Gwrite", "Ggrep", "GMove", "GDelete", "GBrowse" },
 	keys = {
+		{ "<leader>gi", "<cmd>Git init<cr>", desc = "Initialize Git repository" },
+		{ "<leader>gl", "<cmd>Git log<cr>", desc = "Show Git log" },
+		{ "<leader>ga", "<cmd>Git add -u<cr>", desc = "Stage tracked changes" },
+		{ "<leader>gp", "<cmd>Git push origin<cr>", desc = "Push to origin" },
+		{ "<leader>gP", "<cmd>Git pull --rebase --prune<cr>", desc = "Pull with rebase" },
+		{ "<leader>gf", "<cmd>Git push --force-with-lease<cr>", desc = "Push with lease" },
+		{ "<leader>gr", function()
+			local count = tonumber(output({ "git", "rev-list", "--count", "HEAD" }))
+			if count then vim.cmd(count <= 6 and "Git rebase -i --root" or "Git rebase -i HEAD~6") end
+		end, desc = "Interactive rebase" },
+		{ "<leader>gu", function()
+			local url = remote_url()
+			if url then vim.fn.setreg("+", url); vim.notify("Copied remote URL") end
+		end, desc = "Copy remote URL" },
+		{ "<leader>go", function()
+			local url = remote_url()
+			if not url then return end
+			local branch = output({ "git", "branch", "--show-current" })
+			if branch and branch ~= "" and branch ~= "main" and branch ~= "master" then
+				url = output({ "gh", "pr", "view", "--json", "url", "-q", ".url" }) or (url .. "/tree/" .. branch)
+			end
+			vim.ui.open(url)
+		end, desc = "Open Git repository" },
 		{
 			"<leader>gs",
 			function()
 				-- Check if we're in a Git repository
-				local git_root = vim.fn.system("git rev-parse --show-toplevel 2>/dev/null"):gsub("\n", "")
-				if git_root == "" or vim.v.shell_error ~= 0 then
+				if vim.fn.FugitiveGitDir() == "" then
 					vim.notify("Not in a Git repository", vim.log.levels.WARN)
 					return
 				end
@@ -247,6 +285,9 @@ return {
 					end
 				end
 
+				local root = vim.fn.FugitiveWorkTree(buf)
+				if root == "" then return end
+				local git_opts = { cwd = root, text = true }
 				local total_jobs = 3 + ((#shas > 0) and 1 or 0)
 				local done = 0
 				local unstaged_out, staged_out, commit_out, head_out = "", "", "", ""
@@ -268,15 +309,15 @@ return {
 						)
 					end)
 				end
-				vim.system({ "git", "diff", "--numstat" }, { text = true }, function(obj)
+				vim.system({ "git", "diff", "--numstat" }, git_opts, function(obj)
 					unstaged_out = obj.stdout or ""
 					on_complete()
 				end)
-				vim.system({ "git", "diff", "--cached", "--numstat" }, { text = true }, function(obj)
+				vim.system({ "git", "diff", "--cached", "--numstat" }, git_opts, function(obj)
 					staged_out = obj.stdout or ""
 					on_complete()
 				end)
-				vim.system({ "git", "diff", "--numstat", "origin/HEAD...HEAD" }, { text = true }, function(obj)
+				vim.system({ "git", "diff", "--numstat", "origin/HEAD...HEAD" }, git_opts, function(obj)
 					if obj.code == 0 then
 						head_out = obj.stdout or ""
 					end
@@ -287,7 +328,7 @@ return {
 					for _, sha in ipairs(shas) do
 						table.insert(cmd, sha)
 					end
-					vim.system(cmd, { text = true }, function(obj)
+					vim.system(cmd, git_opts, function(obj)
 						commit_out = obj.stdout or ""
 						on_complete()
 					end)

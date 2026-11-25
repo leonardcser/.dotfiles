@@ -104,7 +104,9 @@ return {
 		})
 
 		-- The integration registers hooks only if the tree module is already loaded.
-		require("lsp-file-operations").setup()
+		require("config.dev").on(function()
+			require("lsp-file-operations").setup()
+		end)
 		local api = require("nvim-tree.api")
 		api.events.subscribe(api.events.Event.FileCreated, function(file)
 			vim.cmd("edit " .. vim.fn.fnameescape(file.fname))

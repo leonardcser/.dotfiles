@@ -1,6 +1,6 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
-	lazy = false,
+	event = "User Dev",
 	branch = "main",
 	build = ":TSUpdate",
 	dependencies = {
@@ -45,7 +45,7 @@ return {
 			desc = "Start treesitter and install parser if missing",
 			callback = function(args)
 				local lang = vim.treesitter.language.get_lang(args.match)
-				if not lang or vim.b[args.buf].bigfile_detected == 1 then
+				if not lang then
 					return
 				end
 				if vim.treesitter.language.add(lang) then

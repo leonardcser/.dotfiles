@@ -1,6 +1,6 @@
 return {
 	"artemave/workspace-diagnostics.nvim",
-	event = { "BufReadPre", "BufNewFile" },
+	event = "User Dev",
 	config = function()
 		require("workspace-diagnostics").setup()
 	end,

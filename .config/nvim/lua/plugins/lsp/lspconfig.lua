@@ -1,6 +1,6 @@
 return {
 	"neovim/nvim-lspconfig",
-	event = { "BufReadPre", "BufNewFile" },
+	lazy = true, -- Loaded by Mason when a configured server supports the buffer.
 	dependencies = {
 		{ "folke/neodev.nvim", opts = {} },
 	},

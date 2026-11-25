@@ -4,7 +4,7 @@ return {
 	dir = vim.fn.stdpath("config") .. "/custom/cursortab.nvim",
 	-- dir = "/Users/leo/.dotfiles/.config/nvim/custom/cursortab.nvim-feat-side-side",
 	build = "cd server && go build",
-	event = "InsertEnter",
+	event = "User Dev",
 	cmd = { "CursortabToggle", "CursortabShowLog", "CursortabClearLog", "CursortabStatus", "CursortabRestart" },
 	keys = {
 		{ "<leader>lt", "<cmd>CursortabToggle<CR>", desc = "Toggle Cursortab" },

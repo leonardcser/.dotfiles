@@ -1,6 +1,6 @@
 return {
   "windwp/nvim-autopairs",
-  event = { "InsertEnter" },
+  event = "User Dev",
   dependencies = {
     "hrsh7th/nvim-cmp",
   },

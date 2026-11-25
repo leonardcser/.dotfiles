@@ -3,11 +3,6 @@ vim.g.mapleader = " "
 
 local keymap = vim.keymap -- for conciseness
 
-local function copy_to_clipboard(text)
-	vim.fn.setreg("+", text)
-	vim.notify("Copied: " .. text)
-end
-
 -- General Keymaps -------------------
 -- disable moving up and down
 vim.api.nvim_set_keymap("", "<Up>", "<Nop>", { noremap = true, silent = true })
@@ -58,63 +53,6 @@ keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" }) --  
 keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) --  go to previous tab
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
 
--- Git keymaps
-keymap.set("n", "<leader>gi", ":Git init<CR>", { desc = "Initialize git repository" })
-keymap.set("n", "<leader>go", function()
-	local remote_url = vim.fn.system("git config --get remote.origin.url"):gsub("\n", "")
-	if remote_url == "" then
-		print("No remote URL found.")
-		return
-	end
-	local url = remote_url:gsub("git@github.com:", "https://github.com/"):gsub("%.git$", "")
-	local branch = vim.fn.system("git rev-parse --abbrev-ref HEAD"):gsub("\n", "")
-	if branch ~= "" and branch ~= "main" and branch ~= "master" and branch ~= "HEAD" then
-		local pr_url = vim.fn.system("gh pr view --json url -q .url 2>/dev/null"):gsub("\n", "")
-		url = pr_url ~= "" and pr_url or url .. "/tree/" .. branch
-	end
-	vim.ui.open(url)
-end, { desc = "Open git repository" })
-keymap.set("n", "<leader>gl", ":Git log<CR>", { desc = "Show git log" })
-keymap.set("n", "<leader>gp", ":Git push origin<CR>", { desc = "Push git changes" })
-keymap.set("n", "<leader>gP", ":Git pull --rebase --prune<CR>", { desc = "Pull git changes" })
-keymap.set("n", "<leader>ga", ":Git add -u<CR>", { desc = "Add git changes" })
-keymap.set("n", "<leader>gf", ":Git push --force-with-lease<CR>", { desc = "Push git changes (force-with-lease)" })
-keymap.set("n", "<leader>gr", function()
-	local output = vim.fn.system("git rev-list --count HEAD 2>/dev/null"):gsub("\n", "")
-	local commit_count = tonumber(output) or 0
-	if commit_count <= 6 then
-		vim.cmd("Git rebase -i --root")
-	else
-		vim.cmd("Git rebase -i HEAD~6")
-	end
-end, { desc = "Interactive git rebase" })
-keymap.set("n", "<leader>gu", function()
-	local remote_url = vim.fn.system("git config --get remote.origin.url"):gsub("\n", "")
-	if remote_url == "" then
-		print("No remote URL found.")
-		return
-	end
-	local url = remote_url:gsub("git@github.com:", "https://github.com/"):gsub("%.git$", "")
-	copy_to_clipboard(url)
-end, { desc = "Copy remote git URL" })
-
--- LSP toggle
-vim.g.lsp_enabled = true
-keymap.set("n", "<leader>la", function()
-	if vim.g.lsp_enabled then
-		vim.lsp.enable(require("config.servers"), false)
-		vim.g.lsp_enabled = false
-		_G.lsp_progress = { client = "", msg = "", pct = 0, active = false }
-		vim.cmd("redrawstatus")
-		vim.notify("LSP disabled", vim.log.levels.INFO)
-	else
-		require("lazy").load({ plugins = { "mason.nvim", "nvim-lspconfig" } })
-		vim.lsp.enable(require("config.servers"))
-		vim.g.lsp_enabled = true
-		vim.notify("LSP enabled", vim.log.levels.INFO)
-	end
-end, { desc = "Toggle LSP" })
-
 -- Quickfix list keymaps
 keymap.set("n", "<leader>qo", "<cmd>copen<CR>", { desc = "Open quickfix list" })
 keymap.set("n", "<leader>qc", "<cmd>cclose<CR>", { desc = "Close quickfix list" })
@@ -123,11 +61,11 @@ keymap.set("n", "<leader>qp", "<cmd>cprev<CR>", { desc = "Previous quickfix item
 keymap.set("n", "<leader>qf", "<cmd>cfirst<CR>", { desc = "First quickfix item" })
 keymap.set("n", "<leader>ql", "<cmd>clast<CR>", { desc = "Last quickfix item" })
 
-
 -- Copy absolute path of current buffer
 keymap.set("n", "<leader>cp", function()
 	local path = vim.fn.expand("%:p")
-	copy_to_clipboard(path)
+	vim.fn.setreg("+", path)
+	vim.notify("Copied: " .. path)
 end, { desc = "Copy absolute path" })
 
 -- Make current file executable
@@ -147,7 +85,5 @@ keymap.set("v", "<leader>o", function()
 		return string.format("%%%02X", string.byte(c))
 	end)
 
-	-- Open browser with DuckDuckGo search query
-	local search_url = string.format("https://duckduckgo.com/?q=%s", encoded_text)
-	vim.fn.system(string.format("open %s", vim.fn.shellescape(search_url)))
+	vim.ui.open("https://duckduckgo.com/?q=" .. encoded_text)
 end, { desc = "Search selected text in browser" })
