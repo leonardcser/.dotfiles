@@ -7,7 +7,6 @@
 #.zprofile|symlink|
 .zshenv|symlink|
 .zshrc|symlink|
-.p10k.zsh|symlink|
 .clang-format|symlink|
 .prettierrc.json|symlink|
 .lintr|symlink|

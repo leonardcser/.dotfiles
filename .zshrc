@@ -1,8 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # Slow startup detection — dumps zprof trace when startup exceeds 2s
 zmodload zsh/datetime
 _zshrc_start=$EPOCHREALTIME
@@ -48,43 +43,7 @@ else
   export EDITOR='nvim'
 fi
 
-# --- Zinit ---
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-if [[ ! -d "$ZINIT_HOME" ]]; then
-  mkdir -p "$(dirname $ZINIT_HOME)"
-  git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-fi
-source "${ZINIT_HOME}/zinit.zsh"
-
-# Theme
-zinit ice depth=1
-zinit light romkatv/powerlevel10k
-
-# Vi mode
-function zvm_config() {
-  ZVM_CURSOR_STYLE_ENABLED=false
-  ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
-}
-zinit ice depth=1
-zinit light jeffreytse/zsh-vi-mode
-
-function zvm_after_init() {
-  # fzf (must be sourced here because zvm overrides keybindings)
-  # Use whence instead of $+commands which has a stale hash at this point
-  whence -p fzf &>/dev/null && _evalcache fzf --zsh
-  export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
-  export FZF_CTRL_T_COMMAND='fd --type d --hidden --exclude .git'
-  alias tx=tmux-sessionizer
-  bindkey -s '^F' 'tx\n'
-}
-
-# Plugins (turbo-loaded)
-zinit wait lucid for \
-  atload"_zsh_autosuggest_start" zsh-users/zsh-autosuggestions \
-  atclone"sed -i '' '/chroma-ssh-counter/,\$s/(( next_word = 1 ))/(( next_word = 2 ))/' →chroma/-ssh.ch" atpull"%atclone" \
-  atload"fast-theme ${HOME}/.config/zsh/fsh-default.ini &>/dev/null" zdharma-continuum/fast-syntax-highlighting \
-  OMZP::colored-man-pages \
-  OMZP::colorize
+bindkey -v
 
 # --- Shell options ---
 DISABLE_AUTO_TITLE="true"
@@ -105,12 +64,8 @@ unsetopt PROMPT_SP
 # zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
 
-# Prompt
-MODE_INDICATOR="%F{white}-%f"
-INSERT_MODE_INDICATOR="%F{cyan}+%f"
-PROMPT="\$(vi_mode_prompt_info)$PROMPT"
-RPROMPT=""
-VIRTUAL_ENV_DISABLE_PROMPT=
+# The prompt displays the venv itself; don't let activate prepend it again.
+export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 # History
 HISTFILE=~/.zsh_history
@@ -133,13 +88,28 @@ export CMAKE_EXPORT_COMPILE_COMMANDS=ON
 # --- Tool inits (cached via evalcache) ---
 source "${HOME}/.config/zsh/plugins/evalcache.plugin.zsh"
 
+# Shims select the project's tool version without running a prompt hook.
+_mise_shims=${MISE_DATA_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/mise}/shims
+if [[ -d $_mise_shims ]]; then
+  path=("$_mise_shims" "${(@)path:#$_mise_shims}")
+fi
+unset _mise_shims
+
+whence -p fzf &>/dev/null && _evalcache fzf --zsh
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
+export FZF_CTRL_T_COMMAND='fd --type d --hidden --exclude .git'
+alias tx=tmux-sessionizer
+bindkey -s '^F' 'tx\n'
 (( $+commands[zoxide] )) && _evalcache zoxide init zsh
-(( $+commands[mise] )) && _evalcache mise activate zsh
 (( $+commands[direnv] )) && _evalcache direnv hook zsh
 
-# GPG (deferred to avoid tty fork at startup)
-_gpg_tty_init() { export GPG_TTY=$(tty); }
-precmd_functions+=(_gpg_tty_init)
+# Use the controlling terminal directly; keep the stdin probe as a fallback.
+if [[ -n $TTY ]]; then
+  export GPG_TTY=$TTY
+else
+  _gpg_tty_init() { export GPG_TTY=$(tty); }
+  precmd_functions+=(_gpg_tty_init)
+fi
 
 # --- Aliases ---
 alias zshconfig="nvim ~/.zshrc"
@@ -254,8 +224,18 @@ fi
 # Machine-local settings
 [[ ! -f ~/.zshrc.local ]] || source ~/.zshrc.local
 
-# Powerlevel10k config
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+source "$HOME/.config/zsh/prompt.zsh"
 
 # bun completions
 [ -s "${BUN_INSTALL:-$HOME/.bun}/_bun" ] && source "${BUN_INSTALL:-$HOME/.bun}/_bun"
+
+# Load the installed plugins directly, with highlighting last so it sees the final keybindings.
+_zsh_plugins=${XDG_DATA_HOME:-$HOME/.local/share}/zinit/plugins
+_suggest=$_zsh_plugins/zsh-users---zsh-autosuggestions/zsh-autosuggestions.zsh
+_highlight=$_zsh_plugins/zdharma-continuum---fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+[[ ! -r $_suggest ]] || source "$_suggest"
+if [[ -r $_highlight ]]; then
+  : ${FAST_WORK_DIR:=${XDG_CACHE_HOME:-$HOME/.cache}/fsh}
+  source "$_highlight"
+fi
+unset _zsh_plugins _suggest _highlight

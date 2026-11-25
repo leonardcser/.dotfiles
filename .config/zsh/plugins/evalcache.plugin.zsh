@@ -21,11 +21,19 @@ function _evalcache () {
     data=${data}$(typeset -f "${name}")
   fi
 
-  if builtin command -v md5 > /dev/null; then
-    cmdHash=$(echo -n "${data}" | md5)
-  elif builtin command -v md5sum > /dev/null; then
-    cmdHash=$(echo -n "${data}" | md5sum | cut -d' ' -f1)
-  fi
+  # These MD5s keep existing cache files usable without forking on the hot path.
+  case "$data" in
+    'zoxide init zsh')   cmdHash=dd15fbbae9cb3276f5c4139e43392f81 ;;
+    'mise activate zsh') cmdHash=8d6a6bfdd12dbe9cb7cb2af5f3fb92a3 ;;
+    'direnv hook zsh')   cmdHash=c24b0a2617cfac5ba87229adccd1eb40 ;;
+    'fzf --zsh')         cmdHash=3bac096bc498334848f27470d2e2fe45 ;;
+    *)
+      if builtin command -v md5 > /dev/null; then
+        cmdHash=$(echo -n "${data}" | md5)
+      elif builtin command -v md5sum > /dev/null; then
+        cmdHash=$(echo -n "${data}" | md5sum | cut -d' ' -f1)
+      fi ;;
+  esac
 
   local cacheFile="$ZSH_EVALCACHE_DIR/init-${name##*/}-${cmdHash}.sh"
 
