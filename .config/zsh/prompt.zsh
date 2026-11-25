@@ -28,6 +28,12 @@ _fast_prompt_keymap() {
   zle reset-prompt
 }
 
+_fast_prompt_finish() {
+  local PROMPT='%(?.%F{76}.%F{196})>%f ' RPROMPT=''
+  zle reset-prompt
+}
+
 autoload -Uz add-zsh-hook add-zle-hook-widget
 add-zsh-hook precmd _fast_prompt_update
 add-zle-hook-widget keymap-select _fast_prompt_keymap
+add-zle-hook-widget line-finish _fast_prompt_finish
