@@ -92,6 +92,7 @@ smelt.provider.register("copilot", {
 -- Opt-in plugins
 -- require("smelt.plugins.subagents")
 require("smelt.plugins.which_key")
+require("smelt.plugins.goal")
 require("smelt.plugins.lsp").setup({
 	start = "background",
 	servers = {
@@ -117,22 +118,39 @@ end, { desc = "resume session" })
 
 -- Permissions
 --
--- Mode keys: default (cross-mode baseline), normal, plan, apply, yolo.
--- Inside each mode, `tools = { allow/ask/deny }` is the per-tool list;
--- every other key is a per-tool subpattern bucket (e.g. `bash`,
--- `web_fetch`, `mcp`, or any custom-named tool).
-smelt.permissions.extend({
-	default = {
-		tools = { allow = { "web_search" } },
-		patterns = {
-			web_fetch = { allow = { "*" } },
-			mcp = { allow = { "nvim_lsp_read_lints" } },
-		},
-		paths = {
-			allow = { "/tmp", "/private/tmp", "~/.cargo" },
-		},
-	},
-})
+-- Path rules apply in every mode. The workspace and temp dirs are
+-- already "allow" by default.
+smelt.permissions.paths({ ["~/.cargo"] = "allow" })
+
+-- Tools that run without asking in every mode.
+local always_allow = {
+	web_search = true,
+	web_fetch = true,
+	nvim_lsp_read_lints = true,
+	-- Claude Code's Agent is "full". Its subagent's tool calls still go
+	-- through this policy.
+	Agent = true,
+	-- Claude Code's SendMessage is "full" because it can also reach other
+	-- sessions. Allow it like Agent.
+	SendMessage = true,
+}
+-- Claude Code's own Bash runs outside smelt's sandbox, so smelt counts it as
+-- "full". In write mode, run it without asking anyway.
+local function claude_code_bash_in_write(call)
+	if call.tool ~= "bash" or call.mode.name ~= "write" then
+		return false
+	end
+	local ok, model = pcall(smelt.model.current)
+	return ok and model ~= nil and model:find("^claude%-code/") ~= nil
+end
+
+local check = smelt.permissions.check
+smelt.permissions.check = function(call)
+	if always_allow[call.tool] or claude_code_bash_in_write(call) then
+		return "allow"
+	end
+	return check(call)
+end
 
 -- Settings — boolean preferences. Defaults shown; uncomment to override.
 smelt.settings.vim = true
@@ -143,6 +161,16 @@ smelt.settings.vim = true
 smelt.settings.show_prediction = false -- ghost-text input prediction
 -- smelt.settings.show_slug = true             -- task slug pill in statusline
 -- smelt.settings.show_thinking = true         -- render thinking blocks
-smelt.settings.restrict_to_workspace = false -- allow tool access outside workspace
 smelt.settings.autoupgrade_channel = "unstable"
 smelt.settings.file_icons = true
+
+-- File finder keymaps
+smelt.keymap.set("n", "<leader>ff", function()
+	smelt.cmd.run("files all")
+end, { desc = "find all files" })
+smelt.keymap.set("n", "<leader>fg", function()
+	smelt.cmd.run("files git")
+end, { desc = "find git files" })
+smelt.keymap.set("n", "<leader>fs", function()
+	smelt.cmd.run("search all")
+end, { desc = "search all file contents" })
