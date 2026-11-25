@@ -229,13 +229,34 @@ source "$HOME/.config/zsh/prompt.zsh"
 # bun completions
 [ -s "${BUN_INSTALL:-$HOME/.bun}/_bun" ] && source "${BUN_INSTALL:-$HOME/.bun}/_bun"
 
-# Load the installed plugins directly, with highlighting last so it sees the final keybindings.
+# History suggestions must work on the very first command.
 _zsh_plugins=${XDG_DATA_HOME:-$HOME/.local/share}/zinit/plugins
 _suggest=$_zsh_plugins/zsh-users---zsh-autosuggestions/zsh-autosuggestions.zsh
-_highlight=$_zsh_plugins/zdharma-continuum---fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 [[ ! -r $_suggest ]] || source "$_suggest"
-if [[ -r $_highlight ]]; then
+
+_load_idle_highlight() {
+  (( PENDING || KEYS_QUEUED_COUNT )) && return 0
+  zle -F "$1"
+  exec {_highlight_fd}<&-
   : ${FAST_WORK_DIR:=${XDG_CACHE_HOME:-$HOME/.cache}/fsh}
-  source "$_highlight"
+  source "$_idle_highlight_script" || return
+  unset _idle_highlight_script
+  # Rewrap the new editing widgets and color the current line without a keystroke.
+  (( $+functions[_zsh_autosuggest_start] )) && _zsh_autosuggest_start
+  _zsh_highlight
+  (( $+functions[_zsh_autosuggest_highlight_apply] )) && _zsh_autosuggest_highlight_apply
+  zle -R
+}
+_arm_idle_highlight() {
+  add-zle-hook-widget -d line-init _arm_idle_highlight
+  # A one-shot timer wakes ZLE; the shell does not wait for it to draw the prompt.
+  exec {_highlight_fd}< <(command sleep 0.1)
+  zle -F -w "$_highlight_fd" _load_idle_highlight
+}
+_idle_highlight_script=$_zsh_plugins/zdharma-continuum---fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+if [[ -r $_idle_highlight_script ]] && (( ! $+functions[_zsh_highlight] )); then
+  autoload -Uz add-zle-hook-widget
+  zle -N _load_idle_highlight
+  add-zle-hook-widget line-init _arm_idle_highlight
 fi
-unset _zsh_plugins _suggest _highlight
+unset _zsh_plugins _suggest
