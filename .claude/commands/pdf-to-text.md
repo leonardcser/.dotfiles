@@ -13,9 +13,9 @@ the output alongside the source PDF with a `.md` extension.
 Run:
 
 ```bash
-curl -sk -X POST -H "Authorization: Bearer $BOX_API_KEY" \
+curl -s -X POST -H "Authorization: Bearer $BOX_API_KEY" \
   -F "file=@$1" \
-  "https://utils.box.home.arpa/pdf-to-text" > "${1%.pdf}.md"
+  "https://utils.home.devleo.ch/pdf-to-text" > "${1%.pdf}.md"
 ```
 
 Then report the output path.
