@@ -12,48 +12,51 @@ return {
 		local pending_installs = {}
 		local bootstrap_langs = { "lua", "vim", "vimdoc", "query" }
 
-		local function ensure_parser(lang, on_ready)
+		local function install_parser(lang, on_ready)
+			if pending_installs[lang] then
+				if on_ready then
+					table.insert(pending_installs[lang], on_ready)
+				end
+				return
+			end
 			if not vim.list_contains(nts.get_available(), lang) then
 				return
 			end
-			if vim.list_contains(nts.get_installed(), lang) then
-				if on_ready then
-					on_ready()
-				end
-				return
-			end
-			if pending_installs[lang] then
-				return
-			end
-
-			pending_installs[lang] = true
+			pending_installs[lang] = { on_ready }
 			nts.install(lang):await(function(err, ok)
+				local callbacks = pending_installs[lang]
 				pending_installs[lang] = nil
-				if err or not ok then
-					return
-				end
-				if on_ready then
-					vim.schedule(on_ready)
+				if not err and ok then
+					for _, callback in ipairs(callbacks) do
+						vim.schedule(callback)
+					end
 				end
 			end)
 		end
 
+		local installed = nts.get_installed()
 		for _, lang in ipairs(bootstrap_langs) do
-			ensure_parser(lang)
+			if not vim.list_contains(installed, lang) then
+				install_parser(lang)
+			end
 		end
 
 		vim.api.nvim_create_autocmd("FileType", {
 			desc = "Start treesitter and install parser if missing",
 			callback = function(args)
 				local lang = vim.treesitter.language.get_lang(args.match)
-				if not lang then
+				if not lang or vim.b[args.buf].bigfile_detected == 1 then
 					return
 				end
-				ensure_parser(lang, function()
-					if vim.api.nvim_buf_is_valid(args.buf) then
-						vim.treesitter.start(args.buf, lang)
-					end
-				end)
+				if vim.treesitter.language.add(lang) then
+					vim.treesitter.start(args.buf, lang)
+				else
+					install_parser(lang, function()
+						if vim.api.nvim_buf_is_loaded(args.buf) and vim.bo[args.buf].filetype == args.match then
+							vim.treesitter.start(args.buf, lang)
+						end
+					end)
+				end
 			end,
 		})
 

@@ -4,7 +4,11 @@ return {
 	dir = vim.fn.stdpath("config") .. "/custom/cursortab.nvim",
 	-- dir = "/Users/leo/.dotfiles/.config/nvim/custom/cursortab.nvim-feat-side-side",
 	build = "cd server && go build",
-	lazy = false,
+	event = "InsertEnter",
+	cmd = { "CursortabToggle", "CursortabShowLog", "CursortabClearLog", "CursortabStatus", "CursortabRestart" },
+	keys = {
+		{ "<leader>lt", "<cmd>CursortabToggle<CR>", desc = "Toggle Cursortab" },
+	},
 	dependencies = { "zbirenbaum/copilot.lua" },
 	config = function()
 		require("cursortab").setup({
@@ -49,8 +53,5 @@ return {
 			-- },
 		})
 
-		-- set keymaps
-		local keymap = vim.keymap -- for conciseness
-		keymap.set("n", "<leader>lt", ":CursortabToggle<CR>", { desc = "Toggle Cursortab" })
 	end,
 }

@@ -3,6 +3,7 @@ return {
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
 		"nvim-tree-crossclip",
+		"antosha417/nvim-lsp-file-operations",
 	},
 	cmd = { "NvimTreeToggle", "NvimTreeFindFileToggle", "NvimTreeRefresh" },
 	init = function()
@@ -102,6 +103,8 @@ return {
 			end,
 		})
 
+		-- The integration registers hooks only if the tree module is already loaded.
+		require("lsp-file-operations").setup()
 		local api = require("nvim-tree.api")
 		api.events.subscribe(api.events.Event.FileCreated, function(file)
 			vim.cmd("edit " .. vim.fn.fnameescape(file.fname))

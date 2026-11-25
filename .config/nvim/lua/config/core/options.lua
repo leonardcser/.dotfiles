@@ -42,10 +42,13 @@ vim.opt.undofile = true
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 -- trigger `autoread` when files changes on disk
 vim.opt.autoread = true
-vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
-	callback = function()
-		if vim.fn.mode() ~= "c" then
-			vim.cmd("checktime")
+vim.api.nvim_create_autocmd("FocusGained", {
+	command = "checktime",
+})
+vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI" }, {
+	callback = function(ev)
+		if vim.fn.mode() ~= "c" and vim.bo[ev.buf].buftype == "" then
+			vim.cmd.checktime(ev.buf)
 		end
 	end,
 })
@@ -133,8 +136,8 @@ local function statusline()
 		table.insert(right, "%#StlLsp#" .. spinner_frames[idx] .. " " .. text)
 	end
 
-	local ok, tracker = pcall(require, "wpm-tracker")
-	if ok and tracker.get_current_wpm() > 0 then
+	local tracker = package.loaded["wpm-tracker"]
+	if tracker and tracker.get_current_wpm() > 0 then
 		table.insert(right, "%#StlWpm#" .. tracker.get_wpm_display())
 	end
 

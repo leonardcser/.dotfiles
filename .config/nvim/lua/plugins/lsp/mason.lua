@@ -2,15 +2,11 @@ return {
 	"williamboman/mason.nvim",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
-		"williamboman/mason-lspconfig.nvim",
-		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		"neovim/nvim-lspconfig",
 		"hrsh7th/cmp-nvim-lsp",
 	},
 	config = function()
 		local mason = require("mason")
-		local mason_lspconfig = require("mason-lspconfig")
-		local mason_tool_installer = require("mason-tool-installer")
 
 		-- Configure servers using the new vim.lsp.config() API
 		vim.lsp.config("cssls", {
@@ -119,27 +115,26 @@ return {
 			},
 		})
 
-		mason_lspconfig.setup({
-			ensure_installed = servers,
-			automatic_installation = true,
-			automatic_enable = false,
-		})
+		-- bigfile.nvim clears the filetype after detection. Veto activation before
+		-- a server can start for the transient filetype, not after LspAttach.
+		for _, name in ipairs(servers) do
+			local root_dir = vim.lsp.config[name].root_dir
+			vim.lsp.config(name, {
+				root_dir = function(bufnr, on_dir)
+					if vim.b[bufnr].bigfile_detected == 1 then
+						return
+					end
+					if type(root_dir) == "function" then
+						return root_dir(bufnr, on_dir)
+					end
+					on_dir(root_dir) -- nil preserves native root_markers lookup
+				end,
+			})
+		end
 
 		if vim.g.lsp_enabled then
 			vim.lsp.enable(servers)
 		end
-
-		mason_tool_installer.setup({
-			ensure_installed = {
-				"prettier",
-				"prettierd",
-				"stylua",
-				"eslint_d",
-				"clang-format",
-				"typstyle",
-				"biome",
-			},
-		})
 
 		-- Disable ruff hover in favor of python lsp
 		vim.api.nvim_create_autocmd("LspAttach", {
