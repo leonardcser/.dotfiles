@@ -210,15 +210,24 @@ if [[ $OS_TYPE == "macos" ]]; then
   pdwatch() { /Users/leo/dev/go/pdwatch/pdwatch $@; }
 fi
 
-# --- Secrets (from macOS Keychain, deferred) ---
-if [[ $OS_TYPE == "macos" && -f ~/.secrets-keys ]]; then
-  _load_secrets() {
-    while IFS= read -r key; do
-      [[ -n "$key" ]] && export "$key"=$(security find-generic-password -a "$USER" -s "$key" -w 2>/dev/null)
-    done < ~/.secrets-keys
-    precmd_functions=(${precmd_functions:#_load_secrets})
+# --- On-demand macOS Keychain credentials ---
+if [[ $OS_TYPE == macos ]]; then
+  with-secret() {
+    emulate -L zsh
+    unsetopt xtrace
+    if (( $# < 2 )) || [[ $1 != [A-Z_]* || $1 == *[^A-Z0-9_]* ]]; then
+      print -u2 'usage: with-secret KEY executable [args...]'
+      return 2
+    fi
+    local key=$1 value
+    shift
+    value=${(P)key}
+    if [[ -z $value ]]; then
+      value=$(command security find-generic-password -a "$USER" -s "$key" -w) || return 1
+    fi
+    local -x "$key=$value"
+    command "$@"
   }
-  precmd_functions+=(_load_secrets)
 fi
 
 # Machine-local settings

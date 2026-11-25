@@ -21,13 +21,11 @@
 
 ## Secrets
 
-Secrets are stored in macOS Keychain and exported as environment variables on
-shell startup.
+On macOS, store a key once, then use `with-secret` to give it to one command:
 
-```bash
-# Add a new secret
-echo "MY_SECRET_KEY" >> ~/.secrets-keys
-read -s "?Value: " val && security add-generic-password -a "$USER" -s "MY_SECRET_KEY" -w "$val" -U; unset val
+```zsh
+security add-generic-password -U -a "$USER" -s BOX_API_KEY -w
+with-secret BOX_API_KEY smelt
 ```
 
 ## Maintenance
