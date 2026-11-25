@@ -21,5 +21,10 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   export PATH="$PATH:$HOME/.lmstudio/bin"
 fi
 
+# Keep forwarded agents; otherwise use the OpenSSH user socket on Linux.
+if [[ $OSTYPE == linux* && -z ${SSH_AUTH_SOCK:-} && -n ${XDG_RUNTIME_DIR:-} && -S $XDG_RUNTIME_DIR/openssh_agent ]]; then
+  export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/openssh_agent"
+fi
+
 # Local secrets (gitignored)
 [ -f "$HOME/.dotfiles/.env" ] && source "$HOME/.dotfiles/.env"

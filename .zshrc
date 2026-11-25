@@ -32,6 +32,15 @@ else
   (( $+commands[fdfind] )) && alias fd=fdfind
 fi
 
+# Load the signing key into the local agent, never into a forwarded agent.
+if [[ -o interactive && $OSTYPE == linux* && -n ${XDG_RUNTIME_DIR:-} &&
+      $SSH_AUTH_SOCK == "$XDG_RUNTIME_DIR/openssh_agent" && -S $SSH_AUTH_SOCK &&
+      -r ~/.ssh/id_ed25519 && -r ~/.ssh/id_ed25519.pub ]]; then
+  if ! ssh-add -L | awk 'NR == 1 { key = $2; next } $2 == key { found = 1 } END { exit !found }' ~/.ssh/id_ed25519.pub -; then
+    ssh-add -q ~/.ssh/id_ed25519
+  fi
+fi
+
 # Editor
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'

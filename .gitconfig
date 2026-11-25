@@ -2,6 +2,8 @@
     name = leonardcser
     email = 73912641+leonardcser@users.noreply.github.com
     signingkey = ~/.ssh/id_ed25519.pub
+[include]
+    path = ~/.dotfiles/.gitconfig.local
 [credential]
     helper = osxkeychain
 [core]

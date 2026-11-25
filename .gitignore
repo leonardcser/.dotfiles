@@ -27,6 +27,9 @@ tasks/
 # Git worktrees
 .worktrees/
 
+# Machine-local Git settings
+.gitconfig.local
+
 # Local secrets
 .env
 
