@@ -1,18 +1,35 @@
 [keys]
 "<C-enter>" = "park"
-
-[actions.c]
-cmd = "tmux set-buffer -w -- {root}"
-mode = "run"
-description = "copy project root path"
+"<space><space>" = "toggle-read"
 
 [actions.f]
 cmd = "~/.local/bin/scripts/tmux-sessionizer"
 mode = "window"
-view = "both"
 description = "tmux sessionizer"
 
-# Temporary: release-fast build of the smelt git-status worktree.
-[actions.v]
-cmd = "/home/dev/dev/smelt/.worktrees/git-status/target/release-fast/smelt diff"
+[actions."<space>gd"]
+cmd = "smelt diff"
 description = "review git changes"
+
+[actions."<space>gD"]
+cmd = "smelt diff"
+checkout = "main"
+description = "review git changes in main"
+
+[actions."<space>ff"]
+cmd = "smelt files"
+description = "find files"
+
+[actions."<space>fF"]
+cmd = "smelt files"
+checkout = "main"
+description = "find files in main"
+
+[actions."<space>fs"]
+cmd = "smelt search"
+description = "search file contents"
+
+[actions."<space>fS"]
+cmd = "smelt search"
+checkout = "main"
+description = "search file contents in main"

@@ -30,6 +30,10 @@ tasks/
 # Machine-local Git settings
 .gitconfig.local
 
+# Machine-local agent instructions
+AGENTS.local.md
+CLAUDE.local.md
+
 # Local secrets
 .env
 

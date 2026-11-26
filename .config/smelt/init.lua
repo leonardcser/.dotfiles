@@ -93,6 +93,8 @@ smelt.provider.register("copilot", {
 -- require("smelt.plugins.subagents")
 require("smelt.plugins.which_key")
 require("smelt.plugins.goal")
+require("smelt.plugins.show_ansi")
+require("smelt.plugins.plot")
 require("smelt.plugins.lsp").setup({
 	start = "background",
 	servers = {
@@ -163,6 +165,22 @@ smelt.settings.show_prediction = false -- ghost-text input prediction
 -- smelt.settings.show_thinking = true         -- render thinking blocks
 smelt.settings.autoupgrade_channel = "unstable"
 smelt.settings.file_icons = true
+
+-- Statusline: save the theme's accent pill for managed worktrees.
+local session_pill_bg = 245
+local slug = smelt.statusline:builtin("slug")
+smelt.statusline:add("slug", {
+	signals = slug.signals,
+	render = function(ctx)
+		local item = slug.render(ctx)
+		local worktree = smelt.signal.get("cwd_worktree")
+		local in_worktree = smelt.signal.get("cwd_managed_worktree") and worktree and worktree ~= ""
+		if item and not in_worktree then
+			item.style = { hl_group = "SmeltSlug", bg = session_pill_bg }
+		end
+		return item
+	end,
+})
 
 -- File finder keymaps
 smelt.keymap.set("n", "<leader>ff", function()
