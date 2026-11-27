@@ -35,6 +35,10 @@ window-decoration = none
 split-divider-color = #595959
 
 working-directory = "/Users/leo/dev"
+# The first window attaches to tmux on the session used last. After a reboot,
+# agent-mux first restores the workspaces marked to start with tmux. If attach
+# fails, keep the first window open with a plain shell, like other windows.
+initial-command = shell:/bin/zsh -lc 'agent-mux attach || exec /bin/zsh -il'
 
 mouse-hide-while-typing = true
 copy-on-select = true

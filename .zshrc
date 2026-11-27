@@ -44,6 +44,9 @@ else
 fi
 
 bindkey -v
+# Allow Backspace to cross the Vi insert boundary after editing or completing text.
+bindkey -M viins '^?' backward-delete-char
+bindkey -M viins '^H' backward-delete-char
 
 # --- Shell options ---
 DISABLE_AUTO_TITLE="true"

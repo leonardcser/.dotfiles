@@ -2,11 +2,6 @@
 "<C-enter>" = "park"
 "<space><space>" = "toggle-read"
 
-[actions.f]
-cmd = "~/.local/bin/scripts/tmux-sessionizer"
-mode = "window"
-description = "tmux sessionizer"
-
 [actions."<space>gd"]
 cmd = "smelt diff"
 description = "review git changes"
@@ -33,3 +28,12 @@ description = "search file contents"
 cmd = "smelt search"
 checkout = "main"
 description = "search file contents in main"
+
+[hosts.dev]
+ssh = "dev@dev"
+
+# The directories the finder (`/`, `agent-mux find`) offers to open.
+[find]
+roots = ["~/dev", "~/.dotfiles", "~/syncthing/vault"]
+depth = 6
+hidden = true

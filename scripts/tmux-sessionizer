@@ -1,74 +1,13 @@
 #!/usr/bin/env bash
-# Credit to https://github.com/ThePrimeagen/tmux-sessionizer
-
-# Configuration constants
-SEARCH_DIRS=("$HOME/dev" "$HOME/.dotfiles" "$HOME/syncthing/vault")
-MAX_DEPTH=6
-
-for command in fzf frecency tmux; do
-    if ! command -v "$command" >/dev/null; then
-        echo "tmux-sessionizer: required command not found: $command" >&2
-        exit 1
-    fi
-done
-
-FD=$(command -v fd || command -v fdfind)
-if [[ -z "$FD" ]]; then
-    echo "tmux-sessionizer: required command not found: fd or fdfind" >&2
-    exit 1
-fi
-
-existing_search_dirs=()
-for directory in "${SEARCH_DIRS[@]}"; do
-    [[ -d "$directory" ]] && existing_search_dirs+=("$directory")
-done
+# Opens a directory's tmux session, from a shell: the one given, else the one
+# picked with fzf from what agent-mux offers. agent-mux switches to the
+# session, restores it, or makes it, and ranks the directories by visits.
+# Inside tmux, `prefix f` runs the same finder in agent-mux itself.
+set -euo pipefail
 
 if [[ $# -eq 1 ]]; then
-    if [[ "$1" == "." ]]; then
-        # Special case: use current working directory folder name
-        selected_name=$(basename "$PWD" | tr . _)
-        selected="$PWD"
-    else
-        selected=$1
-        selected_name=$(basename "$selected" | tr . _)
-        if [[ ! -d "$selected" ]] && ! tmux has-session -t="$selected_name" 2>/dev/null; then
-            echo "Error: Could not find '$selected'."
-            exit 1
-        fi
-    fi
-else
-    selected=$({ frecency top --context=sessionizer | sed "s|^$HOME/|~/|"; printf '%s\n' "${existing_search_dirs[@]}" | sed "s|^$HOME/|~/|"; "$FD" --type d --hidden --exclude .git --max-depth "$MAX_DEPTH" . "${existing_search_dirs[@]}" | sed "s|/$||; s|^$HOME/|~/|" | sort; } | awk '!seen[$0]++' | fzf --scheme=history --tiebreak=index)
+    exec agent-mux open "$1"
 fi
 
-if [[ -z $selected ]]; then
-    exit 0
-fi
-
-# Convert relative path back to absolute path if needed
-if [[ "$selected" =~ ^~ ]]; then
-    selected="${selected/#\~/$HOME}"
-elif [[ "$selected" != /* ]]; then
-    # Resolve relative paths from current directory
-    selected="$PWD/$selected"
-fi
-
-selected_name=$(basename "$selected" | tr . _)
-
-# Log visit for frecency sorting
-frecency log --context=sessionizer "$selected"
-
-# Check if the session already exists
-if ! tmux has-session -t="$selected_name" 2> /dev/null; then
-    tmux new-session -s "$selected_name" -c "$selected" -d            # Create new session (detached)
-    tmux new-window -t "$selected_name" -c "$selected"                # Create a second window
-    tmux select-window -t "$selected_name:1"                        # Go back to the first window
-    tmux send-keys -t "$selected_name:1" "nvim ." C-m               # Run nvim in the first window
-fi
-
-if [[ -n $TMUX ]]; then
-    # Inside tmux: switch to the session
-    tmux switch-client -t "$selected_name"
-else
-    # Outside tmux: attach to the session
-    tmux attach-session -t "$selected_name"
-fi
+dir=$(agent-mux find --print | fzf --scheme=path --tiebreak=index) || exit 0
+exec agent-mux open "$dir"
