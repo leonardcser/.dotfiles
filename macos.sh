@@ -68,4 +68,8 @@ defaults write com.apple.screencapture location "~/Downloads" && killall SystemU
 # Set refresh rate to 2s
 defaults write com.apple.ActivityMonitor "UpdatePeriod" -int "2" && killall Activity\ Monitor
 
+# SPOTLIGHT
+# Exclude code, caches and toolchains (see spotlight-exclusions)
+"$(dirname "$0")/scripts/spotlight-exclude"
+
 sudo shutdown -r now

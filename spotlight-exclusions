@@ -1,0 +1,45 @@
+# Spotlight Search Privacy list, applied by scripts/spotlight-exclude.
+# One path per line, relative to $HOME.
+
+# Code: searched with rg/fd/editors, not Spotlight
+dev
+
+# Toolchains and package caches
+go
+.cache
+.local
+.cargo
+.rustup
+.elan
+.npm
+.bun
+.gradle
+.m2
+.gem
+.composer
+.cocoapods
+.virtualenvs
+.expo
+.docker
+.ollama
+
+# Agent and editor state
+.claude
+.codex
+.cursor
+.vscode-oss
+.gemini
+.kimi
+.factory
+
+# App caches and runtimes
+Library/Caches
+Library/Developer
+Library/Application Support/Zed
+Library/Application Support/AnkiProgramFiles
+Library/Application Support/Claude
+Library/Application Support/discord
+Library/Application Support/Slack
+Library/Application Support/VSCodium
+Library/Application Support/Chromium
+Library/Application Support/net.imput.helium

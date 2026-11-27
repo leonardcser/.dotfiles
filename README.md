@@ -36,6 +36,14 @@ To update the `Brewfile`:
 brew bundle dump --file=Brewfile --describe --force
 ```
 
+To change what Spotlight skips, edit `spotlight-exclusions`, then apply it and
+rebuild the index:
+
+```bash
+scripts/spotlight-exclude
+sudo mdutil -E /System/Volumes/Data
+```
+
 To sync the `Brewfile`:
 
 ```bash

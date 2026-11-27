@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Write ~/.dotfiles/spotlight-exclusions into Spotlight's Search Privacy list.
+set -euo pipefail
+
+list="$(cd "$(dirname "$0")/.." && pwd)/spotlight-exclusions"
+vc=/System/Volumes/Data/.Spotlight-V100/VolumeConfiguration.plist
+
+json=$(grep -v '^#' "$list" | sed '/^$/d' | while IFS= read -r p; do printf '"%s",' "$HOME/$p"; done)
+sudo plutil -replace Exclusions -json "[${json%,}]" "$vc"
+
+# Spotlight writes its in-memory config back on exit; SIGKILL makes it reload ours.
+sudo pkill -KILL -x mds_stores || true
+sudo pkill -KILL -x mds || true
+sleep 5
+
+echo "Spotlight exclusions: $(sudo /usr/libexec/PlistBuddy -c 'Print :Exclusions' "$vc" | grep -c '^ */')"
+echo "Run 'sudo mdutil -E /System/Volumes/Data' to drop already indexed items."
